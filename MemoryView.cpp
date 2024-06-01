@@ -560,7 +560,7 @@ void	CMemoryView::OnDraw( HDC hDC )
 			::strcat( szBuf, szTemp );
 		}
 
-		::TextOut( hDC, OFFSETH, OFFSETV+FONTHEIGHT*(2+i), szBuf, ::strlen(szBuf) );
+		::TextOut( hDC, OFFSETH, OFFSETV+FONTHEIGHT*(2+i), szBuf, (int)::strlen(szBuf));
 
 		address += 16;
 		address &= 0xFFFF;

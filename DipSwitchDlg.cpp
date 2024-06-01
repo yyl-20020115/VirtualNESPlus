@@ -109,7 +109,7 @@ DLGCMD	CDipSwitchDlg::OnOK( DLGCMDPARAM )
 	// 選択されている奴のItemDataを取得してDipSwitchデータを作り直す(OnInitDialogでItemDataを設定済み)
 	BYTE	dipval = 0;
 	for( INT i = IDC_EVS_DIPCOMBO0; i < IDC_EVS_DIPCOMBO0+m_nDispCount; i++ ) {
-		INT	sel = ::SendDlgItemMessage( m_hWnd, i, CB_GETCURSEL, 0, 0 );
+		LRESULT	sel = ::SendDlgItemMessage( m_hWnd, i, CB_GETCURSEL, 0, 0 );
 		DWORD	val = (DWORD)::SendDlgItemMessage( m_hWnd, i, CB_GETITEMDATA, (WPARAM)sel, 0 );
 
 		dipval |= val & 0xFF;

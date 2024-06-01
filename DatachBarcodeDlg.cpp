@@ -134,7 +134,7 @@ DLGCMD	CDatachBarcodeDlg::OnCodeinput( DLGCMDPARAM )
 {
 	DEBUGOUT( "CDatachBarcodeDlg::OnCodeinput\n" );
 
-        INT	len = ::SendDlgItemMessage( m_hWnd, IDC_EBB_CODE, WM_GETTEXTLENGTH, 0, 0 );
+        LRESULT	len = ::SendDlgItemMessage( m_hWnd, IDC_EBB_CODE, WM_GETTEXTLENGTH, 0, 0 );
 	CTRLENABLE( IDC_EBB_TRANSFER, ((len==8)||(len==13))?TRUE:FALSE );
 }
 
@@ -149,7 +149,7 @@ DLGCMD	CDatachBarcodeDlg::OnCodeTransfer( DLGCMDPARAM )
 	p = code;
 	INT	len = ::GetDlgItemText( m_hWnd, IDC_EBB_CODE, (LPTSTR)code, 14 );
 
-	Emu.EventParam2( CEmuThread::EV_BARCODE, (LONG)code, (LONG)len );
+	Emu.EventParam2( CEmuThread::EV_BARCODE, (LONG_PTR)code, (LONG_PTR)len );
 }
 
 DLGCMD	CDatachBarcodeDlg::OnCodeCreate( DLGCMDPARAM )

@@ -163,8 +163,8 @@ DLGCMD	CGraphicsDlg::OnOK( DLGCMDPARAM )
 
 	Config.graphics.nScanlineColor = ::SendDlgItemMessage( m_hWnd, IDC_GRA_SCANLINE_SLIDER, TBM_GETPOS, 0, 0 );
 
-	INT sel = ::SendDlgItemMessage( m_hWnd, IDC_GRA_RESOLUTION_COMBO, CB_GETCURSEL, 0, 0 );
-	INT no  = ::SendDlgItemMessage( m_hWnd, IDC_GRA_RESOLUTION_COMBO, CB_GETITEMDATA, (WPARAM)sel, 0 );
+	LRESULT sel = ::SendDlgItemMessage( m_hWnd, IDC_GRA_RESOLUTION_COMBO, CB_GETCURSEL, 0, 0 );
+	LRESULT no  = ::SendDlgItemMessage( m_hWnd, IDC_GRA_RESOLUTION_COMBO, CB_GETITEMDATA, (WPARAM)sel, 0 );
 
 	DirectDraw.GetDisplayMode( no, Config.graphics.dwDisplayWidth,
 				       Config.graphics.dwDisplayHeight,

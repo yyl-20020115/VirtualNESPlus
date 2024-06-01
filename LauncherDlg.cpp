@@ -527,7 +527,7 @@ void	CLauncherDlg::SortListView()
 		lvitem.mask = LVIF_PARAM;
 		lvitem.iItem = 0;
 		ListView_GetItem( hWndCtrl, &lvitem );
-		m_SelectPos = lvitem.lParam;
+		m_SelectPos = (int)lvitem.lParam;
 		ListView_SetItemState( hWndCtrl, 0, LVIS_SELECTED|LVIS_FOCUSED, LVIS_SELECTED|LVIS_FOCUSED );
 	}
 }
@@ -1569,7 +1569,7 @@ DLGCMD	CLchDispEditDlg::OnAdd( DLGCMDPARAM )
 {
 //	DEBUGOUT( "CLchDispEditDlg::OnAdd\n" );
 
-	INT nSel = ::SendDlgItemMessage( m_hWnd, IDC_DED_HIDELIST, LB_GETCURSEL, 0, 0 );
+	LRESULT nSel = ::SendDlgItemMessage( m_hWnd, IDC_DED_HIDELIST, LB_GETCURSEL, 0, 0 );
 
 	if( nSel != LB_ERR ) {
 		CHAR	szStr[64];
@@ -1601,7 +1601,7 @@ DLGCMD	CLchDispEditDlg::OnDel( DLGCMDPARAM )
 {
 //	DEBUGOUT( "CLchDispEditDlg::OnDel\n" );
 
-	INT nSel = ::SendDlgItemMessage( m_hWnd, IDC_DED_VIEWLIST, LB_GETCURSEL, 0, 0 );
+	LRESULT nSel = ::SendDlgItemMessage( m_hWnd, IDC_DED_VIEWLIST, LB_GETCURSEL, 0, 0 );
 
 	if( nSel != LB_ERR ) {
 		CHAR	szStr[64];
@@ -1633,7 +1633,7 @@ DLGCMD	CLchDispEditDlg::OnUp( DLGCMDPARAM )
 {
 //	DEBUGOUT( "CLchDispEditDlg::OnUp\n" );
 
-	INT nSel = ::SendDlgItemMessage( m_hWnd, IDC_DED_VIEWLIST, LB_GETCURSEL, 0, 0 );
+	LRESULT nSel = ::SendDlgItemMessage( m_hWnd, IDC_DED_VIEWLIST, LB_GETCURSEL, 0, 0 );
 
 	if( nSel != LB_ERR && nSel > 0 ) {
 		CHAR	szStr[64];
@@ -1653,7 +1653,7 @@ DLGCMD	CLchDispEditDlg::OnDown( DLGCMDPARAM )
 {
 //	DEBUGOUT( "CLchDispEditDlg::OnDown\n" );
 
-	INT nSel = ::SendDlgItemMessage( m_hWnd, IDC_DED_VIEWLIST, LB_GETCURSEL, 0, 0 );
+	LRESULT nSel = ::SendDlgItemMessage( m_hWnd, IDC_DED_VIEWLIST, LB_GETCURSEL, 0, 0 );
 
 	if( nSel != LB_ERR && nSel < m_nViewNum-1 ) {
 		CHAR	szStr[64];

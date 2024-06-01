@@ -52,7 +52,7 @@ DLGMSG	CLanguageDlg::OnInitDialog( DLGMSGPARAM )
 DLGCMD	CLanguageDlg::OnOK( DLGCMDPARAM )
 {
 //	DEBUGOUT( "CLanguageDlg::OnOK\n" );
-	INT nID = ::SendDlgItemMessage( m_hWnd, IDC_LNG_LIST, LB_GETCURSEL, 0, 0 );
+	LRESULT nID = ::SendDlgItemMessage( m_hWnd, IDC_LNG_LIST, LB_GETCURSEL, 0, 0 );
 	if( m_nPluginID != nID ) {
 		CPlugin::SetPluginID( nID );
 		::EndDialog( m_hWnd, IDOK );

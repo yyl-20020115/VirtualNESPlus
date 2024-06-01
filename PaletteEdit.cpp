@@ -280,7 +280,7 @@ DLGMSG	CPaletteEdit::OnHScroll( DLGMSGPARAM )
 	HWND	hWndBar = (HWND)lParam;		// handle to scroll bar 
 
 	int	nEdit = 0;
-	int	nPos = ::SendMessage( hWndBar, TBM_GETPOS, 0, 0 );
+	LRESULT	nPos = ::SendMessage( hWndBar, TBM_GETPOS, 0, 0 );
 
 	if( hWndBar == ::GetDlgItem( m_hWnd, IDC_PAL_R_SLIDER ) ) {
 		nEdit = IDC_PAL_R_EDIT;

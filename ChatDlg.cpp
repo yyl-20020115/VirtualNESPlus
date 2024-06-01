@@ -241,7 +241,7 @@ DLGMSG	CChatDlg::OnControlColorStatic( DLGMSGPARAM )
 {
 	if( (HWND)lParam == ::GetDlgItem( m_hWnd, IDC_NCT_MESSAGE ) ) {
 		SetBkColor( (HDC)wParam, (COLORREF)0x00FFFFFF );
-		bResult = (LRESULT)GetStockObject( WHITE_BRUSH );
+		bResult = (BOOL)(LRESULT)GetStockObject( WHITE_BRUSH );
 		return	TRUE;
 	}
 	return	FALSE;

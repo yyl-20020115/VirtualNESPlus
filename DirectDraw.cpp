@@ -259,6 +259,9 @@ CDirectDraw::CDirectDraw()
 		m_bMMX = FALSE;
 
 		DWORD	flag1, flag2;
+		//ASM_COMMENT_OUT
+
+#if 0
 		__asm {
 			pushfd
 			pop	eax
@@ -270,14 +273,17 @@ CDirectDraw::CDirectDraw()
 			pop	eax
 			mov	flag2, eax
 		}
-
+#endif
 		if( flag1 != flag2 ) {
 			DWORD	flag;
+			//ASM_COMMENT_OUT
+#if 0
 			__asm {
 				mov	eax, 1
 				cpuid
 				mov	flag, edx
 			}
+#endif
 			if( flag & 0x00800000 ) {
 				m_bMMX = TRUE;
 			}
@@ -1968,7 +1974,7 @@ HDC	hDC;
 
 	pbi = (LPBITMAPINFOHEADER)lpBuf;
 	if( pbi->biBitCount < 16 )
-		lpPix = ((LPBYTE)pbi)+pbi->biSize+(1<<pbi->biBitCount)*sizeof(RGBQUAD);
+		lpPix = ((LPBYTE)pbi)+pbi->biSize+(1LL<<pbi->biBitCount)*sizeof(RGBQUAD);
 	else
 		lpPix = (LPBYTE)pbi+pbi->biSize;
 

@@ -497,9 +497,9 @@ double	Samples = 0.0;
 						*pDst++ = pPal[ pixel ].rgbGreen;
 						*pDst++ = pPal[ pixel ].rgbRed;
 					}
-#else
+#endif
 					DWORD	width = CDirectDraw::SCREEN_WIDTH;
-
+#if 0
 					__asm {
 						mov		eax, pSrc
 						mov		esi, pPal

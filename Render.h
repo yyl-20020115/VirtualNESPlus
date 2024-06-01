@@ -17,7 +17,8 @@ void	CDirectDraw::Render16bpp( LPBYTE lpSrc, LPBYTE lpDst )
 		}
 
 		width = SCREEN_WIDTH;
-
+		//ASM_COMMENT_OUT
+#if 0
 		__asm {
 			mov		eax, lpSrc
 			mov		esi, pPal
@@ -61,7 +62,7 @@ _r16b_loop:
 			sub		width, 8
 			jg		_r16b_loop
 		}
-
+#endif
 		lpSrc += RENDER_WIDTH;
 		lpDst += SCREEN_WIDTH*sizeof(WORD);
 	}
@@ -82,7 +83,9 @@ void	CDirectDraw::Render16bppPrefilter( LPBYTE lpSrc, LPBYTE lpDst )
 		}
 
 		width = SCREEN_WIDTH;
+		//ASM_COMMENT_OUT
 
+#if 0
 		__asm {
 			mov		eax, lpSrc
 			mov		esi, pPal
@@ -126,7 +129,7 @@ _r16b_pf_loop:
 			sub		width, 8
 			jg		_r16b_pf_loop
 		}
-
+#endif
 		lpSrc += RENDER_WIDTH;
 		lpDst += SCREEN_WIDTH*sizeof(WORD);
 	}
@@ -147,7 +150,9 @@ void	CDirectDraw::Render32bpp( LPBYTE lpSrc, LPBYTE lpDst )
 		}
 
 		width = SCREEN_WIDTH;
+		//ASM_COMMENT_OUT
 
+#if 0
 		__asm {
 			mov		eax, lpSrc
 			mov		esi, pPal
@@ -191,7 +196,7 @@ _r32b_loop:
 			sub		width, 8
 			jg		_r32b_loop
 		}
-
+#endif
 		lpSrc += RENDER_WIDTH;
 		lpDst += SCREEN_WIDTH*sizeof(DWORD);
 	}

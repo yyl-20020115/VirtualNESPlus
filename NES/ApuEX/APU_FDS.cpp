@@ -254,7 +254,7 @@ INT	APU_FDS::Process( INT channel )
 		INT	freq;
 		INT	main_addr_old = fds.main_addr;
 
-		freq = (fds.main_frequency+sub_freq)*1789772.5/65536.0;
+		freq =(int)((fds.main_frequency+sub_freq)*1789772.5/65536.0);
 
 		fds.main_addr = (fds.main_addr+freq+64*sampling_rate)%(64*sampling_rate);
 

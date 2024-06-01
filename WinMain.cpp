@@ -176,7 +176,7 @@ INT WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 			break;
 		// メインウインドウのメッセージフィルタリング
 		if( CApp::GetHWnd() == msg.hwnd ) {
-			CWnd* pWnd = (CWnd*)::GetWindowLong( msg.hwnd, GWL_USERDATA );
+			CWnd* pWnd = (CWnd*)::GetWindowLongPtr( msg.hwnd, GWLP_USERDATA );
 			if( pWnd ) {
 				if( pWnd->PreTranslateMessage( &msg ) )
 					continue;
@@ -207,7 +207,7 @@ INT WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 _DoubleExecute_Exit:
 	::FreeLibrary( CApp::GetPlugin() );
 
-	return	msg.wParam;
+	return	(int)msg.wParam;
 
 _Error_Exit:
 	// DirectX系破棄

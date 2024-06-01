@@ -71,7 +71,7 @@ void	CFolderDlg::OnInitialMember()
 
 void	CFolderDlg::PathCheck( LPSTR lpszPath )
 {
-	INT	len = ::strlen( lpszPath );
+	size_t	len = ::strlen( lpszPath );
 
 	if( len > 3 ) {
 		if( isleadbyte( (UINT)lpszPath[len-2] ) ) {

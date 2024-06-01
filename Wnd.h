@@ -58,7 +58,7 @@ protected:
 
 	// Static
 	static	LRESULT	CALLBACK g_WndProc(  HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam );
-	static	BOOL	CALLBACK g_DlgProc(  HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam );
+	static	INT_PTR	CALLBACK g_DlgProc(  HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam );
 
 	// Override
 	virtual	LRESULT	DispatchWnd( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
@@ -71,7 +71,7 @@ private:
 
 // ウインドウメッセージ用
 // クラス定義マクロ
-#define	WND_MESSAGE_MAP()	HRESULT DispatchWnd( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam );
+#define	WND_MESSAGE_MAP()	LRESULT DispatchWnd( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam );
 
 #define	WNDMSG			BOOL
 #define	WNDCMD			void
@@ -83,7 +83,7 @@ private:
 
 // インプリメントマクロ
 #define	WND_MESSAGE_BEGIN(cls)	\
-	HRESULT cls::DispatchWnd( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam ) {\
+	LRESULT cls::DispatchWnd( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam ) {\
 		HRESULT	hResult = 0L;\
 		switch( msg ) {
 #define	WND_ON_MESSAGE(msg,fnc)	\

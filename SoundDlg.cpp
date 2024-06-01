@@ -129,11 +129,11 @@ DLGCMD	CSoundDlg::OnOK( DLGCMDPARAM )
 		Config.sound.nVolume[m_nVolumeID[i*2+1]] = 200-::SendDlgItemMessage( m_hWnd, m_nVolumeID[i*2+0], TBM_GETPOS, 0, 0 );
 	}
 
-	INT sel = ::SendDlgItemMessage( m_hWnd, IDC_SND_SAMPLERATE_COMBO, CB_GETCURSEL, 0, 0 );
+	LRESULT sel = ::SendDlgItemMessage( m_hWnd, IDC_SND_SAMPLERATE_COMBO, CB_GETCURSEL, 0, 0 );
 	Config.sound.nRate = CConfig::SamplingRateTable[sel*2+0];
 	Config.sound.nBits = CConfig::SamplingRateTable[sel*2+1];
-	Config.sound.nBufferSize = 2+::SendDlgItemMessage( m_hWnd, IDC_SND_BUFFERSIZE_COMBO, CB_GETCURSEL, 0, 0 );
-	Config.sound.nFilterType = ::SendDlgItemMessage( m_hWnd, IDC_SND_FILTERTYPE_COMBO, CB_GETCURSEL, 0, 0 );
+	Config.sound.nBufferSize = 2+ (int)::SendDlgItemMessage( m_hWnd, IDC_SND_BUFFERSIZE_COMBO, CB_GETCURSEL, 0, 0 );
+	Config.sound.nFilterType = (int)::SendDlgItemMessage(m_hWnd, IDC_SND_FILTERTYPE_COMBO, CB_GETCURSEL, 0, 0);
 
 	::EndDialog( m_hWnd, IDOK );
 }

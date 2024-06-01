@@ -53,7 +53,7 @@ void	EXPAD_SpaceShadowGun::SetSyncData( INT type, LONG data )
 	} else if( type == 1 ) {
 		zapper_y = data;
 	} else if( type == 2 ) {
-		zapper_button = data;
+		zapper_button = (BYTE)data;
 	}
 }
 

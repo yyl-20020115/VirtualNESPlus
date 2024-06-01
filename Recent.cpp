@@ -54,7 +54,7 @@ void	CRecent::MakeManuPath( LPSTR lpszPath )
 		}
 	}
 
-	INT	nVolume = lpszCur - lpszPath;
+	LONG_PTR	nVolume = lpszCur - lpszPath;
 	if( 30 < nVolume+5+::strlen(FileName.c_str()) ) {
 		::strcpy( lpszPath, FileName.c_str() );
 		return;
@@ -81,7 +81,7 @@ void	CRecent::UpdateMenu( HMENU hMenu )
 	// ﾌｧｲﾙ(&F)メニューの取得
 	HMENU hSubMenu = ::GetSubMenu( hMenu, 0 );
 
-	// 最近使ったﾌｫﾙﾀﾞ(&P)ポップアップメニューの取得
+	// 最近使ったﾌｫﾙﾀ?&P)ポップアップメニューの取得
 	HMENU hPathMenu = ::GetSubMenu( hSubMenu, 12 );
 	// 最近使ったﾌｧｲﾙ(&F)ポップアップメニューの取得
 	HMENU hFileMenu = ::GetSubMenu( hSubMenu, 13 );

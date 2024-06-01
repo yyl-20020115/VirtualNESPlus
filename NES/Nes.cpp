@@ -1680,7 +1680,7 @@ BOOL	NES::ReadState( FILE* fp )
 				// Ver0.30à»ç~ Ver0.60à»ç~
 					FILEHDR2 hdr2;
 					// ÉwÉbÉ_ïîì«Ç›íºÇµ
-					if( ::fseek( fp, -sizeof(BLOCKHDR), SEEK_CUR ) ) {
+					if( ::_fseeki64( fp, -(LONG_PTR)sizeof(BLOCKHDR), SEEK_CUR ) ) {
 						// ÉtÉ@ÉCÉãÇÃì«Ç›çûÇ›Ç…é∏îsÇµÇ‹ÇµÇΩ
 						throw	CApp::GetErrorString( IDS_ERROR_READ );
 					}
@@ -3287,7 +3287,7 @@ BOOL	NES::IsCheatCodeAdd()
 
 INT	NES::GetCheatCodeNum()
 {
-	return	m_CheatCode.size();
+	return	(int)m_CheatCode.size();
 }
 
 BOOL	NES::GetCheatCode( INT no, CHEATCODE& code )

@@ -27,6 +27,7 @@ void	CDirectDraw::Render32bpp_Normal( LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2
 		width = SCREEN_WIDTH;
 
 		if( bFWrite ) {
+#if 0
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt
@@ -74,11 +75,12 @@ _r32bn_loop_fw:
 			sub		width, 8
 			jg		_r32bn_loop_fw
 			}
-
+#endif
 			pScn += RENDER_WIDTH;
 			pDlt += SCREEN_WIDTH;
 			pDst += pitch;
 		} else {
+#if 0
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt
@@ -132,6 +134,7 @@ _r32bn_skip2:
 			sub		width, 8
 			jg		_r32bn_loop
 			}
+#endif
 
 			pScn += RENDER_WIDTH;
 			pDlt += SCREEN_WIDTH;
@@ -171,6 +174,7 @@ void	CDirectDraw::Render32bpp_Scanline( LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDES
 		width = SCREEN_WIDTH;
 
 		if( bFWrite ) {
+#if 0
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt
@@ -218,10 +222,10 @@ _r32bs_loop_fw:
 			sub		width, 8
 			jg		_r32bs_loop_fw
 			}
-
+#endif
 			width = SCREEN_WIDTH;
 			pDst += pitch;
-
+#if 0
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt
@@ -267,11 +271,12 @@ _r32bs_loop2_fw:
 			sub		width, 8
 			jg		_r32bs_loop2_fw
 			}
-
+#endif
 			pScn += RENDER_WIDTH;
 			pDlt += SCREEN_WIDTH;
 			pDst += pitch;
 		} else {
+#if 0
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt
@@ -325,10 +330,10 @@ _r32bs_skip2:
 			sub		width, 8
 			jg		_r32bs_loop
 			}
-
+#endif
 			width = SCREEN_WIDTH;
 			pDst += pitch;
-
+#if 0
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt
@@ -382,7 +387,7 @@ _r32bs_skip4:
 			sub		width, 8
 			jg		_r32bs_loop2
 			}
-
+#endif
 			pScn += RENDER_WIDTH;
 			pDlt += SCREEN_WIDTH;
 			pDst += pitch;
@@ -419,6 +424,7 @@ void	CDirectDraw::Render32bpp_Double( LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2
 		width = SCREEN_WIDTH;
 
 		if( bFWrite ) {
+#if 0
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt
@@ -474,10 +480,10 @@ _r32bs_d_loop_fw:
 			sub		width, 8
 			jg		_r32bs_d_loop_fw
 			}
-
+#endif
 			width = SCREEN_WIDTH;
 			pDst += pitch;
-
+#if 0
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt
@@ -531,11 +537,12 @@ _r32bs_d_loop2_fw:
 			sub		width, 8
 			jg		_r32bs_d_loop2_fw
 			}
-
+#endif
 			pScn += RENDER_WIDTH;
 			pDlt += SCREEN_WIDTH;
 			pDst += pitch;
 		} else {
+#if 0
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt
@@ -597,10 +604,10 @@ _r32bs_d_skip2:
 			sub		width, 8
 			jg		_r32bs_d_loop
 			}
-
+#endif
 			width = SCREEN_WIDTH;
 			pDst += pitch;
-
+#if 0
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt
@@ -662,7 +669,7 @@ _r32bs_d_skip4:
 			sub		width, 8
 			jg		_r32bs_d_loop2
 			}
-
+#endif
 			pScn += RENDER_WIDTH;
 			pDlt += SCREEN_WIDTH;
 			pDst += pitch;
@@ -701,6 +708,7 @@ void	CDirectDraw::Render32bpp_DoubleScanline( LPBYTE lpRdr, LPBYTE lpDlt, DDSURF
 		width = SCREEN_WIDTH;
 
 		if( bFWrite ) {
+#if 0
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt
@@ -756,10 +764,10 @@ _r32bn_d_loop_fw:
 			sub		width, 8
 			jg		_r32bn_d_loop_fw
 			}
-
+#endif
 			width = SCREEN_WIDTH;
 			pDst += pitch;
-
+#if 0
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt
@@ -813,11 +821,12 @@ _r32bn_d_loop2_fw:
 			sub		width, 8
 			jg		_r32bn_d_loop2_fw
 			}
-
+#endif
 			pScn += RENDER_WIDTH;
 			pDlt += SCREEN_WIDTH;
 			pDst += pitch;
 		} else {
+#if 0
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt
@@ -879,10 +888,10 @@ _r32bn_d_skip2:
 			sub		width, 8
 			jg		_r32bn_d_loop
 			}
-
+#endif
 			width = SCREEN_WIDTH;
 			pDst += pitch;
-
+#if 0
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt
@@ -944,7 +953,7 @@ _r32bn_d_skip4:
 			sub		width, 8
 			jg		_r32bn_d_loop2
 			}
-
+#endif
 			pScn += RENDER_WIDTH;
 			pDlt += SCREEN_WIDTH;
 			pDst += pitch;

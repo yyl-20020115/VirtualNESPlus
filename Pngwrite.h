@@ -39,7 +39,7 @@ public:
 			pDst += nWidth;
 		}
 
-		zlibbuffersize = ((nWidth+1)*nHeight)*1.1+12;
+		zlibbuffersize =(ULONG)(((nWidth+1)*nHeight)*1.1+12);
 		if( !(pZbuf = (LPBYTE)::malloc( zlibbuffersize )) )
 			goto	error_exit;
 

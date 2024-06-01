@@ -9,6 +9,8 @@ void	CDirectDraw::Render8bpp_Normal( LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 	DWORD	pitch = ddsd.lPitch;
 
 	for( INT i = 0; i < SCREEN_HEIGHT; i++ ) {
+		//ASM_COMMENT_OUT
+#if 0
 		__asm {
 			mov		esi, pScn
 			mov		edi, pDst
@@ -27,6 +29,7 @@ _r8bn_loop:
 			sub		ecx, 8
 			jg		_r8bn_loop
 		}
+#endif
 		pScn += RENDER_WIDTH;
 		pDst += pitch;
 	}
@@ -43,6 +46,7 @@ void	CDirectDraw::Render8bpp_Scanline( LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC
 	DWORD	pitch = ddsd.lPitch;
 
 	for( INT i = 0; i < SCREEN_HEIGHT; i++ ) {
+#if 0
 		__asm {
 			mov		esi, pScn
 			mov		edi, pDst
@@ -61,7 +65,9 @@ _r8bs_loop:
 			sub		ecx, 8
 			jg		_r8bs_loop
 		}
+#endif
 		pDst += pitch;
+#if 0
 		__asm {
 			mov		esi, pScn
 			mov		edi, pDst
@@ -80,6 +86,7 @@ _r8bs_loop2:
 			sub		ecx, 8
 			jg		_r8bs_loop2
 		}
+#endif
 		pScn += RENDER_WIDTH;
 		pDst += pitch;
 	}
@@ -97,6 +104,8 @@ void	CDirectDraw::Render8bpp_Double( LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 
 	if( !IsMMX() ) {
 	for( INT i = 0; i < SCREEN_HEIGHT; i++ ) {
+		//ASM_COMMENT_OUT
+#if 0
 		__asm {
 			mov		esi, pScn
 			mov		edi, pDst
@@ -140,7 +149,10 @@ _r8bn_d_loop:
 			sub		ecx, 8
 			jg		_r8bn_d_loop
 		}
+#endif
 		pDst += pitch;
+		//ASM_COMMENT_OUT
+#if 0
 		__asm {
 			mov		esi, pScn
 			mov		edi, pDst
@@ -184,6 +196,7 @@ _r8bn_d_loop2:
 			sub		ecx, 8
 			jg		_r8bn_d_loop2
 		}
+#endif
 		pScn += RENDER_WIDTH;
 		pDst += pitch;
 	}
@@ -191,6 +204,8 @@ _r8bn_d_loop2:
 	QWORD	mask = 0x4040404040404040;
 
 	for( INT i = 0; i < SCREEN_HEIGHT; i++ ) {
+		//ASM_COMMENT_OUT
+#if 0
 		__asm {
 			mov		esi, pScn
 			mov		edi, pDst
@@ -213,7 +228,10 @@ _r8bn_d_loop3:
 			sub		ecx, 8
 			jg		_r8bn_d_loop3
 		}
+#endif
 		pDst += pitch;
+		//ASM_COMMENT_OUT
+#if 0
 		__asm {
 			mov		esi, pScn
 			mov		edi, pDst
@@ -236,12 +254,17 @@ _r8bn_d_loop4:
 			sub		ecx, 8
 			jg		_r8bn_d_loop4
 		}
+#endif
 		pScn += RENDER_WIDTH;
 		pDst += pitch;
 	}
+	//ASM_COMMENT_OUT
+
+#if 0
 	__asm {
 		emms
 	}
+#endif
 	}
 }
 
@@ -257,6 +280,9 @@ void	CDirectDraw::Render8bpp_DoubleScanline( LPBYTE lpRdr, LPBYTE lpDlt, DDSURFA
 
 	if( !IsMMX() ) {
 	for( INT i = 0; i < SCREEN_HEIGHT; i++ ) {
+		//ASM_COMMENT_OUT
+
+#if 0
 		__asm {
 			mov		esi, pScn
 			mov		edi, pDst
@@ -300,7 +326,11 @@ _r8bs_d_loop:
 			sub		ecx, 8
 			jg		_r8bs_d_loop
 		}
+#endif
+		//ASM_COMMENT_OUT
+
 		pDst += pitch;
+#if 0
 		__asm {
 			mov		esi, pScn
 			mov		edi, pDst
@@ -344,6 +374,7 @@ _r8bs_d_loop2:
 			sub		ecx, 8
 			jg		_r8bs_d_loop2
 		}
+#endif
 		pScn += RENDER_WIDTH;
 		pDst += pitch;
 	}
@@ -352,6 +383,9 @@ _r8bs_d_loop2:
 	QWORD	masks = 0x8080808080808080;
 
 	for( INT i = 0; i < SCREEN_HEIGHT; i++ ) {
+		//ASM_COMMENT_OUT
+
+#if 0
 		__asm {
 			mov		esi, pScn
 			mov		edi, pDst
@@ -374,7 +408,9 @@ _r8bs_d_loop3:
 			sub		ecx, 8
 			jg		_r8bs_d_loop3
 		}
+#endif
 		pDst += pitch;
+#if 0
 		__asm {
 			mov		esi, pScn
 			mov		edi, pDst
@@ -397,11 +433,15 @@ _r8bs_d_loop4:
 			sub		ecx, 8
 			jg		_r8bs_d_loop4
 		}
+#endif
 		pScn += RENDER_WIDTH;
 		pDst += pitch;
 	}
+	//ASM_COMMENT_OUT
+#if 0
 	__asm {
 		emms
 	}
+#endif
 	}
 }

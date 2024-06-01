@@ -554,12 +554,12 @@ void	CNetPlay::ChatSend( LPCSTR lpStr )
 
 	if( m_bServer ) {
 DEBUGOUT( "ChatSend Server:%s", lpStr );
-		if( ::sendto( m_SocketChat, (char*)lpStr, ::strlen(lpStr)+1, 0, (struct sockaddr *)&m_SAddr_Client, sizeof(m_SAddr_Client) ) == SOCKET_ERROR ) {
+		if( ::sendto( m_SocketChat, (char*)lpStr, (int)::strlen(lpStr) + 1, 0, (struct sockaddr*)&m_SAddr_Client, sizeof(m_SAddr_Client)) == SOCKET_ERROR) {
 			DEBUGOUT( "ChatSend failed. Server:[%s]\n", SocketErrorDump( ::WSAGetLastError() ) );
 		}
 	} else {
 DEBUGOUT( "ChatSend Client:%s", lpStr );
-		if( ::sendto( m_SocketChat, (char*)lpStr, ::strlen(lpStr)+1, 0, (struct sockaddr *)&m_SAddr_Server, sizeof(m_SAddr_Server) ) == SOCKET_ERROR ) {
+		if( ::sendto( m_SocketChat, (char*)lpStr, (int)::strlen(lpStr) + 1, 0, (struct sockaddr*)&m_SAddr_Server, sizeof(m_SAddr_Server)) == SOCKET_ERROR) {
 			DEBUGOUT( "ChatSend failed. Server:[%s]\n", SocketErrorDump( ::WSAGetLastError() ) );
 		}
 	}

@@ -90,7 +90,7 @@ DLGMSG	CEmulatorDlg::OnHScroll( DLGMSGPARAM )
 {
 //	DEBUGOUT( "CEmulatorDlg::OnHScroll\n" );
 
-	INT pos = ::SendDlgItemMessage( m_hWnd, IDC_EMU_THROTTLE_SLIDER, TBM_GETPOS, 0, 0 );
+	LRESULT pos = ::SendDlgItemMessage( m_hWnd, IDC_EMU_THROTTLE_SLIDER, TBM_GETPOS, 0, 0 );
 	CHAR	str[16];
 	::wsprintf( str, "%d", pos*10 );
 	::SetDlgItemText( m_hWnd, IDC_EMU_FPS, str );

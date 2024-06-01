@@ -42,7 +42,7 @@ static	void	internal_scale2x_16_mmx_single(euI16* dst, const euI16* src0, const 
 {
 	/* always do the first and last run */
 	count -= 2*4;
-#if 0
+#if !_WIN64
 	__asm {
 		mov		eax, src0
 		mov		ebx, src1
@@ -238,7 +238,7 @@ static	void	internal_scale2x_32_mmx_single(euI32* dst, const euI32* src0, const 
 {
 	/* always do the first and last run */
 	count -= 2*2;
-#if 0
+#if !_WIN64
 	__asm {
 		mov		eax, src0
 		mov		ebx, src1

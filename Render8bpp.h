@@ -10,7 +10,7 @@ void	CDirectDraw::Render8bpp_Normal( LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 
 	for( INT i = 0; i < SCREEN_HEIGHT; i++ ) {
 		//ASM_COMMENT_OUT
-#if 0
+#if !_WIN64
 		__asm {
 			mov		esi, pScn
 			mov		edi, pDst
@@ -46,7 +46,7 @@ void	CDirectDraw::Render8bpp_Scanline( LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC
 	DWORD	pitch = ddsd.lPitch;
 
 	for( INT i = 0; i < SCREEN_HEIGHT; i++ ) {
-#if 0
+#if !_WIN64
 		__asm {
 			mov		esi, pScn
 			mov		edi, pDst
@@ -67,7 +67,7 @@ _r8bs_loop:
 		}
 #endif
 		pDst += pitch;
-#if 0
+#if !_WIN64
 		__asm {
 			mov		esi, pScn
 			mov		edi, pDst
@@ -105,7 +105,7 @@ void	CDirectDraw::Render8bpp_Double( LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 	if( !IsMMX() ) {
 	for( INT i = 0; i < SCREEN_HEIGHT; i++ ) {
 		//ASM_COMMENT_OUT
-#if 0
+#if !_WIN64
 		__asm {
 			mov		esi, pScn
 			mov		edi, pDst
@@ -152,7 +152,7 @@ _r8bn_d_loop:
 #endif
 		pDst += pitch;
 		//ASM_COMMENT_OUT
-#if 0
+#if !_WIN64
 		__asm {
 			mov		esi, pScn
 			mov		edi, pDst
@@ -205,7 +205,7 @@ _r8bn_d_loop2:
 
 	for( INT i = 0; i < SCREEN_HEIGHT; i++ ) {
 		//ASM_COMMENT_OUT
-#if 0
+#if !_WIN64
 		__asm {
 			mov		esi, pScn
 			mov		edi, pDst
@@ -231,7 +231,7 @@ _r8bn_d_loop3:
 #endif
 		pDst += pitch;
 		//ASM_COMMENT_OUT
-#if 0
+#if !_WIN64
 		__asm {
 			mov		esi, pScn
 			mov		edi, pDst
@@ -260,7 +260,7 @@ _r8bn_d_loop4:
 	}
 	//ASM_COMMENT_OUT
 
-#if 0
+#if !_WIN64
 	__asm {
 		emms
 	}
@@ -282,7 +282,7 @@ void	CDirectDraw::Render8bpp_DoubleScanline( LPBYTE lpRdr, LPBYTE lpDlt, DDSURFA
 	for( INT i = 0; i < SCREEN_HEIGHT; i++ ) {
 		//ASM_COMMENT_OUT
 
-#if 0
+#if !_WIN64
 		__asm {
 			mov		esi, pScn
 			mov		edi, pDst
@@ -330,7 +330,7 @@ _r8bs_d_loop:
 		//ASM_COMMENT_OUT
 
 		pDst += pitch;
-#if 0
+#if !_WIN64
 		__asm {
 			mov		esi, pScn
 			mov		edi, pDst
@@ -385,7 +385,7 @@ _r8bs_d_loop2:
 	for( INT i = 0; i < SCREEN_HEIGHT; i++ ) {
 		//ASM_COMMENT_OUT
 
-#if 0
+#if !_WIN64
 		__asm {
 			mov		esi, pScn
 			mov		edi, pDst
@@ -410,7 +410,7 @@ _r8bs_d_loop3:
 		}
 #endif
 		pDst += pitch;
-#if 0
+#if !_WIN64
 		__asm {
 			mov		esi, pScn
 			mov		edi, pDst
@@ -438,7 +438,7 @@ _r8bs_d_loop4:
 		pDst += pitch;
 	}
 	//ASM_COMMENT_OUT
-#if 0
+#if !_WIN64
 	__asm {
 		emms
 	}

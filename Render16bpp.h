@@ -30,7 +30,7 @@ void	CDirectDraw::Render16bpp_Normal(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 		if (bFWrite) {
 			//ASM_COMMENT_OUT
 
-#if 0 
+#if !_WIN64 
 			__asm {
 				mov		eax, pScn
 				mov		ebx, pDlt
@@ -86,7 +86,7 @@ void	CDirectDraw::Render16bpp_Normal(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 		else {
 			//ASM_COMMENT_OUT
 
-#if 0
+#if !_WIN64
 			__asm {
 				mov		eax, pScn
 				mov		ebx, pDlt
@@ -182,7 +182,7 @@ void	CDirectDraw::Render16bpp_Scanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC
 
 		if (bFWrite) {
 //ASM
-#if 0
+#if !_WIN64
 			__asm {
 				mov		eax, pScn
 				mov		ebx, pDlt
@@ -235,7 +235,7 @@ void	CDirectDraw::Render16bpp_Scanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC
 #endif
 			width = SCREEN_WIDTH;
 			pDst += pitch;
-#if 0
+#if !_WIN64
 			__asm {
 				mov		eax, pScn
 				mov		ebx, pDlt
@@ -289,7 +289,7 @@ void	CDirectDraw::Render16bpp_Scanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC
 			pDst += pitch;
 		}
 		else {
-#if 0
+#if !_WIN64
 			__asm {
 				mov		eax, pScn
 				mov		ebx, pDlt
@@ -346,7 +346,7 @@ void	CDirectDraw::Render16bpp_Scanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC
 #endif
 			width = SCREEN_WIDTH;
 			pDst += pitch;
-#if 0
+#if !_WIN64
 			__asm {
 				mov		eax, pScn
 				mov		ebx, pDlt
@@ -438,7 +438,7 @@ void	CDirectDraw::Render16bpp_Double(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 		width = SCREEN_WIDTH;
 
 		if (bFWrite) {
-#if 0
+#if !_WIN64
 			__asm {
 				mov		eax, pScn
 				mov		ebx, pDlt
@@ -497,7 +497,7 @@ void	CDirectDraw::Render16bpp_Double(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 #endif
 			width = SCREEN_WIDTH;
 			pDst += pitch;
-#if 0
+#if !_WIN64
 			__asm {
 				mov		eax, pScn
 				mov		ebx, pDlt
@@ -557,7 +557,7 @@ void	CDirectDraw::Render16bpp_Double(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 			pDst += pitch;
 		}
 		else {
-#if 0
+#if !_WIN64
 			__asm {
 				mov		eax, pScn
 				mov		ebx, pDlt
@@ -622,7 +622,7 @@ void	CDirectDraw::Render16bpp_Double(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 #endif
 			width = SCREEN_WIDTH;
 			pDst += pitch;
-#if 0
+#if !_WIN64
 			__asm {
 				mov		eax, pScn
 				mov		ebx, pDlt
@@ -724,7 +724,7 @@ void	CDirectDraw::Render16bpp_DoubleScanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFA
 		width = SCREEN_WIDTH;
 
 		if (bFWrite) {
-#if 0
+#if !_WIN64
 			__asm {
 				mov		eax, pScn
 				mov		ebx, pDlt
@@ -784,7 +784,7 @@ void	CDirectDraw::Render16bpp_DoubleScanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFA
 #endif
 			width = SCREEN_WIDTH;
 			pDst += pitch;
-#if 0
+#if !_WIN64
 			__asm {
 				mov		eax, pScn
 				mov		ebx, pDlt
@@ -844,7 +844,7 @@ void	CDirectDraw::Render16bpp_DoubleScanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFA
 			pDst += pitch;
 		}
 		else {
-#if 0
+#if !_WIN64
 			__asm {
 				mov		eax, pScn
 				mov		ebx, pDlt
@@ -909,7 +909,7 @@ void	CDirectDraw::Render16bpp_DoubleScanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFA
 #endif
 			width = SCREEN_WIDTH;
 			pDst += pitch;
-#if 0
+#if !_WIN64
 			__asm {
 				mov		eax, pScn
 				mov		ebx, pDlt

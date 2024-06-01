@@ -18,7 +18,7 @@ void	CDirectDraw::Render16bpp( LPBYTE lpSrc, LPBYTE lpDst )
 
 		width = SCREEN_WIDTH;
 		//ASM_COMMENT_OUT
-#if 0
+#if !_WIN64
 		__asm {
 			mov		eax, lpSrc
 			mov		esi, pPal
@@ -85,7 +85,7 @@ void	CDirectDraw::Render16bppPrefilter( LPBYTE lpSrc, LPBYTE lpDst )
 		width = SCREEN_WIDTH;
 		//ASM_COMMENT_OUT
 
-#if 0
+#if !_WIN64
 		__asm {
 			mov		eax, lpSrc
 			mov		esi, pPal
@@ -152,7 +152,7 @@ void	CDirectDraw::Render32bpp( LPBYTE lpSrc, LPBYTE lpDst )
 		width = SCREEN_WIDTH;
 		//ASM_COMMENT_OUT
 
-#if 0
+#if !_WIN64
 		__asm {
 			mov		eax, lpSrc
 			mov		esi, pPal

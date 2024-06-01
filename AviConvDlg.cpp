@@ -499,7 +499,7 @@ double	Samples = 0.0;
 					}
 #endif
 					DWORD	width = CDirectDraw::SCREEN_WIDTH;
-#if 0
+#if !_WIN64
 					__asm {
 						mov		eax, pSrc
 						mov		esi, pPal

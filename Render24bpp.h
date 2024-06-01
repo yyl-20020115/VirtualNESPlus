@@ -27,7 +27,7 @@ void	CDirectDraw::Render24bpp_Normal( LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2
 		width = SCREEN_WIDTH;
 
 		if( bFWrite ) {
-#if 0
+#if !_WIN64
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt
@@ -84,7 +84,7 @@ _r24bn_loop_fw:
 			pDlt += SCREEN_WIDTH;
 			pDst += pitch;
 		} else {
-#if 0
+#if !_WIN64
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt
@@ -181,7 +181,7 @@ void	CDirectDraw::Render24bpp_Scanline( LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDES
 		width = SCREEN_WIDTH;
 
 		if( bFWrite ) {
-#if 0
+#if !_WIN64
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt
@@ -237,7 +237,7 @@ _r24bs_loop_fw:
 #endif
 			width = SCREEN_WIDTH;
 			pDst += pitch;
-#if 0
+#if !_WIN64
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt
@@ -292,7 +292,7 @@ _r24bs_loop2_fw:
 			pDlt += SCREEN_WIDTH;
 			pDst += pitch;
 		} else {
-#if 0
+#if !_WIN64
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt
@@ -353,7 +353,7 @@ _r24bs_skip2:
 #endif
 			width = SCREEN_WIDTH;
 			pDst += pitch;
-#if 0
+#if !_WIN64
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt
@@ -448,7 +448,7 @@ void	CDirectDraw::Render24bpp_Double( LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2
 		width = SCREEN_WIDTH;
 
 		if( bFWrite ) {
-#if 0
+#if !_WIN64
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt
@@ -513,7 +513,7 @@ _r24bn_d_loop_fw:
 #endif
 			width = SCREEN_WIDTH;
 			pDst += pitch;
-#if 0
+#if !_WIN64
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt
@@ -576,7 +576,7 @@ _r24bn_d_loop2_fw:
 			pDlt += SCREEN_WIDTH;
 			pDst += pitch;
 		} else {
-#if 0
+#if !_WIN64
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt
@@ -645,7 +645,7 @@ _r24bn_d_skip2:
 #endif
 			width = SCREEN_WIDTH;
 			pDst += pitch;
-#if 0
+#if !_WIN64
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt
@@ -750,7 +750,7 @@ void	CDirectDraw::Render24bpp_DoubleScanline( LPBYTE lpRdr, LPBYTE lpDlt, DDSURF
 		width = SCREEN_WIDTH;
 
 		if( bFWrite ) {
-#if 0
+#if !_WIN64
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt
@@ -813,7 +813,7 @@ _r24bs_d_loop_fw:
 #endif
 			width = SCREEN_WIDTH;
 			pDst += pitch;
-#if 0
+#if !_WIN64
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt
@@ -876,7 +876,7 @@ _r24bs_d_loop2_fw:
 			pDlt += SCREEN_WIDTH;
 			pDst += pitch;
 		} else {
-#if 0
+#if !_WIN64
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt
@@ -945,7 +945,7 @@ _r24bs_d_skip2:
 #endif
 			width = SCREEN_WIDTH;
 			pDst += pitch;
-#if 0
+#if !_WIN64
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt

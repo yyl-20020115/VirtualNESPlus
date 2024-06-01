@@ -261,7 +261,7 @@ CDirectDraw::CDirectDraw()
 		DWORD	flag1, flag2;
 		//ASM_COMMENT_OUT
 
-#if 0
+#if !_WIN64
 		__asm {
 			pushfd
 			pop	eax
@@ -277,7 +277,7 @@ CDirectDraw::CDirectDraw()
 		if( flag1 != flag2 ) {
 			DWORD	flag;
 			//ASM_COMMENT_OUT
-#if 0
+#if !_WIN64
 			__asm {
 				mov	eax, 1
 				cpuid

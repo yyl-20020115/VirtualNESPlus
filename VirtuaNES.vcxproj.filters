@@ -32,9 +32,6 @@
       <UniqueIdentifier>{2ccebe62-e4cc-4a96-b7d6-a5a7d40a9321}</UniqueIdentifier>
       <Extensions>*.c *.cpp *.h</Extensions>
     </Filter>
-    <Filter Include="Language">
-      <UniqueIdentifier>{4dfb4a47-a86e-4b91-aab3-5356b0694c0a}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AboutDlg.cpp">

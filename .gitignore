@@ -398,3 +398,5 @@ FodyWeavers.xsd
 *.sln.iml
 /Chinese/LDK.exp
 /Chinese/LDK.lib
+*.i64
+*.exe

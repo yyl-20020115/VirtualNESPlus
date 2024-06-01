@@ -258,7 +258,7 @@ CDirectDraw::CDirectDraw()
 	{
 		m_bMMX = FALSE;
 
-		DWORD	flag1, flag2;
+		DWORD	flag1 = 0, flag2 = 0;
 		//ASM_COMMENT_OUT
 
 #if !_WIN64
@@ -275,7 +275,7 @@ CDirectDraw::CDirectDraw()
 		}
 #endif
 		if( flag1 != flag2 ) {
-			DWORD	flag;
+			DWORD	flag = 0;
 			//ASM_COMMENT_OUT
 #if !_WIN64
 			__asm {

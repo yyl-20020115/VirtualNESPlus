@@ -222,10 +222,8 @@ _r32bs_loop_fw:
 			sub		width, 8
 			jg		_r32bs_loop_fw
 			}
-#endif
 			width = SCREEN_WIDTH;
 			pDst += pitch;
-#if !_WIN64
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt
@@ -330,10 +328,8 @@ _r32bs_skip2:
 			sub		width, 8
 			jg		_r32bs_loop
 			}
-#endif
 			width = SCREEN_WIDTH;
 			pDst += pitch;
-#if !_WIN64
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt
@@ -480,10 +476,8 @@ _r32bs_d_loop_fw:
 			sub		width, 8
 			jg		_r32bs_d_loop_fw
 			}
-#endif
 			width = SCREEN_WIDTH;
 			pDst += pitch;
-#if !_WIN64
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt
@@ -764,10 +758,8 @@ _r32bn_d_loop_fw:
 			sub		width, 8
 			jg		_r32bn_d_loop_fw
 			}
-#endif
 			width = SCREEN_WIDTH;
 			pDst += pitch;
-#if !_WIN64
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt
@@ -888,10 +880,8 @@ _r32bn_d_skip2:
 			sub		width, 8
 			jg		_r32bn_d_loop
 			}
-#endif
 			width = SCREEN_WIDTH;
 			pDst += pitch;
-#if !_WIN64
 		__asm {
 			mov		eax, pScn
 			mov		ebx, pDlt

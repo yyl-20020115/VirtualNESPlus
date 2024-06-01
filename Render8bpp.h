@@ -65,9 +65,7 @@ _r8bs_loop:
 			sub		ecx, 8
 			jg		_r8bs_loop
 		}
-#endif
 		pDst += pitch;
-#if !_WIN64
 		__asm {
 			mov		esi, pScn
 			mov		edi, pDst
@@ -149,10 +147,8 @@ _r8bn_d_loop:
 			sub		ecx, 8
 			jg		_r8bn_d_loop
 		}
-#endif
 		pDst += pitch;
 		//ASM_COMMENT_OUT
-#if !_WIN64
 		__asm {
 			mov		esi, pScn
 			mov		edi, pDst
@@ -228,10 +224,8 @@ _r8bn_d_loop3:
 			sub		ecx, 8
 			jg		_r8bn_d_loop3
 		}
-#endif
 		pDst += pitch;
 		//ASM_COMMENT_OUT
-#if !_WIN64
 		__asm {
 			mov		esi, pScn
 			mov		edi, pDst
@@ -326,11 +320,9 @@ _r8bs_d_loop:
 			sub		ecx, 8
 			jg		_r8bs_d_loop
 		}
-#endif
 		//ASM_COMMENT_OUT
 
 		pDst += pitch;
-#if !_WIN64
 		__asm {
 			mov		esi, pScn
 			mov		edi, pDst
@@ -408,9 +400,7 @@ _r8bs_d_loop3:
 			sub		ecx, 8
 			jg		_r8bs_d_loop3
 		}
-#endif
 		pDst += pitch;
-#if !_WIN64
 		__asm {
 			mov		esi, pScn
 			mov		edi, pDst

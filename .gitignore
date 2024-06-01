@@ -401,3 +401,5 @@ FodyWeavers.xsd
 *.i64
 *.exe
 /Chinese.vlp
+/Chinese/Debug64
+/Debug64

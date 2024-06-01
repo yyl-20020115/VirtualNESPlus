@@ -122,7 +122,7 @@
       <LinkDLL>true</LinkDLL>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <OutputFile>English.vlp</OutputFile>
+      <OutputFile>.\$(TargetName).vlp</OutputFile>
       <ImportLibrary>.\English.lib</ImportLibrary>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>.\LDK.def</ModuleDefinitionFile>
@@ -162,7 +162,7 @@
       <LinkDLL>true</LinkDLL>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <OutputFile>English.vlp</OutputFile>
+      <OutputFile>.\$(TargetName).vlp</OutputFile>
       <ImportLibrary>.\English.lib</ImportLibrary>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>.\LDK.def</ModuleDefinitionFile>
@@ -205,7 +205,7 @@
       <LinkDLL>true</LinkDLL>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <OutputFile>.\LDK.dll</OutputFile>
+      <OutputFile>.\$(TargetName).vlp</OutputFile>
       <ImportLibrary>.\LDK.lib</ImportLibrary>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>.\LDK.def</ModuleDefinitionFile>
@@ -246,7 +246,7 @@
       <LinkDLL>true</LinkDLL>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <OutputFile>.\LDK.dll</OutputFile>
+      <OutputFile>.\$(TargetName).vlp</OutputFile>
       <ImportLibrary>.\LDK.lib</ImportLibrary>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>.\LDK.def</ModuleDefinitionFile>

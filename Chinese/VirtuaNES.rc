@@ -39,21 +39,21 @@ VS_VERSION_INFO VERSIONINFO
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "040904b0"
+        BLOCK "000404b0"
         BEGIN
             VALUE "CompanyName", " "
-            VALUE "FileDescription", "VirtuaNES Language Plugin(简体中文(ZH))"
+            VALUE "FileDescription", "VirtualNESPlus 语言插件(简体中文(ZH))"
             VALUE "FileVersion", "0.95"
-            VALUE "InternalName", "VirtuaNES Language Plugin(简体中文(ZH))"
+            VALUE "InternalName", "VirtualNESPlus 语言插件(简体中文(ZH))"
             VALUE "LegalCopyright", "Copyright (C) 2001-2007 Norix"
             VALUE "OriginalFilename", "Chinese.vlp"
-            VALUE "ProductName", "VirtuaNES Language Plugin(简体中文(ZH))"
+            VALUE "ProductName", "VirtualNESPlus 语言插件(简体中文(ZH))"
             VALUE "ProductVersion", "0.95"
         END
     END
     BLOCK "VarFileInfo"
     BEGIN
-        VALUE "Translation", 0x409, 1200
+        VALUE "Translation", 0x4, 1200
     END
 END
 

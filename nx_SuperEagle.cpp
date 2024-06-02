@@ -1,3 +1,8 @@
+#include "DebugOut.h"
+#include "DirectDraw.h"
+#include "COM.h"
+#include "Render.h"
+
 /*---------------------------------------------------------------------*
  * The following (piece of) code, (part of) the 2xSaI engine,          *
  * copyright (c) 2001 by Derek Liauw Kie Fa.                           *
@@ -14,9 +19,9 @@
 //
 // This code was converted into VirtuaNES by Norix.
 //
-static	void	nx_SuperEagleLine_16bpp_mmx( euI8* pSrc, euI8* pDlt, euI32 srcPitch, euI32 width, euI8* pDst, euI32 dstPitch, euI32 bForceWrite )
+void nx_SuperEagleLine_16bpp_mmx( euI8* pSrc, euI8* pDlt, euI32 srcPitch, euI32 width, euI8* pDst, euI32 dstPitch, euI32 bForceWrite )
 {
-#if !_WIN64
+#if   !_WIN64
 	__asm {
 		mov		eax, pSrc
 		mov		ebx, srcPitch
@@ -480,9 +485,9 @@ nx_SuperEagleLine_16mmx_skipprocess:
 #endif
 }
 
-static	void	nx_SuperEagleLine_32bpp_mmx( euI8* pSrc, euI8* pDlt, euI32 srcPitch, euI32 width, euI8* pDst, euI32 dstPitch, euI32 bForceWrite )
+void	nx_SuperEagleLine_32bpp_mmx( euI8* pSrc, euI8* pDlt, euI32 srcPitch, euI32 width, euI8* pDst, euI32 dstPitch, euI32 bForceWrite )
 {
-#if !_WIN64
+#if   !_WIN64
 	__asm {
 		mov		eax, pSrc
 		mov		ebx, srcPitch

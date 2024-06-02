@@ -1,3 +1,7 @@
+#include "DebugOut.h"
+#include "DirectDraw.h"
+#include "COM.h"
+#include "Render.h"
 /*
  * This file is part of the Advance project.
  *
@@ -42,7 +46,7 @@ static	void	internal_scale2x_16_mmx_single(euI16* dst, const euI16* src0, const 
 {
 	/* always do the first and last run */
 	count -= 2*4;
-#if !_WIN64
+#if   !_WIN64
 	__asm {
 		mov		eax, src0
 		mov		ebx, src1
@@ -234,11 +238,11 @@ label1:
 #endif
 }
 
-static	void	internal_scale2x_32_mmx_single(euI32* dst, const euI32* src0, const euI32* src1, const euI32* src2, unsigned count)
+void	internal_scale2x_32_mmx_single(euI32* dst, const euI32* src0, const euI32* src1, const euI32* src2, unsigned count)
 {
 	/* always do the first and last run */
 	count -= 2*2;
-#if !_WIN64
+#if   !_WIN64
 	__asm {
 		mov		eax, src0
 		mov		ebx, src1
@@ -430,13 +434,13 @@ label1:
 #endif
 }
 
-static	void	internal_scale2x_16_mmx(euI16* dst0, euI16* dst1, const euI16* src0, const euI16* src1, const euI16* src2, unsigned count)
+void	internal_scale2x_16_mmx(euI16* dst0, euI16* dst1, const euI16* src0, const euI16* src1, const euI16* src2, unsigned count)
 {
 	internal_scale2x_16_mmx_single(dst0, src0, src1, src2, count);
 	internal_scale2x_16_mmx_single(dst1, src2, src1, src0, count);
 }
 
-static	void	internal_scale2x_32_mmx(euI32* dst0, euI32* dst1, const euI32* src0, const euI32* src1, const euI32* src2, unsigned count)
+void	internal_scale2x_32_mmx(euI32* dst0, euI32* dst1, const euI32* src0, const euI32* src1, const euI32* src2, unsigned count)
 {
 	internal_scale2x_32_mmx_single(dst0, src0, src1, src2, count);
 	internal_scale2x_32_mmx_single(dst1, src2, src1, src0, count);

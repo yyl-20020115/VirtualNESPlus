@@ -1,3 +1,7 @@
+#include "DebugOut.h"
+#include "DirectDraw.h"
+#include "COM.h"
+#include "Render.h"
 /*
  * This file is part of the Advance project.
  *
@@ -37,7 +41,7 @@
  * This effect is a rewritten implementation of the hq2x effect made by Maxim Stepin
  */
 
-static void hq2x_16_def(euI16* dst0, euI16* dst1, const euI16* src0, const euI16* src1, const euI16* src2, unsigned count)
+void hq2x_16_def(euI16* dst0, euI16* dst1, const euI16* src0, const euI16* src1, const euI16* src2, unsigned count)
 {
   unsigned i;
 
@@ -147,7 +151,7 @@ static void hq2x_16_def(euI16* dst0, euI16* dst1, const euI16* src0, const euI16
   }
 }
 
-static void hq2x_32_def(euI32* dst0, euI32* dst1, const euI32* src0, const euI32* src1, const euI32* src2, unsigned count)
+void hq2x_32_def(euI32* dst0, euI32* dst1, const euI32* src0, const euI32* src1, const euI32* src2, unsigned count)
 {
   unsigned i;
 
@@ -264,7 +268,7 @@ static void hq2x_32_def(euI32* dst0, euI32* dst1, const euI32* src0, const euI32
  * This effect is derived from the hq2x effect made by Maxim Stepin
  */
 
-static void lq2x_16_def(euI16* dst0, euI16* dst1, const euI16* src0, const euI16* src1, const euI16* src2, unsigned count)
+void lq2x_16_def(euI16* dst0, euI16* dst1, const euI16* src0, const euI16* src1, const euI16* src2, unsigned count)
 {
   unsigned i;
 
@@ -374,7 +378,7 @@ static void lq2x_16_def(euI16* dst0, euI16* dst1, const euI16* src0, const euI16
   }
 }
 
-static void lq2x_32_def(euI32* dst0, euI32* dst1, const euI32* src0, const euI32* src1, const euI32* src2, unsigned count)
+void lq2x_32_def(euI32* dst0, euI32* dst1, const euI32* src0, const euI32* src1, const euI32* src2, unsigned count)
 {
   unsigned i;
 

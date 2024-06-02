@@ -3932,12 +3932,21 @@
     <ClInclude Include="NES\VS_Setting.h" />
     <ClInclude Include="NetPlay.h" />
     <ClInclude Include="NetPlayDlg.h" />
-    <ClInclude Include="nx_2xSaI.h" />
-    <ClInclude Include="nx_hq2x.h" />
-    <ClInclude Include="nx_Scale2x.h" />
-    <ClInclude Include="nx_Super2xSaI.h" />
-    <ClInclude Include="nx_Super2xSaI_32bpp_mmx.h" />
-    <ClInclude Include="nx_SuperEagle.h" />
+    <ClCompile Include="nx_2xSaI.cpp">
+      <FileType>CppCode</FileType>
+    </ClCompile>
+    <ClCompile Include="nx_hq2x.cpp">
+      <FileType>CppCode</FileType>
+    </ClCompile>
+    <ClCompile Include="nx_Scale2x.cpp">
+      <FileType>CppCode</FileType>
+    </ClCompile>
+    <ClCompile Include="nx_Super2xSaI.cpp">
+      <FileType>CppCode</FileType>
+    </ClCompile>
+    <ClCompile Include="nx_SuperEagle.cpp">
+      <FileType>CppCode</FileType>
+    </ClCompile>
     <ClInclude Include="PaletteEdit.h" />
     <ClInclude Include="PaletteView.h" />
     <ClInclude Include="Pathlib.h" />
@@ -3946,11 +3955,22 @@
     <ClInclude Include="Pngwrite.h" />
     <ClInclude Include="Recent.h" />
     <ClInclude Include="Registry.h" />
+    <ClCompile Include="Render.cpp">
+      <FileType>CppCode</FileType>
+    </ClCompile>
+    <ClCompile Include="Render16bpp.cpp">
+      <FileType>CppCode</FileType>
+    </ClCompile>
+    <ClCompile Include="Render24bpp.cpp">
+      <FileType>CppCode</FileType>
+    </ClCompile>
+    <ClCompile Include="Render32bpp.cpp">
+      <FileType>CppCode</FileType>
+    </ClCompile>
+    <ClCompile Include="Render8bpp.cpp">
+      <FileType>CppCode</FileType>
+    </ClCompile>
     <ClInclude Include="Render.h" />
-    <ClInclude Include="Render16bpp.h" />
-    <ClInclude Include="Render24bpp.h" />
-    <ClInclude Include="Render32bpp.h" />
-    <ClInclude Include="Render8bpp.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="RomInfoDlg.h" />
     <ClInclude Include="ShortcutDlg.h" />

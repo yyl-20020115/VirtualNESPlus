@@ -30,7 +30,7 @@
 
 #ifndef __INTERP_H
 #define __INTERP_H
-
+#include "Render.h"
 /***************************************************************************/
 /* Basic types */
 
@@ -271,7 +271,7 @@ static int interp_32_diff(euI32 p1, euI32 p2)
   return 0;
 }
 
-static void interp_set(unsigned bits_per_pixel)
+void interp_set(unsigned bits_per_pixel)
 {
   interp_bits_per_pixel = bits_per_pixel;
 

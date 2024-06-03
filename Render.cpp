@@ -65,12 +65,41 @@ void	CDirectDraw::Render16bpp( LPBYTE lpSrc, LPBYTE lpDst )
 		} else {
 			pPal = (LPBYTE)m_mnPalette[m_LineColormode[i]&0x07];
 		}
+		width = SCREEN_WIDTH;
 
 #if _WIN64
+		LPBYTE eax = lpSrc;
+		LPBYTE esi = pPal;
+		LPBYTE edi = lpDst;
+		DWORD  edx = 0;
+		DWORD  ecx = 0;
+		do {
+			edx = *(DWORD*)(eax + 0);
+			*(WORD*)(edi + 0) = *(WORD*)(esi + 4 * (edx & 0xff));
+			edx >>= 8;
+			*(WORD*)(edi + 2) = *(WORD*)(esi + 4 * (edx & 0xff));
+			edx >>= 8;
+			*(WORD*)(edi + 4) = *(WORD*)(esi + 4 * (edx & 0xff));
+			edx >>= 8;
+			*(WORD*)(edi + 6) = *(WORD*)(esi + 4 * (edx & 0xff));
 
+			edx = *(DWORD*)(eax + 4);
+			*(WORD*)(edi + 8) = *(WORD*)(esi + 4 * (edx & 0xff));
+			edx >>= 8;
+			*(WORD*)(edi + 10) = *(WORD*)(esi + 4 * (edx & 0xff));
+			edx >>= 8;
+			*(WORD*)(edi + 12) = *(WORD*)(esi + 4 * (edx & 0xff));
+			edx >>= 8;
+			*(WORD*)(edi + 14) = *(WORD*)(esi + 4 * (edx & 0xff));
+
+			eax += 8;
+			edi += 16;
+			width -= 8;
+		} while (width > 0);
+
+		lpSrc += RENDER_WIDTH;
+		lpDst += SCREEN_WIDTH * sizeof(DWORD);
 #else
-		width = SCREEN_WIDTH;
-		//ASM_COMMENT_OUT
 		__asm {
 			mov		eax, lpSrc;
 			mov		esi, pPal;
@@ -133,10 +162,42 @@ void	CDirectDraw::Render16bppPrefilter( LPBYTE lpSrc, LPBYTE lpDst )
 		} else {
 			pPal = (LPBYTE)m_mfPalette[m_LineColormode[i]&0x07];
 		}
+		width = SCREEN_WIDTH;
 
 #if _WIN64
+		LPBYTE eax = lpSrc;
+		LPBYTE esi = pPal;
+		LPBYTE edi = lpDst;
+		DWORD  edx = 0;
+		DWORD  ecx = 0;
+		do {
+			edx = *(DWORD*)(eax + 0);
+			*(WORD*)(edi + 0) = *(WORD*)(esi + 4 * (edx & 0xff));
+			edx >>= 8;
+			*(WORD*)(edi + 2) = *(WORD*)(esi + 4 * (edx & 0xff));
+			edx >>= 8;
+			*(WORD*)(edi + 4) = *(WORD*)(esi + 4 * (edx & 0xff));
+			edx >>= 8;
+			*(WORD*)(edi + 6) = *(WORD*)(esi + 4 * (edx & 0xff));
+
+			edx = *(DWORD*)(eax + 4);
+			*(WORD*)(edi + 8) = *(WORD*)(esi + 4 * (edx & 0xff));
+			edx >>= 8;
+			*(WORD*)(edi + 10) = *(WORD*)(esi + 4 * (edx & 0xff));
+			edx >>= 8;
+			*(WORD*)(edi + 12) = *(WORD*)(esi + 4 * (edx & 0xff));
+			edx >>= 8;
+			*(WORD*)(edi + 14) = *(WORD*)(esi + 4 * (edx & 0xff));
+
+			eax += 8;
+			edi += 16;
+			width -= 8;
+		} while (width > 0);
+
+		lpSrc += RENDER_WIDTH;
+		lpDst += SCREEN_WIDTH * sizeof(DWORD);
+
 #else
-		width = SCREEN_WIDTH;
 		//ASM_COMMENT_OUT
 
 		__asm {
@@ -201,11 +262,42 @@ void	CDirectDraw::Render32bpp( LPBYTE lpSrc, LPBYTE lpDst )
 		} else {
 			pPal = (LPBYTE)m_mnPalette[m_LineColormode[i]&0x07];
 		}
+		width = SCREEN_WIDTH;
 
 #if _WIN64
+		LPBYTE eax = lpSrc;
+		LPBYTE esi = pPal;
+		LPBYTE edi = lpDst;
+		DWORD  edx = 0;
+		DWORD  ecx = 0;
+		do {
+			edx = *(DWORD*)(eax + 0);
+			*(DWORD*)(edi + 0) = *(DWORD*)(esi + 4 * (edx & 0xff));
+			edx >>= 8;
+			*(DWORD*)(edi + 4) = *(DWORD*)(esi + 4 * (edx & 0xff));
+			edx >>= 8;
+			*(DWORD*)(edi + 8) = *(DWORD*)(esi + 4 * (edx & 0xff));
+			edx >>= 8;
+			*(DWORD*)(edi + 12) = *(DWORD*)(esi + 4 * (edx & 0xff));
+
+			edx = *(DWORD*)(eax + 4);
+			*(DWORD*)(edi + 16) = *(DWORD*)(esi + 4 * (edx & 0xff));
+			edx >>= 8;
+			*(DWORD*)(edi + 20) = *(DWORD*)(esi + 4 * (edx & 0xff));
+			edx >>= 8;
+			*(DWORD*)(edi + 24) = *(DWORD*)(esi + 4 * (edx & 0xff));
+			edx >>= 8;
+			*(DWORD*)(edi + 28) = *(DWORD*)(esi + 4 * (edx & 0xff));
+
+			eax += 8;
+			edi += 32;
+			width -= 8;
+		} while (width > 0);
+
+		lpSrc += RENDER_WIDTH;
+		lpDst += SCREEN_WIDTH * sizeof(DWORD);
 
 #else
-		width = SCREEN_WIDTH;
 		__asm {
 			mov		eax, lpSrc;
 			mov		esi, pPal;

@@ -30,7 +30,90 @@ void	CDirectDraw::Render16bpp_Normal(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 
 		width = SCREEN_WIDTH;
 
-#if _WIN64 
+#if _WIN64
+		if (bFWrite) {
+			LPBYTE eax = pScn;
+			LPBYTE ebx = pDlt;
+			LPBYTE esi = pPal;
+			LPBYTE edi = pDst;
+			DWORD  edx = 0;
+			DWORD  ecx = 0;
+			do {
+				*(DWORD*)(ebx + 0) = edx = *(DWORD*)(eax + 0);
+				*(WORD*)(edi + 0) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 2) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 4) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 6) = *(WORD*)(esi + 4 * (edx & 0xff));
+
+				*(DWORD*)(ebx + 4) = edx = *(DWORD*)(eax + 4);
+				*(WORD*)(edi + 8) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 10) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 12) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 14) = *(WORD*)(esi + 4 * (edx & 0xff));
+
+				eax += 8;
+				ebx += 8;
+				edi += 16;
+				width -= 8;
+			} while (width > 0);
+
+			pScn += RENDER_WIDTH;
+			pDlt += SCREEN_WIDTH;
+			pDst += pitch;
+		}
+		else {
+			LPBYTE	eax = pScn;
+			LPBYTE	ebx = pDlt;
+			LPBYTE	esi = pPal;
+			LPBYTE	edi = pDst;
+			DWORD	ecx = 0;
+			DWORD	edx = 0;
+			do {
+				edx = *(DWORD*)eax;
+				if (edx == *(DWORD*)ebx)
+					goto _r32bn_skip1;
+				else
+					*(DWORD*)ebx = edx;
+
+				*(WORD*)(edi + 0) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 2) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 4) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 6) = *(WORD*)(esi + 4 * (edx & 0xff));
+			_r32bn_skip1:
+				edx = *(DWORD*)(eax + 4);
+				if (edx == *(DWORD*)(ebx + 4))
+					goto _r32bn_skip2;
+				else
+					*(DWORD*)(ebx + 4) = edx;
+
+				*(WORD*)(edi + 8) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 10) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 12) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 14) = *(WORD*)(esi + 4 * (edx & 0xff));
+			_r32bn_skip2:
+				eax += 8;
+				ebx += 8;
+				edi += 16;
+				width -= 8;
+			} while (width > 0);
+
+			pScn += RENDER_WIDTH;
+			pDlt += SCREEN_WIDTH;
+			pDst += pitch;
+		}
+
 #else
 		if (bFWrite) {
 			__asm {
@@ -110,7 +193,7 @@ void	CDirectDraw::Render16bpp_Normal(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 				mov		edx, [esi + edx * 4];
 				mov[edi + 4], cx;
 				mov[edi + 6], dx;
-			_r16bn_skip1:;
+			_r16bn_skip1:
 				// check previous!!;
 				mov		edx, [eax + 4];
 				cmp		edx, [ebx + 4];
@@ -130,7 +213,7 @@ void	CDirectDraw::Render16bpp_Normal(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 				mov		edx, [esi + edx * 4];
 				mov[edi + 12], cx;
 				mov[edi + 14], dx;
-			_r16bn_skip2:;
+			_r16bn_skip2:
 				lea		eax, [eax + 8];
 				lea		ebx, [ebx + 8];
 				lea		edi, [edi + 16];
@@ -178,57 +261,223 @@ void	CDirectDraw::Render16bpp_Scanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC
 		width = SCREEN_WIDTH;
 
 #if _WIN64
+		if (bFWrite) {
+			LPBYTE eax = pScn;
+			LPBYTE ebx = pDlt;
+			LPBYTE esi = pPal;
+			LPBYTE edi = pDst;
+			DWORD  edx = 0;
+			DWORD  ecx = 0;
+			do {
+				*(DWORD*)(ebx + 0) = edx = *(DWORD*)(eax + 0);
+				*(WORD*)(edi + 0) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 2) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 4) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 6) = *(WORD*)(esi + 4 * (edx & 0xff));
+
+				*(DWORD*)(ebx + 4) = edx = *(DWORD*)(eax + 4);
+				*(WORD*)(edi + 8) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 10) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 12) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 14) = *(WORD*)(esi + 4 * (edx & 0xff));
+
+				eax += 8;
+				ebx += 8;
+				edi += 16;
+				width -= 8;
+			} while (width > 0);
+
+			width = SCREEN_WIDTH;
+			pDst += pitch;
+
+			eax = pScn;
+			ebx = pDlt;
+			esi = pPalScan;
+			edi = pDst;
+			edx = 0;
+			ecx = 0;
+			do {
+				*(DWORD*)(ebx + 0) = edx = *(DWORD*)(eax + 0);
+				*(WORD*)(edi + 0) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 2) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 4) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 6) = *(WORD*)(esi + 4 * (edx & 0xff));
+
+				*(DWORD*)(ebx + 4) = edx = *(DWORD*)(eax + 4);
+				*(WORD*)(edi + 8) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 10) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 12) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 14) = *(WORD*)(esi + 4 * (edx & 0xff));
+
+				eax += 8;
+				ebx += 8;
+				edi += 16;
+				width -= 8;
+			} while (width > 0);
+
+			pScn += RENDER_WIDTH;
+			pDlt += SCREEN_WIDTH;
+			pDst += pitch;
+
+		}
+		else
+		{
+			LPBYTE	eax = pScn;
+			LPBYTE	ebx = pDlt;
+			LPBYTE	esi = pPal;
+			LPBYTE	edi = pDst;
+			DWORD	ecx = 0;
+			DWORD	edx = 0;
+			do {
+				edx = *(DWORD*)eax;
+				if (edx == *(DWORD*)ebx)
+					goto _r32bn_skip1;
+				else
+					*(DWORD*)ebx = edx;
+
+				*(WORD*)(edi + 0) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 2) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 4) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 6) = *(WORD*)(esi + 4 * (edx & 0xff));
+			_r32bn_skip1:
+				edx = *(DWORD*)(eax + 4);
+				if (edx == *(DWORD*)(ebx + 4))
+					goto _r32bn_skip2;
+				else
+					*(DWORD*)(ebx + 4) = edx;
+
+				*(WORD*)(edi + 8) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 10) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 12) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 14) = *(WORD*)(esi + 4 * (edx & 0xff));
+			_r32bn_skip2:
+				eax += 8;
+				ebx += 8;
+				edi += 16;
+				width -= 8;
+			} while (width > 0);
+
+			width = SCREEN_WIDTH;
+			pDst += pitch;
+
+			eax = pScn;
+			ebx = pDlt;
+			esi = pPalScan;
+			edi = pDst;
+			edx = 0;
+			ecx = 0;
+
+			do {
+				edx = *(DWORD*)eax;
+				if (edx == *(DWORD*)ebx)
+					goto _r32bn_skip1_;
+				else
+					*(DWORD*)ebx = edx;
+
+				*(WORD*)(edi + 0) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 2) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 4) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 6) = *(WORD*)(esi + 4 * (edx & 0xff));
+			_r32bn_skip1_:
+				edx = *(DWORD*)(eax + 4);
+				if (edx == *(DWORD*)(ebx + 4))
+					goto _r32bn_skip2_;
+				else
+					*(DWORD*)(ebx + 4) = edx;
+
+				*(WORD*)(edi + 8) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 10) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 12) = *(WORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(WORD*)(edi + 14) = *(WORD*)(esi + 4 * (edx & 0xff));
+			_r32bn_skip2_:
+				eax += 8;
+				ebx += 8;
+				edi += 16;
+				width -= 8;
+			} while (width > 0);
+
+
+			pScn += RENDER_WIDTH;
+			pDlt += SCREEN_WIDTH;
+			pDst += pitch;
+
+		}
+
 #else
 		if (bFWrite) {
 			//ASM
 			__asm {
-			mov		eax, pScn;
-			mov		ebx, pDlt;
-			mov		esi, pPal;
-			mov		edi, pDst;
-		_r16bs_loop_fw:
-			// check previous!!
-			mov		edx, [eax + 0];
-			mov[ebx + 0], edx;
-			movzx		ecx, dl;
-			mov		ecx, [esi + ecx * 4];
-			shr		edx, 8;
-			mov[edi + 0], cx;
-			movzx		ecx, dl;
-			mov		ecx, [esi + ecx * 4];
-			shr		edx, 8;
-			mov[edi + 2], cx;
-			movzx		ecx, dl;
-			shr		edx, 8;
-			mov		ecx, [esi + ecx * 4];
-			mov		edx, [esi + edx * 4];
-			mov[edi + 4], cx;
-			mov[edi + 6], dx;
-			
-			// check previous!!
-			mov		edx, [eax + 4];
-			mov[ebx + 4], edx;
-			movzx		ecx, dl;
-			mov		ecx, [esi + ecx * 4];
-			shr		edx, 8;
-			mov[edi + 8], cx;
-			movzx		ecx, dl;
-			mov		ecx, [esi + ecx * 4];
-			shr		edx, 8;
-			mov[edi + 10], cx;
-			movzx		ecx, dl;
-			shr		edx, 8;
-			mov		edx, [esi + edx * 4];
-			mov		edx, [esi + edx * 4];
-			mov[edi + 12], cx;
-			mov[edi + 14], dx;
+				mov		eax, pScn;
+				mov		ebx, pDlt;
+				mov		esi, pPal;
+				mov		edi, pDst;
+			_r16bs_loop_fw:
+				// check previous!!
+				mov		edx, [eax + 0];
+				mov[ebx + 0], edx;
+				movzx		ecx, dl;
+				mov		ecx, [esi + ecx * 4];
+				shr		edx, 8;
+				mov[edi + 0], cx;
+				movzx		ecx, dl;
+				mov		ecx, [esi + ecx * 4];
+				shr		edx, 8;
+				mov[edi + 2], cx;
+				movzx		ecx, dl;
+				shr		edx, 8;
+				mov		ecx, [esi + ecx * 4];
+				mov		edx, [esi + edx * 4];
+				mov[edi + 4], cx;
+				mov[edi + 6], dx;
 
-			lea		eax, [eax + 8];
-			lea		ebx, [ebx + 8];
-			lea		edi, [edi + 16];
+				// check previous!!
+				mov		edx, [eax + 4];
+				mov[ebx + 4], edx;
+				movzx		ecx, dl;
+				mov		ecx, [esi + ecx * 4];
+				shr		edx, 8;
+				mov[edi + 8], cx;
+				movzx		ecx, dl;
+				mov		ecx, [esi + ecx * 4];
+				shr		edx, 8;
+				mov[edi + 10], cx;
+				movzx		ecx, dl;
+				shr		edx, 8;
+				mov		edx, [esi + edx * 4];
+				mov		edx, [esi + edx * 4];
+				mov[edi + 12], cx;
+				mov[edi + 14], dx;
 
-			sub		width, 8;
-			jg		_r16bs_loop_fw;
+				lea		eax, [eax + 8];
+				lea		ebx, [ebx + 8];
+				lea		edi, [edi + 16];
+
+				sub		width, 8;
+				jg		_r16bs_loop_fw;
 			}
 			width = SCREEN_WIDTH;
 			pDst += pitch;
@@ -430,6 +679,89 @@ void	CDirectDraw::Render16bpp_Double(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 		width = SCREEN_WIDTH;
 
 #if _WIN64
+		if (bFWrite) {
+			LPBYTE eax = pScn;
+			LPBYTE ebx = pDlt;
+			LPBYTE esi = pPal;
+			LPBYTE edi = pDst;
+			DWORD  edx = 0;
+			DWORD  ecx = 0;
+			do {
+				*(DWORD*)(ebx + 0) = edx = *(DWORD*)(eax + 0);
+				*(DWORD*)(edi + 0) = *(DWORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(DWORD*)(edi + 4) = *(DWORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(DWORD*)(edi + 8) = *(DWORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(DWORD*)(edi + 12) = *(DWORD*)(esi + 4 * (edx & 0xff));
+
+				*(DWORD*)(ebx + 4) = edx = *(DWORD*)(eax + 4);
+				*(DWORD*)(edi + 16) = *(DWORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(DWORD*)(edi + 20) = *(DWORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(DWORD*)(edi + 24) = *(DWORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(DWORD*)(edi + 28) = *(DWORD*)(esi + 4 * (edx & 0xff));
+
+				eax += 8;
+				ebx += 8;
+				edi += 32;
+				width -= 8;
+			} while (width > 0);
+
+			pScn += RENDER_WIDTH;
+			pDlt += SCREEN_WIDTH;
+			pDst += pitch;
+		}
+		else {
+			LPBYTE	eax = pScn;
+			LPBYTE	ebx = pDlt;
+			LPBYTE	esi = pPal;
+			LPBYTE	edi = pDst;
+			DWORD	ecx = 0;
+			DWORD	edx = 0;
+			do {
+				edx = *(DWORD*)eax;
+				if (edx == *(DWORD*)ebx)
+					goto _r32bn_skip1;
+				else
+					*(DWORD*)ebx = edx;
+
+				*(DWORD*)(edi + 0) = *(DWORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(DWORD*)(edi + 4) = *(DWORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(DWORD*)(edi + 8) = *(DWORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(DWORD*)(edi + 12) = *(DWORD*)(esi + 4 * (edx & 0xff));
+			_r32bn_skip1:
+				edx = *(DWORD*)(eax + 4);
+				if (edx == *(DWORD*)(ebx + 4))
+					goto _r32bn_skip2;
+				else
+					*(DWORD*)(ebx + 4) = edx;
+
+				*(DWORD*)(edi + 16) = *(DWORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(DWORD*)(edi + 20) = *(DWORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(DWORD*)(edi + 24) = *(DWORD*)(esi + 4 * (edx & 0xff));
+				edx >>= 8;
+				*(DWORD*)(edi + 28) = *(DWORD*)(esi + 4 * (edx & 0xff));
+			_r32bn_skip2:
+				eax += 8;
+				ebx += 8;
+				edi += 32;
+				width -= 8;
+			} while (width > 0);
+
+			pScn += RENDER_WIDTH;
+			pDlt += SCREEN_WIDTH;
+			pDst += pitch;
+		}
+
 #else
 		if (bFWrite) {
 			__asm {

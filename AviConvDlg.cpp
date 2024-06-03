@@ -376,7 +376,7 @@ DLGCMD	CAviConvDlg::OnConvertStart(DLGCMDPARAM)
 		DWORD	dwRecordTimes;
 		m_pNes->GetMovieInfo(wRecVersion, wVersion, m_RecordFrames, dwRecordTimes);
 
-		m_AviWriter.SetFrameRate(10000,(DWORD)( m_pNes->nescfg->FrameRate * 10000 / m_FrameDivider));
+		m_AviWriter.SetFrameRate(10000, (DWORD)(m_pNes->nescfg->FrameRate * 10000 / m_FrameDivider));
 
 		if (!m_AviWriter.Open(m_szAviFile)) {
 			CHAR	szTemp[256];
@@ -496,62 +496,64 @@ DWORD	WINAPI	CAviConvDlg::ThreadProc(LPVOID lpVoid)
 					LPBYTE	pSrc = &pRender[CDirectDraw::RENDER_WIDTH * i + 8];
 					LPBYTE	pDst = &pScreen[CDirectDraw::SCREEN_WIDTH * 3 * (CDirectDraw::SCREEN_HEIGHT - i - 1)];
 					RGBQUAD* pPal = &pPalette[(pLinecolor[i] & 7) * 256 + ((pLinecolor[i] & 0x80) ? 0x40 : 0x00)];
+					//for (INT j = 0; j < CDirectDraw::SCREEN_WIDTH; j++) {
+					//	BYTE	pixel = *pSrc++;
+					//	pixel |= (pLinecolor[i] & 0x80) ? 0x40 : 0;
+					//	*pDst++ = pPal[pixel].rgbBlue;
+					//	*pDst++ = pPal[pixel].rgbGreen;
+					//	*pDst++ = pPal[pixel].rgbRed;
+					//}
 #if	_WIN64
-					for (INT j = 0; j < CDirectDraw::SCREEN_WIDTH; j++) {
-						BYTE	pixel = *pSrc++;
-						pixel |= (pLinecolor[i] & 0x80) ? 0x40 : 0;
-						*pDst++ = pPal[pixel].rgbBlue;
-						*pDst++ = pPal[pixel].rgbGreen;
-						*pDst++ = pPal[pixel].rgbRed;
-					}
+
 #else
 					DWORD	width = CDirectDraw::SCREEN_WIDTH;
 					__asm {
-						mov		eax, pSrc
-						mov		esi, pPal
-						mov		edi, pDst
-						_render_loop :
-						mov		edx, [eax]
-							movzx		ebx, dl
-							mov		ebx, [esi + ebx * 4]
-							shr		edx, 8
-							mov[edi + 0], ebx
-							movzx		ebx, dl
-							mov		ebx, [esi + ebx * 4]
-							shr		edx, 8
-							mov[edi + 3], ebx
-							movzx		ebx, dl
-							shr		edx, 8
-							mov		ebx, [esi + ebx * 4]
-							mov		edx, [esi + edx * 4]
-							mov[edi + 6], ebx
-							mov[edi + 9], dx
-							shr		edx, 16
-							mov[edi + 11], dl
+						mov		eax, pSrc;
+						mov		esi, pPal;
+						mov		edi, pDst;
+					_render_loop:
+						mov		edx, [eax];
+						movzx		ebx, dl;
+						mov		ebx, [esi + ebx * 4];
+						shr		edx, 8;
+						mov[edi + 0], ebx;
+						movzx		ebx, dl;
+						mov		ebx, [esi + ebx * 4];
+						shr		edx, 8;
+						mov[edi + 3], ebx;
+						movzx		ebx, dl;
+						shr		edx, 8;
+						mov		ebx, [esi + ebx * 4];
+						mov		edx, [esi + edx * 4];
+						mov[edi + 6], ebx;
+						mov[edi + 9], dx;
+						shr		edx, 16;
+						mov[edi + 11], dl;
 
-							mov		edx, [eax + 4]
-							movzx		ebx, dl
-							mov		ebx, [esi + ebx * 4]
-							shr		edx, 8
-							mov[edi + 12], ebx
-							movzx		ebx, dl
-							mov		ebx, [esi + ebx * 4]
-							shr		edx, 8
-							mov[edi + 15], ebx
-							movzx		ebx, dl
-							shr		edx, 8
-							mov		ebx, [esi + ebx * 4]
-							mov		edx, [esi + edx * 4]
-							mov[edi + 18], ebx
-							mov[edi + 21], dx
-							shr		edx, 16
-							mov[edi + 23], dl
+						mov		edx, [eax + 4];
+						movzx		ebx, dl;
+						mov		ebx, [esi + ebx * 4];
+						shr		edx, 8;
+						mov[edi + 12], ebx;
+						movzx		ebx, dl;
+						mov		ebx, [esi + ebx * 4];
+						shr		edx, 8;
+						mov[edi + 15], ebx;
 
-							lea		eax, [eax + 8]
-							lea		edi, [edi + 24]
+						movzx		ebx, dl;
+						shr		edx, 8;
+						mov		ebx, [esi + ebx * 4];
+						mov		edx, [esi + edx * 4];
+						mov[edi + 18], ebx;
+						mov[edi + 21], dx;
+						shr		edx, 16;
+						mov[edi + 23], dl;
 
-							sub		width, 8
-							jg		_render_loop
+						lea		eax, [eax + 8];
+						lea		edi, [edi + 24];
+
+						sub		width, 8;
+						jg		_render_loop;
 					}
 #endif
 				}

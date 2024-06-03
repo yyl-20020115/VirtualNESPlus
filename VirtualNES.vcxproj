@@ -4023,6 +4023,11 @@
   <ItemGroup>
     <Manifest Include="res\VirtuaNES.exe.manifest" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Chinese\Chinese.vcxproj">
+      <Project>{0226e0bc-d637-45f2-9548-c407d4ecf377}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

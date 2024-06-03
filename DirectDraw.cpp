@@ -275,23 +275,23 @@ CDirectDraw::CDirectDraw()
 		//ASM_COMMENT_OUT
 
 		__asm {
-			pushfd
-			pop	eax
-			mov	flag1, eax
-			xor eax, 0x00200000
-			push	eax
-			popfd
-			pushfd
-			pop	eax
-			mov	flag2, eax
+			pushfd;
+			pop	eax;
+			mov	flag1, eax;
+			xor eax, 0x00200000;
+			push	eax;
+			popfd;
+			pushfd;
+			pop	eax;
+			mov	flag2, eax;
 		}
 		if (flag1 != flag2) {
 			DWORD	flag = 0;
 			//ASM_COMMENT_OUT
 			__asm {
-				mov	eax, 1
-				cpuid
-				mov	flag, edx
+				mov	eax, 1;
+				cpuid;
+				mov	flag, edx;
 			}
 			if (flag & 0x00800000) {
 				m_bMMX = TRUE;

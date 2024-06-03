@@ -486,35 +486,35 @@ INT	cycles;
 
 	__asm {
 		// check if high DWORD changed
-		mov	edi, 12
-		mov	eax, cache
-		mov	ebx, DWORD PTR [rBase]
-		mov	ecx, DWORD PTR [rEmul]
-		cmp	eax, [ebx+4]
-		jz	low_dword
+		mov	edi, 12;
+		mov	eax, cache;
+		mov	ebx, DWORD PTR [rBase];
+		mov	ecx, DWORD PTR [rEmul];
+		cmp	eax, [ebx+4];
+		jz	low_dword;
 
 //	high_dword:
 		// temp = (base_cycles/12)
 		// Calculate upper DWORD and remainder
-		xor	edx, edx
-		mov	eax, [ebx+4]
-		mov	cache, eax
-		div	edi
-		mov	cache_hiRem, edx
+		xor	edx, edx;
+		mov	eax, [ebx+4];
+		mov	cache, eax;
+		div	edi;
+		mov	cache_hiRem, edx;
 
 	low_dword:
 		// Calculate bottom DWORD with upper remainder
-		mov edx, cache_hiRem
-		mov	eax, [ebx]
-		div	edi
+		mov edx, cache_hiRem;
+		mov	eax, [ebx];
+		div	edi;
 
 //	diff:
 		// cycles = temp - emul_cycles
 		// eax carried from DIV above
-		xor	edx, edx
-		sub	edx, [ecx]
-		add	eax, edx
-		mov	cycles, eax
+		xor	edx, edx;
+		sub	edx, [ecx];
+		add	eax, edx;
+		mov	cycles, eax;
 	}
 #endif
 

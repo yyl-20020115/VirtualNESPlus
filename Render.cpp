@@ -67,51 +67,52 @@ void	CDirectDraw::Render16bpp( LPBYTE lpSrc, LPBYTE lpDst )
 		}
 
 #if _WIN64
+
 #else
 		width = SCREEN_WIDTH;
 		//ASM_COMMENT_OUT
 		__asm {
-			mov		eax, lpSrc
-			mov		esi, pPal
-			mov		edi, lpDst
+			mov		eax, lpSrc;
+			mov		esi, pPal;
+			mov		edi, lpDst;
 _r16b_loop:
-			mov		edx, [eax+0]
-			movzx		ecx, dl
-			mov		ecx, [esi+ecx*4]
-			shr		edx, 8
-			mov		[edi+ 0], cx
-			movzx		ecx, dl
-			mov		ecx, [esi+ecx*4]
-			shr		edx, 8
-			mov		[edi+ 2], cx
-			movzx		ecx, dl
-			shr		edx, 8
-			mov		ecx, [esi+ecx*4]
-			mov		edx, [esi+edx*4]
-			mov		[edi+ 4], cx
-			mov		[edi+ 6], dx
+			mov		edx, [eax+0];
+			movzx		ecx, dl;
+			mov		ecx, [esi+ecx*4];
+			shr		edx, 8;
+			mov		[edi+ 0], cx;
+			movzx		ecx, dl;
+			mov		ecx, [esi+ecx*4];
+			shr		edx, 8;
+			mov		[edi+ 2], cx;
+			movzx		ecx, dl;
+			shr		edx, 8;
+			mov		ecx, [esi+ecx*4];
+			mov		edx, [esi+edx*4];
+			mov		[edi+ 4], cx;
+			mov		[edi+ 6], dx;
 
-			mov		edx, [eax+4]
-			movzx		ecx, dl
-			mov		ecx, [esi+ecx*4]
-			shr		edx, 8
-			mov		[edi+ 8], cx
-			movzx		ecx, dl
-			mov		ecx, [esi+ecx*4]
-			shr		edx, 8
-			mov		[edi+10], cx
-			movzx		ecx, dl
-			shr		edx, 8
-			mov		ecx, [esi+ecx*4]
-			mov		edx, [esi+edx*4]
-			mov		[edi+12], cx
-			mov		[edi+14], dx
+			mov		edx, [eax+4];
+			movzx		ecx, dl;
+			mov		ecx, [esi+ecx*4];
+			shr		edx, 8;
+			mov		[edi+ 8], cx;
+			movzx		ecx, dl;
+			mov		ecx, [esi+ecx*4];
+			shr		edx, 8;
+			mov		[edi+10], cx;
+			movzx		ecx, dl;
+			shr		edx, 8;
+			mov		ecx, [esi+ecx*4];
+			mov		edx, [esi+edx*4];
+			mov		[edi+12], cx;
+			mov		[edi+14], dx;
 
-			lea		eax, [eax+ 8]
-			lea		edi, [edi+16]
+			lea		eax, [eax+ 8];
+			lea		edi, [edi+16];
 
-			sub		width, 8
-			jg		_r16b_loop
+			sub		width, 8;
+			jg		_r16b_loop;
 		}
 		lpSrc += RENDER_WIDTH;
 		lpDst += SCREEN_WIDTH*sizeof(WORD);
@@ -139,47 +140,47 @@ void	CDirectDraw::Render16bppPrefilter( LPBYTE lpSrc, LPBYTE lpDst )
 		//ASM_COMMENT_OUT
 
 		__asm {
-			mov		eax, lpSrc
-			mov		esi, pPal
-			mov		edi, lpDst
+			mov		eax, lpSrc;
+			mov		esi, pPal;
+			mov		edi, lpDst;
 _r16b_pf_loop:
-			mov		edx, [eax+0]
-			movzx		ecx, dl
-			mov		ecx, [esi+ecx*4]
-			shr		edx, 8
-			mov		[edi+ 0], cx
-			movzx		ecx, dl
-			mov		ecx, [esi+ecx*4]
-			shr		edx, 8
-			mov		[edi+ 2], cx
-			movzx		ecx, dl
-			shr		edx, 8
-			mov		ecx, [esi+ecx*4]
-			mov		edx, [esi+edx*4]
-			mov		[edi+ 4], cx
-			mov		[edi+ 6], dx
+			mov		edx, [eax+0];
+			movzx		ecx, dl;
+			mov		ecx, [esi+ecx*4];
+			shr		edx, 8;
+			mov		[edi+ 0], cx;
+			movzx		ecx, dl;
+			mov		ecx, [esi+ecx*4];
+			shr		edx, 8;
+			mov		[edi+ 2], cx;
+			movzx		ecx, dl;
+			shr		edx, 8;
+			mov		ecx, [esi+ecx*4];
+			mov		edx, [esi+edx*4];
+			mov		[edi+ 4], cx;
+			mov		[edi+ 6], dx;
 
-			mov		edx, [eax+4]
-			movzx		ecx, dl
-			mov		ecx, [esi+ecx*4]
-			shr		edx, 8
-			mov		[edi+ 8], cx
-			movzx		ecx, dl
-			mov		ecx, [esi+ecx*4]
-			shr		edx, 8
-			mov		[edi+10], cx
-			movzx		ecx, dl
-			shr		edx, 8
-			mov		ecx, [esi+ecx*4]
-			mov		edx, [esi+edx*4]
-			mov		[edi+12], cx
-			mov		[edi+14], dx
+			mov		edx, [eax+4];
+			movzx		ecx, dl;
+			mov		ecx, [esi+ecx*4];
+			shr		edx, 8;
+			mov		[edi+ 8], cx;
+			movzx		ecx, dl;
+			mov		ecx, [esi+ecx*4];
+			shr		edx, 8;
+			mov		[edi+10], cx;
+			movzx		ecx, dl;
+			shr		edx, 8;
+			mov		ecx, [esi+ecx*4];
+			mov		edx, [esi+edx*4];
+			mov		[edi+12], cx;
+			mov		[edi+14], dx;
 
-			lea		eax, [eax+ 8]
-			lea		edi, [edi+16]
+			lea		eax, [eax+ 8];
+			lea		edi, [edi+16];
 
-			sub		width, 8
-			jg		_r16b_pf_loop
+			sub		width, 8;
+			jg		_r16b_pf_loop;
 		}
 		lpSrc += RENDER_WIDTH;
 		lpDst += SCREEN_WIDTH*sizeof(WORD);
@@ -206,47 +207,47 @@ void	CDirectDraw::Render32bpp( LPBYTE lpSrc, LPBYTE lpDst )
 #else
 		width = SCREEN_WIDTH;
 		__asm {
-			mov		eax, lpSrc
-			mov		esi, pPal
-			mov		edi, lpDst
+			mov		eax, lpSrc;
+			mov		esi, pPal;
+			mov		edi, lpDst;
 _r32b_loop:
-			mov		edx, [eax+0]
-			movzx		ecx, dl
-			mov		ecx, [esi+ecx*4]
-			shr		edx, 8
-			mov		[edi+ 0], ecx
-			movzx		ecx, dl
-			mov		ecx, [esi+ecx*4]
-			shr		edx, 8
-			mov		[edi+ 4], ecx
-			movzx		ecx, dl
-			shr		edx, 8
-			mov		ecx, [esi+ecx*4]
-			mov		edx, [esi+edx*4]
-			mov		[edi+ 8], ecx
-			mov		[edi+12], edx
+			mov		edx, [eax+0];
+			movzx		ecx, dl;
+			mov		ecx, [esi+ecx*4];
+			shr		edx, 8;
+			mov		[edi+ 0], ecx;
+			movzx		ecx, dl;
+			mov		ecx, [esi+ecx*4];
+			shr		edx, 8;
+			mov		[edi+ 4], ecx;
+			movzx		ecx, dl;
+			shr		edx, 8;
+			mov		ecx, [esi+ecx*4];
+			mov		edx, [esi+edx*4];
+			mov		[edi+ 8], ecx;
+			mov		[edi+12], edx;
 
-			mov		edx, [eax+4]
-			movzx		ecx, dl
-			mov		ecx, [esi+ecx*4]
-			shr		edx, 8
-			mov		[edi+16], ecx
-			movzx		ecx, dl
-			mov		ecx, [esi+ecx*4]
-			shr		edx, 8
-			mov		[edi+20], ecx
-			movzx		ecx, dl
-			shr		edx, 8
-			mov		ecx, [esi+ecx*4]
-			mov		edx, [esi+edx*4]
-			mov		[edi+24], ecx
-			mov		[edi+28], edx
+			mov		edx, [eax+4];
+			movzx		ecx, dl;
+			mov		ecx, [esi+ecx*4];
+			shr		edx, 8;
+			mov		[edi+16], ecx;
+			movzx		ecx, dl;
+			mov		ecx, [esi+ecx*4];
+			shr		edx, 8;
+			mov		[edi+20], ecx;
+			movzx		ecx, dl;
+			shr		edx, 8;
+			mov		ecx, [esi+ecx*4];
+			mov		edx, [esi+edx*4];
+			mov		[edi+24], ecx;
+			mov		[edi+28], edx;
 
-			lea		eax, [eax+ 8]
-			lea		edi, [edi+32]
+			lea		eax, [eax+ 8];
+			lea		edi, [edi+32];
 
-			sub		width, 8
-			jg		_r32b_loop
+			sub		width, 8;
+			jg		_r32b_loop;
 		}
 		lpSrc += RENDER_WIDTH;
 		lpDst += SCREEN_WIDTH*sizeof(DWORD);

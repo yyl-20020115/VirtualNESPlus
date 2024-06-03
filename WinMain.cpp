@@ -29,6 +29,7 @@ using namespace std;
 
 #include "SimpleVirusChecker.h"
 
+
 INT WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, INT nCmdShow )
 {
 #if	_DEBUG
@@ -41,7 +42,9 @@ INT WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 
 	// 簡易ウィルスチェック
 	if( SimpleVirusChecker() > 0 ) {
-		if( ::GetUserDefaultLCID() == 0x0411 ) {
+		LCID lcid = ::GetUserDefaultLCID();
+		//2052
+		if(lcid == 0x0411 ) {
 			if( ::MessageBox( NULL, "このPCはウィルスプログラムに感染している可能性があります。\n"
 						"危険ですのでなるべく早急にウィルスチェックを行って下さい。\n\n"
 						"それでも実行しますか？", "VirtuaNES 簡易ウィルスチェッカー", MB_ICONWARNING|MB_YESNO|MB_DEFBUTTON2 ) == IDNO )
@@ -91,11 +94,9 @@ INT WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 		goto	_Error_Exit;
 	}
 	CApp::SetPlugin( hPlugin );
-
 	::InitCommonControls();
-
 	// 設定のロード
-	CRegistry::SetRegistryKey( "VirtuaNES.ini" );
+	CRegistry::SetRegistryKey( "VirtualNESPlus.ini" );
 	Config.Load();
 	CRecent::Load();
 
@@ -107,7 +108,7 @@ INT WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 			HWND	hWnd = ::FindWindow( VIRTUANES_WNDCLASS, NULL );
 //			HWND	hWnd = ::FindWindow( VIRTUANES_WNDCLASS, VIRTUANES_CAPTION );
 
-			CHAR	szTitle[256];
+			CHAR	szTitle[256] = { 0 };
 			::GetWindowText( hWnd, szTitle, sizeof(szTitle)-1 );
 
 			// タイトルバーが同じかどうかチェック

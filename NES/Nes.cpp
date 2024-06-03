@@ -1188,7 +1188,7 @@ void	NES::LoadDISK()
 
 	BOOL	bExit = FALSE;
 
-	INT	i, j, diskno;
+	DWORD	i, j, diskno;
 	FILE*	fp = NULL;
 	DISKIMGFILEHDR	ifh;
 	DISKIMGHDR	hdr;

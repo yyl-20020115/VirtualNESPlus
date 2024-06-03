@@ -18,52 +18,27 @@ CDirectDraw::BLTFUNC	CDirectDraw::NormalBltTable[] = {
 	&CDirectDraw::Render24bpp_Normal,
 	&CDirectDraw::Render32bpp_Normal,
 };
-#if _WIN64
-CDirectDraw::BLTFUNC	CDirectDraw::ScanlineBltTable[] = {
-	&CDirectDraw::Render8bpp_Normal,
-	&CDirectDraw::Render16bpp_Normal,
-	&CDirectDraw::Render24bpp_Normal,
-	&CDirectDraw::Render32bpp_Normal,
-};
-#else
+
 CDirectDraw::BLTFUNC	CDirectDraw::ScanlineBltTable[] = {
 	&CDirectDraw::Render8bpp_Scanline,
 	&CDirectDraw::Render16bpp_Scanline,
 	&CDirectDraw::Render24bpp_Scanline,
 	&CDirectDraw::Render32bpp_Scanline,
 };
-#endif
-#if _WIN64
-CDirectDraw::BLTFUNC	CDirectDraw::DoubleBltTable[] = {
-	&CDirectDraw::Render8bpp_Normal,
-	&CDirectDraw::Render16bpp_Normal,
-	&CDirectDraw::Render24bpp_Normal,
-	&CDirectDraw::Render32bpp_Normal,
-};
-#else
+
 CDirectDraw::BLTFUNC	CDirectDraw::DoubleBltTable[] = {
 	&CDirectDraw::Render8bpp_Double,
 	&CDirectDraw::Render16bpp_Double,
 	&CDirectDraw::Render24bpp_Double,
 	&CDirectDraw::Render32bpp_Double,
 };
-#endif
 
-#if _WIN64
-CDirectDraw::BLTFUNC	CDirectDraw::DoubleScanlineBltTable[] = {
-	&CDirectDraw::Render8bpp_Normal,
-	&CDirectDraw::Render16bpp_Normal,
-	&CDirectDraw::Render24bpp_Normal,
-	&CDirectDraw::Render32bpp_Normal,
-};
-#else
 CDirectDraw::BLTFUNC	CDirectDraw::DoubleScanlineBltTable[] = {
 	&CDirectDraw::Render8bpp_DoubleScanline,
 	&CDirectDraw::Render16bpp_DoubleScanline,
 	&CDirectDraw::Render24bpp_DoubleScanline,
 	&CDirectDraw::Render32bpp_DoubleScanline,
 };
-#endif
 
 #if _WIN64
 CDirectDraw::BLTFUNC	CDirectDraw::nx2xSaIBltTable[] = {
@@ -1099,7 +1074,7 @@ void	CDirectDraw::GetDisplayMode(DWORD& dwWidth, DWORD& dwHeight, DWORD& dwDepth
 
 BOOL	CDirectDraw::GetDisplayMode(INT no, DWORD& dwWidth, DWORD& dwHeight, DWORD& dwDepth, DWORD& dwRate)
 {
-	if (m_DisplayModes.size() < no)
+	if ((int)m_DisplayModes.size() < no)
 		return	FALSE;
 
 	dwWidth = m_DisplayModes[no].dwWidth;
@@ -1112,7 +1087,7 @@ BOOL	CDirectDraw::GetDisplayMode(INT no, DWORD& dwWidth, DWORD& dwHeight, DWORD&
 
 INT	CDirectDraw::GetMatchDisplayMode(DWORD dwWidth, DWORD dwHeight, DWORD dwDepth, DWORD dwRate)
 {
-	for (int i = 0; i < m_DisplayModes.size(); i++) {
+	for (int i = 0; i < (int)m_DisplayModes.size(); i++) {
 		if (m_DisplayModes[i].dwWidth == dwWidth
 			|| m_DisplayModes[i].dwHeight == dwHeight
 			|| m_DisplayModes[i].dwDepth == dwDepth

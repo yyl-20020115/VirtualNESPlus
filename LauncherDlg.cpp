@@ -713,7 +713,7 @@ string	path;
 
 			BOOL	bBad = FALSE;
 			if( header.control1&0x04 ) {
-				if( FileSize < (512+16384*fl.prg_size+8192*fl.chr_size+sizeof(NESHEADER)) ) {
+				if( FileSize < (LONG)(512+16384*fl.prg_size+8192*fl.chr_size+sizeof(NESHEADER)) ) {
 					fl.crcall   = CRC::CrcRev( FileSize-sizeof(NESHEADER), temp+sizeof(NESHEADER) );
 					fl.crc      = 0;
 					fl.prg_size = 0;
@@ -725,7 +725,7 @@ string	path;
 					fl.crc    = CRC::CrcRev( 512+16384*fl.prg_size, temp+sizeof(NESHEADER) );
 				}
 			} else {
-				if( FileSize < (16384*fl.prg_size+8192*fl.chr_size+sizeof(NESHEADER)) ) {
+				if( FileSize < (LONG)(16384*fl.prg_size+8192*fl.chr_size+sizeof(NESHEADER)) ) {
 					fl.crcall   = CRC::CrcRev( FileSize-sizeof(NESHEADER), temp+sizeof(NESHEADER) );
 					fl.crc      = 0;
 					fl.prg_size = 0;
@@ -888,11 +888,11 @@ DLGMSG	CLauncherDlg::OnInitDialog( DLGMSGPARAM )
 	m_hImageList = ImageList_LoadBitmap(
 		CApp::GetInstance(), MAKEINTRESOURCE(IDB_LAUNCHERIMAGELIST),
 		16, 6, RGB(255,0,255) );
-
 	// イメージリストをリストビューに割り当て
 	ListView_SetImageList( hWndCtrl, m_hImageList, LVSIL_STATE );
 
 	// ソート用イメージリスト
+
 	m_hImageListHdr = ImageList_Create( 16, 16, ILC_COLORDDB|ILC_MASK, 2, 2 );
 	ImageList_AddIcon( m_hImageListHdr, CApp::LoadIcon(IDI_SORT_DOWN) );
 	ImageList_AddIcon( m_hImageListHdr, CApp::LoadIcon(IDI_SORT_UP) );

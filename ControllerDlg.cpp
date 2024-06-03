@@ -443,8 +443,8 @@ DLGCMD	CControllerDlg::OnOK( DLGCMDPARAM )
 	m_bCancelMode = FALSE;
 
 	for( INT page = 0; page < 4; page++ ) {
-		Config.controller.nRapid[page][0] = ::SendDlgItemMessage( m_Page[page].m_hWnd, IDC_CTR_A_RAPID_LIST, LB_GETCURSEL, 0, 0 );
-		Config.controller.nRapid[page][1] = ::SendDlgItemMessage( m_Page[page].m_hWnd, IDC_CTR_B_RAPID_LIST, LB_GETCURSEL, 0, 0 );
+		Config.controller.nRapid[page][0] = (WORD)::SendDlgItemMessage( m_Page[page].m_hWnd, IDC_CTR_A_RAPID_LIST, LB_GETCURSEL, 0, 0 );
+		Config.controller.nRapid[page][1] = (WORD)::SendDlgItemMessage( m_Page[page].m_hWnd, IDC_CTR_B_RAPID_LIST, LB_GETCURSEL, 0, 0 );
 	}
 
 	::EndDialog( m_hWnd, IDOK );

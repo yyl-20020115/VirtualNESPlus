@@ -126,7 +126,7 @@ DLGCMD	CSoundDlg::OnOK( DLGCMDPARAM )
 	Config.sound.bExtraSoundEnable    = IsBTNCHECK( IDC_SND_EXTSOUND_ENABLE );
 
 	for( INT i = 0; m_nVolumeID[i*2+0]; i++ ) {
-		Config.sound.nVolume[m_nVolumeID[i*2+1]] = 200-::SendDlgItemMessage( m_hWnd, m_nVolumeID[i*2+0], TBM_GETPOS, 0, 0 );
+		Config.sound.nVolume[m_nVolumeID[i*2+1]] = (SHORT)(200-::SendDlgItemMessage( m_hWnd, m_nVolumeID[i*2+0], TBM_GETPOS, 0, 0 ));
 	}
 
 	LRESULT sel = ::SendDlgItemMessage( m_hWnd, IDC_SND_SAMPLERATE_COMBO, CB_GETCURSEL, 0, 0 );

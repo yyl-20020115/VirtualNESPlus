@@ -1022,12 +1022,10 @@ DLGMSG	CCheatCodeDlg::OnInitDialog( DLGMSGPARAM )
 //	ListView_SetExtendedListViewStyle( hWndCtrl, LVS_EX_CHECKBOXES|LVS_EX_FULLROWSELECT|LVS_EX_GRIDLINES );
 	ListView_SetExtendedListViewStyle( hWndCtrl, LVS_EX_FULLROWSELECT|LVS_EX_GRIDLINES );
 	ListView_DeleteAllItems( hWndCtrl );
-
 	// イメージリストの作成
 	m_hImageList = ImageList_LoadBitmap(
 		CApp::GetInstance(), MAKEINTRESOURCE(IDB_CHEATIMAGELIST),
 		16, 4, RGB(255,0,255) );
-
 	// イメージリストをリストビューに割り当て
 	ListView_SetImageList( hWndCtrl, m_hImageList, LVSIL_STATE );
 
@@ -1192,7 +1190,7 @@ DLGCMD	CCheatCodeDlg::OnCancel( DLGCMDPARAM )
 
 	// バックアップしていたチートコードを戻す
 	Emu.GetNES()->CheatInitial();
-	for( INT i = 0; i < m_CheatCode.size(); i++ ) {
+	for( size_t i = 0; i < m_CheatCode.size(); i++ ) {
 		Emu.GetNES()->AddCheatCode( m_CheatCode[i] );
 	}
 
@@ -1284,7 +1282,7 @@ DLGCMD	CCheatCodeDlg::OnInput( DLGCMDPARAM )
 				return;
 		}
 
-		code.address = ::strtoul( pToken, NULL, 16 );
+		code.address = (WORD)::strtoul(pToken, NULL, 16);
 		// Type & Length
 		if( !(pToken = (CHAR*)_mbstok( NULL, seps )) )
 			return;
@@ -1422,7 +1420,7 @@ DLGCMD	CCheatCodeDlg::OnLoad( DLGCMDPARAM )
 
 				if( ::strlen( pToken ) == 4 ) {
 				// VirtuaNES code
-					code.address = ::strtoul( pToken, NULL, 16 );
+					code.address = (WORD)::strtoul( pToken, NULL, 16 );
 					// Type & Length
 					if( !(pToken = (CHAR*)_mbstok( NULL, seps )) )
 						continue;
@@ -1460,9 +1458,9 @@ DLGCMD	CCheatCodeDlg::OnLoad( DLGCMDPARAM )
 				} else if( ::strlen( pToken ) == 5 ) {
 				// NNNesterJ code?
 					if( pToken[0] == '0' ) {
-						code.address = ::strtoul( pToken+1, NULL, 16 );
+						code.address = (WORD)::strtoul( pToken+1, NULL, 16 );
 					} else if( pToken[0] == '1' ) {
-						code.address = ::strtoul( pToken+1, NULL, 16 );
+						code.address = (WORD)::strtoul( pToken+1, NULL, 16 );
 						code.address += 0x6000;
 					}
 					// Length

@@ -53,7 +53,8 @@ static	VIRUSKEYTBL	viruskeytbl[] = {
 };
 
 /* WindowsNT? */
-static	int	IsNT( void )
+#if 0
+int	IsNT( void )
 {
 	OSVERSIONINFO	osvi;
 	osvi.dwOSVersionInfoSize = sizeof(osvi);
@@ -69,6 +70,18 @@ static	int	IsNT( void )
 	/* unknown */
 	return	-1;
 }
+#else
+int IsNT() {
+	OSVERSIONINFOEX osvi;
+	ZeroMemory(&osvi, sizeof(OSVERSIONINFOEX));
+	osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
+	osvi.dwMajorVersion = 5; // Windows 2000 is the first post-NT version
+
+	DWORDLONG const dwlConditionMask = VerSetConditionMask(0, VER_MAJORVERSION, VER_GREATER_EQUAL);
+
+	return VerifyVersionInfo(&osvi, VER_MAJORVERSION, dwlConditionMask);
+}
+#endif
 
 /* A check of a type to be infected with *.exe activation (representative example:SIRCAM) */
 static	int	ExeRegistryCheck( void )

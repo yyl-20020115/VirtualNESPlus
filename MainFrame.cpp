@@ -2913,7 +2913,7 @@ void	CMainFrame::OnUpdateMenu( HMENU hMenu, UINT uID )
 		case	ID_DISK_3A: case	ID_DISK_3B:
 			if( Nes ) {
 				INT no = Nes->GetDiskNo();
-				bEnable = bEmu && !(Nes->rom->GetMapperNo() != 20 || Nes->rom->IsNSF() || (!no || (uID-ID_DISK_EJECT)>no));
+				bEnable = bEmu && !(Nes->rom->GetMapperNo() != 20 || Nes->rom->IsNSF() || (!no || (INT)(uID-ID_DISK_EJECT)>no));
 			} else {
 				bEnable = bEmu;
 			}

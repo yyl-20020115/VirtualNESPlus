@@ -658,7 +658,7 @@ INT	nNetTimeoutCount = 0;
 				case	EV_DISK_COMMAND:
 					if( g_nes ) {
 						if( !NetPlay.IsConnect() ) {
-							DiskCommand( Param );
+							DiskCommand( (BYTE)(Param&0xff) );
 						} else {
 							netev.Event = EV_DISK_COMMAND;
 							netev.Param = Param;

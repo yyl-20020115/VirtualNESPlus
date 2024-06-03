@@ -165,7 +165,7 @@ LONG	FileSize;
 					throw	CApp::GetErrorString( IDS_ERROR_OUTOFMEMORY );
 				}
 
-				if( FileSize >= CHRoffset+CHRsize ) {
+				if( FileSize >= (LONG)(CHRoffset+CHRsize) ) {
 					memcpy( lpCHR, temp+CHRoffset, CHRsize );
 				} else {
 					// CHRÉoÉìÉNè≠Ç»Ç¢Åc

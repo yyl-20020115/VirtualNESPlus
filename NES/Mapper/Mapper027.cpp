@@ -165,7 +165,7 @@ void	Mapper027::HSync( INT scanline )
 void	Mapper027::SaveState( LPBYTE p )
 {
 	for( INT i = 0; i < 9; i++ ) {
-		p[i] = reg[i];
+		p[i] = (BYTE)(reg[i]&0xff);
 	}
 	p[ 9] = irq_enable;
 	p[10] = irq_counter;

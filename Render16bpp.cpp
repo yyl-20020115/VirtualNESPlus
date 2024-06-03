@@ -3,10 +3,6 @@
 #include "COM.h"
 //
 // 16bit Normal
-// Normal: 2 2 2 2 2 2 2 2
-// Scanline: 0x40404040,0x80808080
-// Double:0x40404040*2,0x40404040*2
-// Double Scanline:0x40404040*2,0x80808080*2
 void	CDirectDraw::Render16bpp_Normal(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2& ddsd, BOOL bForceWrite)
 {
 	LPBYTE	pScn = lpRdr;

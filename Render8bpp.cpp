@@ -13,6 +13,29 @@ void	CDirectDraw::Render8bpp_Normal(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2& 
 	DWORD	pitch = ddsd.lPitch;
 
 #if _WIN64
+	for (INT i = 0; i < SCREEN_HEIGHT; i++) {
+		PBYTE esi = pScn;
+		PBYTE edi = pDst;
+		DWORD ecx = width;
+		DWORD edx = 0x40404040;
+		DWORD eax = 0;
+		DWORD ebx = 0;
+		do {
+			eax = *(DWORD*)(esi+0);
+			ebx = *(DWORD*)(esi + 4);
+			eax |= ebx;
+			ebx |= edx;
+			*(DWORD*)(edi + 0) = eax;
+			*(DWORD*)(edi + 4) = ebx;
+			esi += 8;
+			edi += 8;
+			ecx -= 8;
+		} while (ecx>0);
+
+		pScn += RENDER_WIDTH;
+		pDst += pitch;
+	}
+
 #else
 	for (INT i = 0; i < SCREEN_HEIGHT; i++) {
 		//ASM_COMMENT_OUT
@@ -50,6 +73,46 @@ void	CDirectDraw::Render8bpp_Scanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2
 	DWORD	width = SCREEN_WIDTH;
 	DWORD	pitch = ddsd.lPitch;
 #if _WIN64
+	for (INT i = 0; i < SCREEN_HEIGHT; i++) {
+		PBYTE esi = pScn;
+		PBYTE edi = pDst;
+		DWORD ecx = width;
+		DWORD edx = 0x40404040;
+		DWORD eax = 0;
+		DWORD ebx = 0;
+		do {
+			eax = *(DWORD*)(esi + 0);
+			ebx = *(DWORD*)(esi + 4);
+			eax |= ebx;
+			ebx |= edx;
+			*(DWORD*)(edi + 0) = eax;
+			*(DWORD*)(edi + 4) = ebx;
+			esi += 8;
+			edi += 8;
+			ecx -= 8;
+		} while (ecx > 0);
+		pDst += pitch;
+
+		esi = pScn;
+		edi = pDst;
+		ecx = width;
+		edx = 0x80808080;
+		do {
+			eax = *(DWORD*)(esi + 0);
+			ebx = *(DWORD*)(esi + 4);
+			eax |= ebx;
+			ebx |= edx;
+			*(DWORD*)(edi + 0) = eax;
+			*(DWORD*)(edi + 4) = ebx;
+			esi += 8;
+			edi += 8;
+			ecx -= 8;
+		} while (ecx > 0);
+
+		pScn += RENDER_WIDTH;
+		pDst += pitch;
+	}
+
 #else
 	for (INT i = 0; i < SCREEN_HEIGHT; i++) {
 		__asm {
@@ -107,6 +170,7 @@ void	CDirectDraw::Render8bpp_Double(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2& 
 
 	if (!IsMMX()) {
 #if _WIN64
+
 #else
 		for (INT i = 0; i < SCREEN_HEIGHT; i++) {
 			//ASM_COMMENT_OUT
@@ -432,9 +496,6 @@ void	CDirectDraw::Render8bpp_DoubleScanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFAC
 			pDst += pitch;
 		}
 		_mm_empty();
-		//__asm {
-		//	emms
-		//}
 #endif
 	}
 }

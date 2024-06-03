@@ -40,38 +40,23 @@ void	CDirectDraw::Render32bpp_Normal(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 			DWORD  edx = 0;
 			DWORD  ecx = 0;
 			do {
-				edx = *(DWORD*)eax;
-				ecx = edx & 0xff;
-				ecx = *(DWORD*)(esi + 4 * ecx);
+				*(DWORD*)(ebx + 0) = edx = *(DWORD*)(eax + 0);
+				*(DWORD*)(edi + 0) = *(DWORD*)(esi + 4 * (edx & 0xff));
 				edx >>= 8;
-				*(DWORD*)edi = ecx;
-				ecx = edx & 0xff;
-				ecx = *(DWORD*)(esi + 4 * ecx);
+				*(DWORD*)(edi + 4) = *(DWORD*)(esi + 4 * (edx & 0xff));
 				edx >>= 8;
-				*(DWORD*)(edi + 4) = ecx;
-				ecx = edx & 0xff;
+				*(DWORD*)(edi + 8) = *(DWORD*)(esi + 4 * (edx & 0xff));
 				edx >>= 8;
-				ecx = *(DWORD*)(esi + 4 * ecx);
-				edx = *(DWORD*)(esi + 4 * edx);
-				*(DWORD*)(edi + 8) = ecx;
-				*(DWORD*)(edi + 12) = edx;
+				*(DWORD*)(edi + 12) = *(DWORD*)(esi + 4 * (edx & 0xff));
 
-				edx = *(DWORD*)(eax + 4);
-				*(DWORD*)(ebx + 4) = edx;
-				ecx = edx & 0xff;
-				ecx = *(DWORD*)(esi + 4 * ecx);
+				*(DWORD*)(ebx + 4) = edx = *(DWORD*)(eax + 4);
+				*(DWORD*)(edi + 16) = *(DWORD*)(esi + 4 * (edx & 0xff));
 				edx >>= 8;
-				*(DWORD*)(edi + 16) = ecx;
-				ecx = edx & 0xff;
-				ecx = *(DWORD*)(esi + 4 * ecx);
+				*(DWORD*)(edi + 20) = *(DWORD*)(esi + 4 * (edx & 0xff));
 				edx >>= 8;
-				*(DWORD*)(edi + 20) = ecx;
-				ecx = edx & 0xff;
+				*(DWORD*)(edi + 24) = *(DWORD*)(esi + 4 * (edx & 0xff));
 				edx >>= 8;
-				ecx = *(DWORD*)(esi + 4 * ecx);
-				edx = *(DWORD*)(esi + 4 * edx);
-				*(DWORD*)(edi + 24) = ecx;
-				*(DWORD*)(edi + 28) = edx;
+				*(DWORD*)(edi + 28) = *(DWORD*)(esi + 4 * (edx & 0xff));
 
 				eax += 8;
 				ebx += 8;
@@ -90,47 +75,47 @@ void	CDirectDraw::Render32bpp_Normal(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 				mov		ebx, pDlt
 				mov		esi, pPal
 				mov		edi, pDst
-			_r32bn_loop_fw :
+				_r32bn_loop_fw :
 				mov		edx, [eax + 0]
-				mov[ebx + 0], edx
-				movzx		ecx, dl
-				mov		ecx, [esi + ecx * 4]
-				shr		edx, 8
-				mov[edi + 0], ecx
-				movzx		ecx, dl
-				mov		ecx, [esi + ecx * 4]
-				shr		edx, 8
-				mov[edi + 4], ecx
-				movzx		ecx, dl
-				shr		edx, 8
-				mov		ecx, [esi + ecx * 4]
-				mov		edx, [esi + edx * 4]
-				mov[edi + 8], ecx
-				mov[edi + 12], edx
+					mov[ebx + 0], edx
+					movzx		ecx, dl
+					mov		ecx, [esi + ecx * 4]
+					shr		edx, 8
+					mov[edi + 0], ecx
+					movzx		ecx, dl
+					mov		ecx, [esi + ecx * 4]
+					shr		edx, 8
+					mov[edi + 4], ecx
+					movzx		ecx, dl
+					shr		edx, 8
+					mov		ecx, [esi + ecx * 4]
+					mov		edx, [esi + edx * 4]
+					mov[edi + 8], ecx
+					mov[edi + 12], edx
 
-				mov		edx, [eax + 4]
-				mov[ebx + 4], edx
-				movzx		ecx, dl
-				mov		ecx, [esi + ecx * 4]
-				shr		edx, 8
-				mov[edi + 16], ecx
-				movzx		ecx, dl
-				mov		ecx, [esi + ecx * 4]
-				shr		edx, 8
-				mov[edi + 20], ecx
-				movzx		ecx, dl
-				shr		edx, 8
-				mov		ecx, [esi + ecx * 4]
-				mov		edx, [esi + edx * 4]
-				mov[edi + 24], ecx
-				mov[edi + 28], edx
+					mov		edx, [eax + 4]
+					mov[ebx + 4], edx
+					movzx		ecx, dl
+					mov		ecx, [esi + ecx * 4]
+					shr		edx, 8
+					mov[edi + 16], ecx
+					movzx		ecx, dl
+					mov		ecx, [esi + ecx * 4]
+					shr		edx, 8
+					mov[edi + 20], ecx
+					movzx		ecx, dl
+					shr		edx, 8
+					mov		ecx, [esi + ecx * 4]
+					mov		edx, [esi + edx * 4]
+					mov[edi + 24], ecx
+					mov[edi + 28], edx
 
-				lea		eax, [eax + 8]
-				lea		ebx, [ebx + 8]
-				lea		edi, [edi + 32]
+					lea		eax, [eax + 8]
+					lea		ebx, [ebx + 8]
+					lea		edi, [edi + 32]
 
-				sub		width, 8
-				jg		_r32bn_loop_fw
+					sub		width, 8
+					jg		_r32bn_loop_fw
 			}
 			pScn += RENDER_WIDTH;
 			pDlt += SCREEN_WIDTH;
@@ -149,45 +134,30 @@ void	CDirectDraw::Render32bpp_Normal(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 				edx = *(DWORD*)eax;
 				if (edx == *(DWORD*)ebx)
 					goto _r32bn_skip1;
+				else
+					*(DWORD*)ebx = edx;
 
-				*(DWORD*)ebx = edx;
-				ecx = edx & 0xff;
-				ecx = *(DWORD*)(esi + 4 * ecx);
+				*(DWORD*)(edi + 0) = *(DWORD*)(esi + 4 * (edx & 0xff));
 				edx >>= 8;
-				*(DWORD*)edi = ecx;
-				ecx = edx & 0xff;
-				ecx = *(DWORD*)(esi + 4 * ecx);
+				*(DWORD*)(edi + 4) = *(DWORD*)(esi + 4 * (edx & 0xff));
 				edx >>= 8;
-				*(DWORD*)(edi + 4) = ecx;
-				ecx = edx & 0xff;
+				*(DWORD*)(edi + 8) = *(DWORD*)(esi + 4 * (edx & 0xff));
 				edx >>= 8;
-				edx &= 0xff;
-				ecx = *(DWORD*)(esi + 4 * ecx);
-				edx = *(DWORD*)(esi + 4 * edx);
-
-				*(DWORD*)(edi + 8) = ecx;
-				*(DWORD*)(edi + 12) = edx;
-
+				*(DWORD*)(edi + 12) = *(DWORD*)(esi + 4 * (edx & 0xff));
 			_r32bn_skip1:
 				edx = *(DWORD*)(eax + 4);
 				if (edx == *(DWORD*)(ebx + 4))
 					goto _r32bn_skip2;
-				*(DWORD*)(ebx + 4) = edx;
-				ecx = edx & 0xff;
-				ecx = *(DWORD*)(esi + 4 * ecx);
+				else
+					*(DWORD*)(ebx + 4) = edx;
+
+				*(DWORD*)(edi + 16) = *(DWORD*)(esi + 4 * (edx & 0xff));
 				edx >>= 8;
-				*(DWORD*)(edi + 16) = ecx;
-				ecx = edx & 0xff;
-				ecx = *(DWORD*)(esi + 4 * ecx);
+				*(DWORD*)(edi + 20) = *(DWORD*)(esi + 4 * (edx & 0xff));
 				edx >>= 8;
-				*(DWORD*)(edi + 20) = ecx;
-				ecx = edx & 0xff;
+				*(DWORD*)(edi + 24) = *(DWORD*)(esi + 4 * (edx & 0xff));
 				edx >>= 8;
-				edx &= 0xff;
-				ecx = *(DWORD*)(esi + 4 * ecx);
-				edx = *(DWORD*)(esi + 4 * edx);
-				*(DWORD*)(edi + 24) = ecx;
-				*(DWORD*)(edi + 28) = edx;
+				*(DWORD*)(edi + 28) = *(DWORD*)(esi + 4 * (edx & 0xff));
 			_r32bn_skip2:
 				eax += 8;
 				ebx += 8;
@@ -208,51 +178,51 @@ void	CDirectDraw::Render32bpp_Normal(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 				_r32bn_loop :
 				// check previous!!
 				mov		edx, [eax + 0]
-				cmp		edx, [ebx + 0]
-				je		_r32bn_skip1
+					cmp		edx, [ebx + 0]
+					je		_r32bn_skip1
 
-				mov[ebx + 0], edx
-				movzx		ecx, dl
-				mov		ecx, [esi + ecx * 4]
-				shr		edx, 8
-				mov[edi + 0], ecx
+					mov[ebx + 0], edx
+					movzx		ecx, dl
+					mov		ecx, [esi + ecx * 4]
+					shr		edx, 8
+					mov[edi + 0], ecx
 
-				movzx		ecx, dl
-				mov		ecx, [esi + ecx * 4]
-				shr		edx, 8
-				mov[edi + 4], ecx
-				movzx		ecx, dl
-				shr		edx, 8
-				mov		ecx, [esi + ecx * 4]
-				mov		edx, [esi + edx * 4]
-				mov[edi + 8], ecx
-				mov[edi + 12], edx
-		_r32bn_skip1 :
+					movzx		ecx, dl
+					mov		ecx, [esi + ecx * 4]
+					shr		edx, 8
+					mov[edi + 4], ecx
+					movzx		ecx, dl
+					shr		edx, 8
+					mov		ecx, [esi + ecx * 4]
+					mov		edx, [esi + edx * 4]
+					mov[edi + 8], ecx
+					mov[edi + 12], edx
+					_r32bn_skip1 :
 				// check previous!!
 				mov		edx, [eax + 4]
-				cmp		edx, [ebx + 4]
-				je		_r32bn_skip2
-				mov[ebx + 4], edx
-				movzx		ecx, dl
-				mov		ecx, [esi + ecx * 4]
-				shr		edx, 8
-				mov[edi + 16], ecx
-				movzx		ecx, dl
-				mov		ecx, [esi + ecx * 4]
-				shr		edx, 8
-				mov[edi + 20], ecx
-				movzx		ecx, dl
-				shr		edx, 8
-				mov		ecx, [esi + ecx * 4]
-				mov		edx, [esi + edx * 4]
-				mov[edi + 24], ecx
-				mov[edi + 28], edx
-		_r32bn_skip2 :
+					cmp		edx, [ebx + 4]
+					je		_r32bn_skip2
+					mov[ebx + 4], edx
+					movzx		ecx, dl
+					mov		ecx, [esi + ecx * 4]
+					shr		edx, 8
+					mov[edi + 16], ecx
+					movzx		ecx, dl
+					mov		ecx, [esi + ecx * 4]
+					shr		edx, 8
+					mov[edi + 20], ecx
+					movzx		ecx, dl
+					shr		edx, 8
+					mov		ecx, [esi + ecx * 4]
+					mov		edx, [esi + edx * 4]
+					mov[edi + 24], ecx
+					mov[edi + 28], edx
+					_r32bn_skip2 :
 				lea		eax, [eax + 8]
-				lea		ebx, [ebx + 8]
-				lea		edi, [edi + 32]
-				sub		width, 8
-				jg		_r32bn_loop
+					lea		ebx, [ebx + 8]
+					lea		edi, [edi + 32]
+					sub		width, 8
+					jg		_r32bn_loop
 			}
 
 			pScn += RENDER_WIDTH;
@@ -304,45 +274,45 @@ void	CDirectDraw::Render32bpp_Scanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC
 				mov		edi, pDst
 				_r32bs_loop_fw :
 				mov		edx, [eax + 0]
-				mov[ebx + 0], edx
-				movzx		ecx, dl
-				mov		ecx, [esi + ecx * 4]
-				shr		edx, 8
-				mov[edi + 0], ecx
-				movzx		ecx, dl
-				mov		ecx, [esi + ecx * 4]
-				shr		edx, 8
-				mov[edi + 4], ecx
-				movzx		ecx, dl
-				shr		edx, 8
-				mov		ecx, [esi + ecx * 4]
-				mov		edx, [esi + edx * 4]
-				mov[edi + 8], ecx
-				mov[edi + 12], edx
+					mov[ebx + 0], edx
+					movzx		ecx, dl
+					mov		ecx, [esi + ecx * 4]
+					shr		edx, 8
+					mov[edi + 0], ecx
+					movzx		ecx, dl
+					mov		ecx, [esi + ecx * 4]
+					shr		edx, 8
+					mov[edi + 4], ecx
+					movzx		ecx, dl
+					shr		edx, 8
+					mov		ecx, [esi + ecx * 4]
+					mov		edx, [esi + edx * 4]
+					mov[edi + 8], ecx
+					mov[edi + 12], edx
 
-				mov		edx, [eax + 4]
-				mov[ebx + 4], edx
-				movzx		ecx, dl
-				mov		ecx, [esi + ecx * 4]
-				shr		edx, 8
-				mov[edi + 16], ecx
-				movzx		ecx, dl
-				mov		ecx, [esi + ecx * 4]
-				shr		edx, 8
-				mov[edi + 20], ecx
-				movzx		ecx, dl
-				shr		edx, 8
-				mov		ecx, [esi + ecx * 4]
-				mov		edx, [esi + edx * 4]
-				mov[edi + 24], ecx
-				mov[edi + 28], edx
+					mov		edx, [eax + 4]
+					mov[ebx + 4], edx
+					movzx		ecx, dl
+					mov		ecx, [esi + ecx * 4]
+					shr		edx, 8
+					mov[edi + 16], ecx
+					movzx		ecx, dl
+					mov		ecx, [esi + ecx * 4]
+					shr		edx, 8
+					mov[edi + 20], ecx
+					movzx		ecx, dl
+					shr		edx, 8
+					mov		ecx, [esi + ecx * 4]
+					mov		edx, [esi + edx * 4]
+					mov[edi + 24], ecx
+					mov[edi + 28], edx
 
-				lea		eax, [eax + 8]
-				lea		ebx, [ebx + 8]
-				lea		edi, [edi + 32]
+					lea		eax, [eax + 8]
+					lea		ebx, [ebx + 8]
+					lea		edi, [edi + 32]
 
-				sub		width, 8
-				jg		_r32bs_loop_fw
+					sub		width, 8
+					jg		_r32bs_loop_fw
 			}
 			width = SCREEN_WIDTH;
 			pDst += pitch;
@@ -353,43 +323,43 @@ void	CDirectDraw::Render32bpp_Scanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC
 				mov		edi, pDst
 				_r32bs_loop2_fw :
 				mov		edx, [eax + 0]
-				movzx		ecx, dl
-				mov		ecx, [esi + ecx * 4]
-				shr		edx, 8
-				mov[edi + 0], ecx
-				movzx		ecx, dl
-				mov		ecx, [esi + ecx * 4]
-				shr		edx, 8
-				mov[edi + 4], ecx
-				movzx		ecx, dl
-				shr		edx, 8
-				mov		ecx, [esi + ecx * 4]
-				mov		edx, [esi + edx * 4]
-				mov[edi + 8], ecx
-				mov[edi + 12], edx
+					movzx		ecx, dl
+					mov		ecx, [esi + ecx * 4]
+					shr		edx, 8
+					mov[edi + 0], ecx
+					movzx		ecx, dl
+					mov		ecx, [esi + ecx * 4]
+					shr		edx, 8
+					mov[edi + 4], ecx
+					movzx		ecx, dl
+					shr		edx, 8
+					mov		ecx, [esi + ecx * 4]
+					mov		edx, [esi + edx * 4]
+					mov[edi + 8], ecx
+					mov[edi + 12], edx
 
-				mov		edx, [eax + 4]
-				movzx		ecx, dl
-				mov		ecx, [esi + ecx * 4]
-				shr		edx, 8
-				mov[edi + 16], ecx
-				movzx		ecx, dl
-				mov		ecx, [esi + ecx * 4]
-				shr		edx, 8
-				mov[edi + 20], ecx
-				movzx		ecx, dl
-				shr		edx, 8
-				mov		ecx, [esi + ecx * 4]
-				mov		edx, [esi + edx * 4]
-				mov[edi + 24], ecx
-				mov[edi + 28], edx
+					mov		edx, [eax + 4]
+					movzx		ecx, dl
+					mov		ecx, [esi + ecx * 4]
+					shr		edx, 8
+					mov[edi + 16], ecx
+					movzx		ecx, dl
+					mov		ecx, [esi + ecx * 4]
+					shr		edx, 8
+					mov[edi + 20], ecx
+					movzx		ecx, dl
+					shr		edx, 8
+					mov		ecx, [esi + ecx * 4]
+					mov		edx, [esi + edx * 4]
+					mov[edi + 24], ecx
+					mov[edi + 28], edx
 
-				lea		eax, [eax + 8]
-				lea		ebx, [ebx + 8]
-				lea		edi, [edi + 32]
+					lea		eax, [eax + 8]
+					lea		ebx, [ebx + 8]
+					lea		edi, [edi + 32]
 
-				sub		width, 8
-				jg		_r32bs_loop2_fw
+					sub		width, 8
+					jg		_r32bs_loop2_fw
 			}
 			pScn += RENDER_WIDTH;
 			pDlt += SCREEN_WIDTH;
@@ -407,50 +377,50 @@ void	CDirectDraw::Render32bpp_Scanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC
 				_r32bs_loop :
 				// check previous!!
 				mov		edx, [eax + 0]
-				cmp		edx, [ebx + 0]
-				je		_r32bs_skip1
-				//			mov		[ebx+0], edx		// 1âÒñ⁄ÇÕèëÇ´çûÇ‹Ç»Ç¢
-				movzx		ecx, dl
-				mov		ecx, [esi + ecx * 4]
-				shr		edx, 8
-				mov[edi + 0], ecx
-				movzx		ecx, dl
-				mov		ecx, [esi + ecx * 4]
-				shr		edx, 8
-				mov[edi + 4], ecx
-				movzx		ecx, dl
-				shr		edx, 8
-				mov		ecx, [esi + ecx * 4]
-				mov		edx, [esi + edx * 4]
-				mov[edi + 8], ecx
-				mov[edi + 12], edx
-				_r32bs_skip1 :
+					cmp		edx, [ebx + 0]
+					je		_r32bs_skip1
+					//			mov		[ebx+0], edx		// 1âÒñ⁄ÇÕèëÇ´çûÇ‹Ç»Ç¢
+					movzx		ecx, dl
+					mov		ecx, [esi + ecx * 4]
+					shr		edx, 8
+					mov[edi + 0], ecx
+					movzx		ecx, dl
+					mov		ecx, [esi + ecx * 4]
+					shr		edx, 8
+					mov[edi + 4], ecx
+					movzx		ecx, dl
+					shr		edx, 8
+					mov		ecx, [esi + ecx * 4]
+					mov		edx, [esi + edx * 4]
+					mov[edi + 8], ecx
+					mov[edi + 12], edx
+					_r32bs_skip1 :
 				// check previous!!
 				mov		edx, [eax + 4]
-				cmp		edx, [ebx + 4]
-				je		_r32bs_skip2
-				//			mov		[ebx+4], edx		// 1âÒñ⁄ÇÕèëÇ´çûÇ‹Ç»Ç¢
-				movzx		ecx, dl
-				mov		ecx, [esi + ecx * 4]
-				shr		edx, 8
-				mov[edi + 16], ecx
-				movzx		ecx, dl
-				mov		ecx, [esi + ecx * 4]
-				shr		edx, 8
-				mov[edi + 20], ecx
-				movzx		ecx, dl
-				shr		edx, 8
-				mov		ecx, [esi + ecx * 4]
-				mov		edx, [esi + edx * 4]
-				mov[edi + 24], ecx
-				mov[edi + 28], edx
-				_r32bs_skip2 :
+					cmp		edx, [ebx + 4]
+					je		_r32bs_skip2
+					//			mov		[ebx+4], edx		// 1âÒñ⁄ÇÕèëÇ´çûÇ‹Ç»Ç¢
+					movzx		ecx, dl
+					mov		ecx, [esi + ecx * 4]
+					shr		edx, 8
+					mov[edi + 16], ecx
+					movzx		ecx, dl
+					mov		ecx, [esi + ecx * 4]
+					shr		edx, 8
+					mov[edi + 20], ecx
+					movzx		ecx, dl
+					shr		edx, 8
+					mov		ecx, [esi + ecx * 4]
+					mov		edx, [esi + edx * 4]
+					mov[edi + 24], ecx
+					mov[edi + 28], edx
+					_r32bs_skip2 :
 				lea		eax, [eax + 8]
-				lea		ebx, [ebx + 8]
-				lea		edi, [edi + 32]
+					lea		ebx, [ebx + 8]
+					lea		edi, [edi + 32]
 
-				sub		width, 8
-				jg		_r32bs_loop
+					sub		width, 8
+					jg		_r32bs_loop
 			}
 			width = SCREEN_WIDTH;
 			pDst += pitch;
@@ -462,50 +432,50 @@ void	CDirectDraw::Render32bpp_Scanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC
 				_r32bs_loop2 :
 				// check previous!!
 				mov		edx, [eax + 0]
-				cmp		edx, [ebx + 0]
-				je		_r32bs_skip3
-				mov[ebx + 0], edx		// 2âÒñ⁄ÇÕèëÇ´çûÇﬁ
-				movzx		ecx, dl
-				mov		ecx, [esi + ecx * 4]
-				shr		edx, 8
-				mov[edi + 0], ecx
-				movzx		ecx, dl
-				mov		ecx, [esi + ecx * 4]
-				shr		edx, 8
-				mov[edi + 4], ecx
-				movzx		ecx, dl
-				shr		edx, 8
-				mov		ecx, [esi + ecx * 4]
-				mov		edx, [esi + edx * 4]
-				mov[edi + 8], ecx
-				mov[edi + 12], edx
-				_r32bs_skip3 :
+					cmp		edx, [ebx + 0]
+					je		_r32bs_skip3
+					mov[ebx + 0], edx		// 2âÒñ⁄ÇÕèëÇ´çûÇﬁ
+					movzx		ecx, dl
+					mov		ecx, [esi + ecx * 4]
+					shr		edx, 8
+					mov[edi + 0], ecx
+					movzx		ecx, dl
+					mov		ecx, [esi + ecx * 4]
+					shr		edx, 8
+					mov[edi + 4], ecx
+					movzx		ecx, dl
+					shr		edx, 8
+					mov		ecx, [esi + ecx * 4]
+					mov		edx, [esi + edx * 4]
+					mov[edi + 8], ecx
+					mov[edi + 12], edx
+					_r32bs_skip3 :
 				// check previous!!
 				mov		edx, [eax + 4]
-				cmp		edx, [ebx + 4]
-				je		_r32bs_skip4
-				mov[ebx + 4], edx		// 2âÒñ⁄ÇÕèëÇ´çûÇﬁ
-				movzx		ecx, dl
-				mov		ecx, [esi + ecx * 4]
-				shr		edx, 8
-				mov[edi + 16], ecx
-				movzx		ecx, dl
-				mov		ecx, [esi + ecx * 4]
-				shr		edx, 8
-				mov[edi + 20], ecx
-				movzx		ecx, dl
-				shr		edx, 8
-				mov		ecx, [esi + ecx * 4]
-				mov		edx, [esi + edx * 4]
-				mov[edi + 24], ecx
-				mov[edi + 28], edx
-				_r32bs_skip4 :
+					cmp		edx, [ebx + 4]
+					je		_r32bs_skip4
+					mov[ebx + 4], edx		// 2âÒñ⁄ÇÕèëÇ´çûÇﬁ
+					movzx		ecx, dl
+					mov		ecx, [esi + ecx * 4]
+					shr		edx, 8
+					mov[edi + 16], ecx
+					movzx		ecx, dl
+					mov		ecx, [esi + ecx * 4]
+					shr		edx, 8
+					mov[edi + 20], ecx
+					movzx		ecx, dl
+					shr		edx, 8
+					mov		ecx, [esi + ecx * 4]
+					mov		edx, [esi + edx * 4]
+					mov[edi + 24], ecx
+					mov[edi + 28], edx
+					_r32bs_skip4 :
 				lea		eax, [eax + 8]
-				lea		ebx, [ebx + 8]
-				lea		edi, [edi + 32]
+					lea		ebx, [ebx + 8]
+					lea		edi, [edi + 32]
 
-				sub		width, 8
-				jg		_r32bs_loop2
+					sub		width, 8
+					jg		_r32bs_loop2
 			}
 			pScn += RENDER_WIDTH;
 			pDlt += SCREEN_WIDTH;

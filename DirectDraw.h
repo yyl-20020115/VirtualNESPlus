@@ -287,14 +287,14 @@ protected:
 	RGBQUAD	m_mpPalette[8][64*2];	// Monochrome
 
 	// ピクセルフォーマットに変換したパレット
-	LONG_PTR	m_cnPalette[8][256];	// Color
-	LONG_PTR	m_csPalette[8][256];	// Color/Scanline
-	LONG_PTR	m_mnPalette[8][256];	// Monochrome
-	LONG_PTR	m_msPalette[8][256];	// Monochrome/Scanline
+	DWORD	m_cnPalette[8][256];	// Color
+	DWORD	m_csPalette[8][256];	// Color/Scanline
+	DWORD	m_mnPalette[8][256];	// Monochrome
+	DWORD	m_msPalette[8][256];	// Monochrome/Scanline
 
 	// 2xSaI mmx用のRGB555パレット
-	LONG_PTR	m_cfPalette[8][256];	// Color
-	LONG_PTR	m_mfPalette[8][256];	// Monochrome
+	DWORD	m_cfPalette[8][256];	// Color
+	DWORD	m_mfPalette[8][256];	// Monochrome
 
 	// For Zapper
 	LONG	m_ZapperPosX, m_ZapperPosY;

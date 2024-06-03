@@ -40,69 +40,33 @@ CDirectDraw::BLTFUNC	CDirectDraw::DoubleScanlineBltTable[] = {
 	&CDirectDraw::Render32bpp_DoubleScanline,
 };
 
-#if _WIN64
-CDirectDraw::BLTFUNC	CDirectDraw::nx2xSaIBltTable[] = {
-	&CDirectDraw::Render8bpp_Normal,
-	&CDirectDraw::Render16bpp_Normal,
-	&CDirectDraw::Render24bpp_Normal,
-	&CDirectDraw::Render32bpp_Normal,
-};
-#else
 CDirectDraw::BLTFUNC	CDirectDraw::nx2xSaIBltTable[] = {
 	&CDirectDraw::Render8bpp_Double,
 	&CDirectDraw::nx_2xSaI_16bpp,
 	&CDirectDraw::Render24bpp_Double,
 	&CDirectDraw::nx_2xSaI_32bpp,
 };
-#endif
 
-#if _WIN64
-CDirectDraw::BLTFUNC	CDirectDraw::nxSuper2xSaIBltTable[] = {
-	&CDirectDraw::Render8bpp_Normal,
-	&CDirectDraw::Render16bpp_Normal,
-	&CDirectDraw::Render24bpp_Normal,
-	&CDirectDraw::Render32bpp_Normal,
-};
-#else
 CDirectDraw::BLTFUNC	CDirectDraw::nxSuper2xSaIBltTable[] = {
 	&CDirectDraw::Render8bpp_Double,
 	&CDirectDraw::nx_Super2xSaI_16bpp,
 	&CDirectDraw::Render24bpp_Double,
 	&CDirectDraw::nx_Super2xSaI_32bpp,
 };
-#endif
 
-#if _WIN64
-CDirectDraw::BLTFUNC	CDirectDraw::nxSuperEagleBltTable[] = {
-	&CDirectDraw::Render8bpp_Normal,
-	&CDirectDraw::Render16bpp_Normal,
-	&CDirectDraw::Render24bpp_Normal,
-	&CDirectDraw::Render32bpp_Normal,
-};
-#else
 CDirectDraw::BLTFUNC	CDirectDraw::nxSuperEagleBltTable[] = {
 	&CDirectDraw::Render8bpp_Double,
 	&CDirectDraw::nx_SuperEagle_16bpp,
 	&CDirectDraw::Render24bpp_Double,
 	&CDirectDraw::nx_SuperEagle_32bpp,
 };
-#endif
 
-#if _WIN64
-CDirectDraw::BLTFUNC	CDirectDraw::nxScale2xBltTable[] = {
-	&CDirectDraw::Render8bpp_Normal,
-	&CDirectDraw::Render16bpp_Normal,
-	&CDirectDraw::Render24bpp_Normal,
-	&CDirectDraw::Render32bpp_Normal,
-};
-#else
 CDirectDraw::BLTFUNC	CDirectDraw::nxScale2xBltTable[] = {
 	&CDirectDraw::Render8bpp_Double,
 	&CDirectDraw::nx_Scale2x_16bpp,
 	&CDirectDraw::Render24bpp_Double,
 	&CDirectDraw::nx_Scale2x_32bpp,
 };
-#endif
 
 CDirectDraw::BLTFUNC	CDirectDraw::nxHq2xBltTable[] = {
 	&CDirectDraw::Render8bpp_Double,

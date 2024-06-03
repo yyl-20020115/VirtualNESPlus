@@ -4,7 +4,10 @@
 #include <immintrin.h>
 //
 // 8bit Normal
-//
+// Normal: 0x40404040
+// Scanline: 0x40404040,0x80808080
+// Double:0x40404040*2,0x40404040*2
+// Double Scanline:0x40404040*2,0x80808080*2
 void	CDirectDraw::Render8bpp_Normal(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2& ddsd, BOOL bForceWrite)
 {
 	LPBYTE	pScn = lpRdr;
@@ -23,7 +26,7 @@ void	CDirectDraw::Render8bpp_Normal(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2& 
 		do {
 			eax = *(DWORD*)(esi + 0);
 			ebx = *(DWORD*)(esi + 4);
-			eax |= ebx;
+			eax |= edx;
 			ebx |= edx;
 			*(DWORD*)(edi + 0) = eax;
 			*(DWORD*)(edi + 4) = ebx;
@@ -38,7 +41,6 @@ void	CDirectDraw::Render8bpp_Normal(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2& 
 
 #else
 	for (INT i = 0; i < SCREEN_HEIGHT; i++) {
-		//ASM_COMMENT_OUT
 		__asm {
 			mov		esi, pScn;
 			mov		edi, pDst;
@@ -83,7 +85,7 @@ void	CDirectDraw::Render8bpp_Scanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2
 		do {
 			eax = *(DWORD*)(esi + 0);
 			ebx = *(DWORD*)(esi + 4);
-			eax |= ebx;
+			eax |= edx;
 			ebx |= edx;
 			*(DWORD*)(edi + 0) = eax;
 			*(DWORD*)(edi + 4) = ebx;
@@ -100,7 +102,7 @@ void	CDirectDraw::Render8bpp_Scanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2
 		do {
 			eax = *(DWORD*)(esi + 0);
 			ebx = *(DWORD*)(esi + 4);
-			eax |= ebx;
+			eax |= edx;
 			ebx |= edx;
 			*(DWORD*)(edi + 0) = eax;
 			*(DWORD*)(edi + 4) = ebx;
@@ -287,7 +289,6 @@ void	CDirectDraw::Render8bpp_Double(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2& 
 
 #else
 		for (INT i = 0; i < SCREEN_HEIGHT; i++) {
-			//ASM_COMMENT_OUT
 			__asm {
 				mov		esi, pScn;
 				mov		edi, pDst;
@@ -332,7 +333,6 @@ void	CDirectDraw::Render8bpp_Double(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2& 
 				jg		_r8bn_d_loop;
 			}
 			pDst += pitch;
-			//ASM_COMMENT_OUT
 			__asm {
 				mov		esi, pScn;
 				mov		edi, pDst;

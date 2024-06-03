@@ -30,6 +30,7 @@ void	CDirectDraw::Render24bpp_Normal(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 
 		width = SCREEN_WIDTH;
 #if _WIN64
+
 #else
 		if (bFWrite) {
 

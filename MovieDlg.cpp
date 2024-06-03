@@ -7,7 +7,7 @@
 #include <string>
 using namespace std;
 
-#include "VirtuaNESres.h"
+#include "VirtualNESres.h"
 #include "DebugOut.h"
 #include "App.h"
 

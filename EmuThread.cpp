@@ -3,7 +3,7 @@
 //
 #include "DebugOut.h"
 
-#include "VirtuaNESres.h"
+#include "VirtualNESres.h"
 #include "EmuThread.h"
 #include "MainFrame.h"
 #include "Pathlib.h"

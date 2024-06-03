@@ -9,7 +9,7 @@
 using namespace std;
 
 #include "DebugOut.h"
-#include "VirtuaNESres.h"
+#include "VirtualNESres.h"
 
 #include "App.h"
 #include "Registry.h"
@@ -78,7 +78,7 @@ INT WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 //DEBUGOUT( "ThreadID:%08X\n", ::GetCurrentThreadId() );
 
 //	CRegistry::SetRegistryKey( "Emulators\\VirtuaNES" );
-	CRegistry::SetRegistryKey( "VirtuaNES.ini" );
+	CRegistry::SetRegistryKey( "VirtualNESPlus.ini" );
 
 	if( !CPlugin::FindPlugin( CApp::GetModulePath() ) ) {
 		::MessageBox( NULL, "Language plug-in is not found.", "VirtuaNES", MB_ICONERROR|MB_OK );

@@ -7,9 +7,9 @@
 #define	VIRTUANES_PLUGIN_VERSION	0x0095
 
 // VirtuaNES window class
-#define	VIRTUANES_WNDCLASS		"VirtuaNESwndclass"
-#define	VIRTUANES_CAPTION		"VirtuaNES"
-#define	VIRTUANES_MUTEX			"VirtuaNESmutex"
+#define	VIRTUANES_WNDCLASS		"VirtualNESwndclass"
+#define	VIRTUANES_CAPTION		"VirtualNES"
+#define	VIRTUANES_MUTEX			"VirtualNESmutex"
 
 // VirtuaNES Website
 #define	VIRTUANES_WEBSITE		"http://virtuanes.s1.xrea.com:8080/"

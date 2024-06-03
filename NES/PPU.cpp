@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "VirtuaNESres.h"
+#include "VirtualNESres.h"
 
 #include "typedef.h"
 #include "macro.h"

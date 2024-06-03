@@ -14,11 +14,11 @@ INT	GetVlpVersion(void)
 
 void GetVlpLanguage(LPSTR lpLanguege)
 {
-	strcpy_s(lpLanguege, 256, "English(US)");
+	strcpy_s(lpLanguege, 256, "Chinese(ZH)");
 }
 
 LCID GetVlpLocaleID(void)
 {
-	return 0x409;
+	return 2052;
 }
 

@@ -24,7 +24,7 @@
 #include "App.h"
 #include "Pathlib.h"
 
-#include "VirtuaNESres.h"
+#include "VirtualNESres.h"
 
 #define UNZ_BUFSIZE (65536)
 

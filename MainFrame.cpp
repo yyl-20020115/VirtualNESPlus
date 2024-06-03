@@ -12,7 +12,7 @@
 #include <string>
 using namespace std;
 
-#include "VirtuaNESres.h"
+#include "VirtualNESres.h"
 #include "DebugOut.h"
 #include "App.h"
 #include "Pathlib.h"
@@ -212,7 +212,7 @@ BOOL	CMainFrame::Create(HWND hWndParent)
 	WNDCLASSEX	wcl;
 	ZEROMEMORY(&wcl, sizeof(wcl));
 	wcl.cbSize = sizeof(wcl);
-	wcl.lpszClassName = "VirtuaNESwndclass";
+	wcl.lpszClassName = "VirtualNESwndclass";
 	wcl.lpfnWndProc = g_WndProc;
 	//	wcl.style		= CS_HREDRAW | CS_VREDRAW | CS_DBLCLKS;
 	wcl.style = CS_DBLCLKS;

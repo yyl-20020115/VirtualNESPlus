@@ -1,7 +1,7 @@
 //
 // Language plugin support
 //
-#include "VirtuaNESres.h"
+#include "VirtualNESres.h"
 
 #include "Pathlib.h"
 #include "DebugOut.h"

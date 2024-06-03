@@ -2239,7 +2239,7 @@
     <ClCompile Include="zlib\unzip.c" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="VirtuaNES.rc" />
+    <ResourceCompile Include="VirtualNES.rc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AboutDlg.h" />
@@ -2290,9 +2290,7 @@
     <ClInclude Include="NES\ApuEX\APU_N106.h" />
     <ClInclude Include="NES\ApuEX\APU_VRC6.h" />
     <ClInclude Include="NES\ApuEX\APU_VRC7.h" />
-    <ClInclude Include="NES\ApuEX\emu2413\2413tone.h" />
     <ClInclude Include="NES\ApuEX\emu2413\emu2413.h" />
-    <ClInclude Include="NES\ApuEX\emu2413\vrc7tone.h" />
     <ClInclude Include="NES\Cheat.h" />
     <ClInclude Include="NES\CPU.h" />
     <ClInclude Include="NES\IPS.h" />
@@ -4005,7 +4003,7 @@
     <ClInclude Include="SimpleVirusChecker.h" />
     <ClInclude Include="SoundDlg.h" />
     <ClInclude Include="Typedef.h" />
-    <ClInclude Include="VirtuaNESres.h" />
+    <ClInclude Include="VirtualNESres.h" />
     <ClInclude Include="WaveRec.h" />
     <ClInclude Include="Wnd.h" />
     <ClInclude Include="WndHook.h" />
@@ -4018,10 +4016,7 @@
     <Image Include="LauncherImageList.bmp" />
     <Image Include="res\header_down.ico" />
     <Image Include="res\header_up.ico" />
-    <Image Include="res\VirtuaNES.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Manifest Include="res\VirtuaNES.exe.manifest" />
+    <Image Include="res\VirtualNES.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Chinese\Chinese.vcxproj">

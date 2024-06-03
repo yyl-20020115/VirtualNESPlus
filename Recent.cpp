@@ -6,7 +6,7 @@
 #include "DebugOut.h"
 #include "PathLib.h"
 
-#include "VirtuaNESres.h"
+#include "VirtualNESres.h"
 #include "Recent.h"
 
 CHAR	CRecent::m_RecentName[RECENT_MAX][_MAX_PATH];

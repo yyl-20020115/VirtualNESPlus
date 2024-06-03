@@ -1,7 +1,7 @@
 //
 // アプリケーションサポートクラス
 //
-#include "VirtuaNESres.h"
+#include "VirtualNESres.h"
 #include "App.h"
 
 // _tWinMainからの引数そのまま

@@ -1,23 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Manifest Include="res\VirtuaNES.exe.manifest" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="AboutDlg.cpp" />
-    <ClCompile Include="App.cpp" />
-    <ClCompile Include="Archive.cpp" />
-    <ClCompile Include="AviConvDlg.cpp" />
-    <ClCompile Include="AviWriter.cpp" />
-    <ClCompile Include="ChatDlg.cpp" />
-    <ClCompile Include="CheatDlg.cpp" />
     <ClCompile Include="Com.cpp" />
     <ClCompile Include="Config.cpp" />
-    <ClCompile Include="ControllerDlg.cpp" />
     <ClCompile Include="Crclib.cpp" />
-    <ClCompile Include="DatachBarcodeDlg.cpp" />
     <ClCompile Include="DebugOut.cpp" />
-    <ClCompile Include="DipSwitchDlg.cpp" />
     <ClCompile Include="DirectDraw.cpp" />
     <ClCompile Include="DirectInput.cpp" />
     <ClCompile Include="DirectSound.cpp" />
@@ -35,21 +22,9 @@
     <ClCompile Include="MovieDlg.cpp" />
     <ClCompile Include="MovieInfoDlg.cpp" />
     <ClCompile Include="NameTableView.cpp" />
-    <ClCompile Include="NES\APU.cpp" />
-    <ClCompile Include="NES\ApuEX\APU_FDS.cpp" />
-    <ClCompile Include="NES\ApuEX\APU_FME7.cpp" />
-    <ClCompile Include="NES\ApuEX\APU_INTERNAL.cpp" />
-    <ClCompile Include="NES\ApuEX\APU_MMC5.cpp" />
-    <ClCompile Include="NES\ApuEX\APU_N106.cpp" />
-    <ClCompile Include="NES\ApuEX\APU_VRC6.cpp" />
-    <ClCompile Include="NES\ApuEX\APU_VRC7.cpp" />
     <ClCompile Include="NES\ApuEX\emu2413\emu2413.c" />
     <ClCompile Include="NES\Cpu.cpp" />
     <ClCompile Include="NES\IPS.cpp" />
-    <ClCompile Include="NES\Mapper\Mapper.cpp" />
-    <ClCompile Include="NES\Mapper\MapperFactory.cpp" />
-    <ClCompile Include="NES\Mapper\MapperFDS.cpp" />
-    <ClCompile Include="NES\Mapper\MapperNSF.cpp" />
     <ClCompile Include="NES\MMU.cpp" />
     <ClCompile Include="NES\Nes.cpp" />
     <ClCompile Include="NES\PAD.cpp" />
@@ -572,23 +547,78 @@
     <ClCompile Include="nx_Scale2x.cpp" />
     <ClCompile Include="nx_Super2xSaI.cpp" />
     <ClCompile Include="nx_SuperEagle.cpp" />
+    <ClCompile Include="NES\APU.cpp">
+      <Filter>APU\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="NES\ApuEX\APU_FDS.cpp">
+      <Filter>APU\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="NES\ApuEX\APU_FME7.cpp">
+      <Filter>APU\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="NES\ApuEX\APU_INTERNAL.cpp">
+      <Filter>APU\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="NES\ApuEX\APU_MMC5.cpp">
+      <Filter>APU\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="NES\ApuEX\APU_N106.cpp">
+      <Filter>APU\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="NES\ApuEX\APU_VRC6.cpp">
+      <Filter>APU\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="NES\ApuEX\APU_VRC7.cpp">
+      <Filter>APU\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="AboutDlg.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="App.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Archive.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="AviConvDlg.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="AviWriter.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="ChatDlg.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="CheatDlg.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="ControllerDlg.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="DatachBarcodeDlg.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="DipSwitchDlg.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="NES\Mapper\Mapper.cpp">
+      <Filter>Mappers\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="NES\Mapper\MapperFactory.cpp">
+      <Filter>Mappers\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="NES\Mapper\MapperFDS.cpp">
+      <Filter>Mappers\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="NES\Mapper\MapperNSF.cpp">
+      <Filter>Mappers\Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AboutDlg.h" />
-    <ClInclude Include="App.h" />
-    <ClInclude Include="Archive.h" />
-    <ClInclude Include="AviConvDlg.h" />
-    <ClInclude Include="AviWriter.h" />
-    <ClInclude Include="ChatDlg.h" />
-    <ClInclude Include="CheatDlg.h" />
-    <ClInclude Include="CHyperLink.h" />
     <ClInclude Include="Com.h" />
     <ClInclude Include="Config.h" />
-    <ClInclude Include="ControllerDlg.h" />
     <ClInclude Include="Crclib.h" />
-    <ClInclude Include="DatachBarcodeDlg.h" />
     <ClInclude Include="DebugOut.h" />
-    <ClInclude Include="DipSwitchDlg.h" />
     <ClInclude Include="DirectDraw.h" />
     <ClInclude Include="DirectInput.h" />
     <ClInclude Include="DirectSound.h" />
@@ -613,25 +643,11 @@
     <ClInclude Include="MovieDlg.h" />
     <ClInclude Include="MovieInfoDlg.h" />
     <ClInclude Include="NameTableView.h" />
-    <ClInclude Include="NES\APU.h" />
-    <ClInclude Include="NES\ApuEX\APU_FDS.h" />
-    <ClInclude Include="NES\ApuEX\APU_FME7.h" />
-    <ClInclude Include="NES\ApuEX\APU_INTERFACE.h" />
-    <ClInclude Include="NES\ApuEX\APU_INTERNAL.h" />
-    <ClInclude Include="NES\ApuEX\APU_MMC5.h" />
-    <ClInclude Include="NES\ApuEX\APU_N106.h" />
-    <ClInclude Include="NES\ApuEX\APU_VRC6.h" />
-    <ClInclude Include="NES\ApuEX\APU_VRC7.h" />
-    <ClInclude Include="NES\ApuEX\emu2413\2413tone.h" />
     <ClInclude Include="NES\ApuEX\emu2413\emu2413.h" />
-    <ClInclude Include="NES\ApuEX\emu2413\vrc7tone.h" />
     <ClInclude Include="NES\Cheat.h" />
     <ClInclude Include="NES\CPU.h" />
     <ClInclude Include="NES\IPS.h" />
     <ClInclude Include="NES\Mapper\EEPROM.h" />
-    <ClInclude Include="NES\Mapper\Mapper.h" />
-    <ClInclude Include="NES\Mapper\MapperFDS.h" />
-    <ClInclude Include="NES\Mapper\MapperNSF.h" />
     <ClInclude Include="NES\MMU.h" />
     <ClInclude Include="NES\Nes.h" />
     <ClInclude Include="NES\PAD.h" />
@@ -658,7 +674,7 @@
     <ClInclude Include="SimpleVirusChecker.h" />
     <ClInclude Include="SoundDlg.h" />
     <ClInclude Include="Typedef.h" />
-    <ClInclude Include="VirtuaNESres.h" />
+    <ClInclude Include="VirtualNESres.h" />
     <ClInclude Include="WaveRec.h" />
     <ClInclude Include="Wnd.h" />
     <ClInclude Include="WndHook.h" />
@@ -1152,16 +1168,85 @@
       <Filter>EXPAD\Headers</Filter>
     </ClInclude>
     <ClInclude Include="Render.h" />
+    <ClInclude Include="NES\APU.h">
+      <Filter>APU\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="NES\ApuEX\APU_FDS.h">
+      <Filter>APU\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="NES\ApuEX\APU_FME7.h">
+      <Filter>APU\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="NES\ApuEX\APU_INTERFACE.h">
+      <Filter>APU\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="NES\ApuEX\APU_INTERNAL.h">
+      <Filter>APU\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="NES\ApuEX\APU_MMC5.h">
+      <Filter>APU\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="NES\ApuEX\APU_N106.h">
+      <Filter>APU\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="NES\ApuEX\APU_VRC6.h">
+      <Filter>APU\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="NES\ApuEX\APU_VRC7.h">
+      <Filter>APU\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="AboutDlg.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="App.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Archive.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="AviConvDlg.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="AviWriter.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ChatDlg.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="CheatDlg.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="CHyperLink.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ControllerDlg.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="DatachBarcodeDlg.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="DipSwitchDlg.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="NES\Mapper\Mapper.h">
+      <Filter>Mappers\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="NES\Mapper\MapperFDS.h">
+      <Filter>Mappers\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="NES\Mapper\MapperNSF.h">
+      <Filter>Mappers\Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="VirtuaNES.rc" />
+    <ResourceCompile Include="VirtualNES.rc" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="CheatImageList.bmp" />
     <Image Include="LauncherImageList.bmp" />
     <Image Include="res\header_down.ico" />
     <Image Include="res\header_up.ico" />
-    <Image Include="res\VirtuaNES.ico" />
+    <Image Include="res\VirtualNES.ico" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Mappers">
@@ -1183,6 +1268,33 @@
     </Filter>
     <Filter Include="EXPAD\Sources">
       <UniqueIdentifier>{e497208c-58c5-4a14-9548-6685d2c4e018}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application">
+      <UniqueIdentifier>{b68d40b3-dd2a-4a74-91f6-6d09ab63b054}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Headers">
+      <UniqueIdentifier>{4cbccc2a-134e-4622-b991-76a7622d2b3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Sources">
+      <UniqueIdentifier>{285d28bf-b523-4ad9-81da-279455158860}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="APU">
+      <UniqueIdentifier>{8f138cf7-526d-42cb-a0a4-3c005128b752}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="APU\Headers">
+      <UniqueIdentifier>{f01647be-d083-4f42-87be-34cf932c77dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="APU\Sources">
+      <UniqueIdentifier>{8737e859-e914-4269-beec-dedb1e8470f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Simulator">
+      <UniqueIdentifier>{6fc6063a-2428-455f-b265-f34a87be80d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Simulator\Headers">
+      <UniqueIdentifier>{dc1c284e-1c91-4a1b-b09c-a2efc9bc34cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Simulator\Sources">
+      <UniqueIdentifier>{c52dc825-7c8f-4f50-b99f-075c46b80194}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

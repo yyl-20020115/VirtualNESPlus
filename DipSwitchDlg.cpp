@@ -15,7 +15,7 @@ using namespace std;
 #include "typedef.h"
 #include "macro.h"
 
-#include "VirtuaNESres.h"
+#include "VirtualNESres.h"
 #include "DebugOut.h"
 #include "App.h"
 #include "Pathlib.h"

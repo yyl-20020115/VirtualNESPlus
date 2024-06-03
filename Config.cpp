@@ -1,7 +1,7 @@
 //
 // İ’è•Û‘¶ƒNƒ‰ƒX
 //
-#include "VirtuaNESres.h"
+#include "VirtualNESres.h"
 #include "DebugOut.h"
 
 #include "Config.h"

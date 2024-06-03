@@ -16,7 +16,7 @@ class	CShortcutDlg : public CWnd
 {
 public:
 	// Override from CWnd
-	INT	DoModal( HWND hWndParent );
+	INT_PTR	DoModal( HWND hWndParent );
 
 	// Override from CWnd
 	BOOL	PreTranslateMessage( MSG* pMsg );

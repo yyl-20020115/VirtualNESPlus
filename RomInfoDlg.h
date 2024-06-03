@@ -30,7 +30,7 @@ public:
 	}
 
 	// Override from CWnd
-	INT	DoModal( HWND hWndParent );
+	INT_PTR	DoModal( HWND hWndParent );
 
 	CHAR	m_szName[_MAX_PATH];
 	INT	m_nMapper;

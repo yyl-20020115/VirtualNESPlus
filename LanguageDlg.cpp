@@ -28,7 +28,7 @@ DLG_ON_COMMAND( IDDEFAULT, OnDefault )
 DLG_COMMAND_END()
 DLG_MESSAGE_END()
 
-INT	CLanguageDlg::DoModal( HWND hWndParent )
+INT_PTR	CLanguageDlg::DoModal( HWND hWndParent )
 {
 	return	::DialogBoxParam( CApp::GetPlugin(), MAKEINTRESOURCE(IDD_CFG_LANGUAGE),
 				hWndParent, g_DlgProc, (LPARAM)this );
@@ -54,7 +54,7 @@ DLGCMD	CLanguageDlg::OnOK( DLGCMDPARAM )
 //	DEBUGOUT( "CLanguageDlg::OnOK\n" );
 	LRESULT nID = ::SendDlgItemMessage( m_hWnd, IDC_LNG_LIST, LB_GETCURSEL, 0, 0 );
 	if( m_nPluginID != nID ) {
-		CPlugin::SetPluginID( nID );
+		CPlugin::SetPluginID((INT) nID );
 		::EndDialog( m_hWnd, IDOK );
 	} else {
 		::EndDialog( m_hWnd, IDCANCEL );

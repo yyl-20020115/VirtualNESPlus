@@ -23,9 +23,9 @@ DLG_ON_COMMAND( IDCANCEL, OnCancel )
 DLG_COMMAND_END()
 DLG_MESSAGE_END()
 
-INT	CRomInfoDlg::DoModal( HWND hWndParent )
+INT_PTR	CRomInfoDlg::DoModal( HWND hWndParent )
 {
-	return	::DialogBoxParam( CApp::GetPlugin(), MAKEINTRESOURCE(IDD_ROMINFO),
+	return	::DialogBoxParam(CApp::GetPlugin(), MAKEINTRESOURCE(IDD_ROMINFO),
 				hWndParent, g_DlgProc, (LPARAM)this );
 }
 

@@ -100,7 +100,7 @@ DLG_ON_COMMAND_NOTIFY( IDC_CTR_SELECT_COMBO, CBN_SELCHANGE, OnSettingSelectChang
 DLG_COMMAND_END()
 DLG_MESSAGE_END()
 
-INT	CControllerDlg::DoModal( HWND hWndParent )
+INT_PTR	CControllerDlg::DoModal( HWND hWndParent )
 {
 	m_bCancelMode = FALSE;
 	m_TimerID = 0;

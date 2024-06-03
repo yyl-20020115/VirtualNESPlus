@@ -34,7 +34,7 @@ class	CControllerDlg : public CWnd
 {
 public:
 	// Override from CWnd
-	INT	DoModal( HWND hWndParent );
+	INT_PTR	DoModal( HWND hWndParent );
 
 	// Override from CWnd
 	BOOL	PreTranslateMessage( MSG* pMsg );
@@ -60,11 +60,11 @@ protected:
 	BOOL	m_bCancelMode;
 
 	INT	m_ControlID;
-	INT	m_TimerID;
+	LONG_PTR	m_TimerID;
 	INT	m_TimerStart;
 	INT	m_TimerCount;
 
-	INT	m_SettingSel;
+	LONG_PTR	m_SettingSel;
 
 	INT	m_PageSel;
 	INT	m_PageNum;

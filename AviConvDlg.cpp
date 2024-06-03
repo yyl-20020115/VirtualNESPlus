@@ -76,7 +76,7 @@ CAviConvDlg::~CAviConvDlg()
 	FREE(m_lpRender);
 }
 
-INT	CAviConvDlg::DoModal(HWND hWndParent)
+INT_PTR	CAviConvDlg::DoModal(HWND hWndParent)
 {
 	return	::DialogBoxParam(CApp::GetPlugin(), MAKEINTRESOURCE(IDD_MOVIECONV),
 		hWndParent, g_DlgProc, (LPARAM)this);
@@ -336,7 +336,7 @@ DLGCMD	CAviConvDlg::OnConvertStart(DLGCMDPARAM)
 	::GetDlgItemText(m_hWnd, IDC_MCV_MOVIEFILE, m_szMovieFile, sizeof(m_szMovieFile) - 1);
 	::GetDlgItemText(m_hWnd, IDC_MCV_AVIFILE, m_szAviFile, sizeof(m_szAviFile) - 1);
 
-	INT select;
+	LONG_PTR select;
 
 	select = ::SendDlgItemMessage(m_hWnd, IDC_MCV_FRAMERATE_COMBO, CB_GETCURSEL, 0, 0);
 
@@ -358,7 +358,7 @@ DLGCMD	CAviConvDlg::OnConvertStart(DLGCMDPARAM)
 	Config.sound.nRate = CConfig::SamplingRateTable[select * 2 + 0];
 	Config.sound.nBits = CConfig::SamplingRateTable[select * 2 + 1];
 
-	Config.sound.nFilterType = ::SendDlgItemMessage(m_hWnd, IDC_MCV_FILTERTYPE_COMBO, CB_GETCURSEL, 0, 0);
+	Config.sound.nFilterType = (INT)::SendDlgItemMessage(m_hWnd, IDC_MCV_FILTERTYPE_COMBO, CB_GETCURSEL, 0, 0);
 
 	m_AviWriter.SetAudioFormat(Config.sound.nRate, Config.sound.nBits, 1);
 
@@ -376,7 +376,7 @@ DLGCMD	CAviConvDlg::OnConvertStart(DLGCMDPARAM)
 		DWORD	dwRecordTimes;
 		m_pNes->GetMovieInfo(wRecVersion, wVersion, m_RecordFrames, dwRecordTimes);
 
-		m_AviWriter.SetFrameRate(10000, m_pNes->nescfg->FrameRate * 10000 / m_FrameDivider);
+		m_AviWriter.SetFrameRate(10000,(DWORD)( m_pNes->nescfg->FrameRate * 10000 / m_FrameDivider));
 
 		if (!m_AviWriter.Open(m_szAviFile)) {
 			CHAR	szTemp[256];
@@ -471,7 +471,7 @@ DWORD	WINAPI	CAviConvDlg::ThreadProc(LPVOID lpVoid)
 	RGBQUAD* pPalette = pAviConvDlg->m_Palette;
 	LPBYTE	pSound = pAviConvDlg->m_lpSound;
 
-	INT	FrameDivider = pAviConvDlg->m_FrameDivider;
+	LONG_PTR	FrameDivider = pAviConvDlg->m_FrameDivider;
 
 	BOOL	bFinish = FALSE;
 

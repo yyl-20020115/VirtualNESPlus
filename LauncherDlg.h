@@ -128,7 +128,7 @@ protected:
 	INT	m_UpdatePos;
 	BOOL	m_bUpdate;
 	volatile BOOL	m_bUpdating;
-	INT	m_nTimerID;
+	LONG_PTR	m_nTimerID;
 	INT	m_nUpdateIndex;
 
 	// Sort type
@@ -147,7 +147,7 @@ class	CLchDispEditDlg : public CWnd
 {
 public:
 	// Override from CWnd
-	INT	DoModal( HWND hWndParent );
+	INT_PTR	DoModal( HWND hWndParent );
 
 protected:
 	// Message map
@@ -173,7 +173,7 @@ class	CLchFolderConfigDlg : public CWnd
 {
 public:
 	// Override from CWnd
-	INT	DoModal( HWND hWndParent );
+	INT_PTR	DoModal( HWND hWndParent );
 
 protected:
 	// Message map
@@ -191,7 +191,7 @@ class	CLchHeaderEditDlg : public CWnd
 {
 public:
 	// Override from CWnd
-	INT	DoModal( HWND hWndParent );
+	INT_PTR	DoModal( HWND hWndParent );
 
 	INT	m_nMapperNo;
 	BOOL	m_bMirror;

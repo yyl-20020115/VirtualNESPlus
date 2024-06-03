@@ -661,7 +661,7 @@ INT	nNetTimeoutCount = 0;
 							DiskCommand( (BYTE)(Param&0xff) );
 						} else {
 							netev.Event = EV_DISK_COMMAND;
-							netev.Param = Param;
+							netev.Param = (DWORD)Param;
 							NetEventQueue.push_back( netev );
 						}
 					}
@@ -670,14 +670,14 @@ INT	nNetTimeoutCount = 0;
 
 				case	EV_EXCONTROLLER:
 					if( g_nes )
-						g_nes->CommandParam( NES::NESCMD_EXCONTROLLER, Param );
+						g_nes->CommandParam( NES::NESCMD_EXCONTROLLER, (INT)Param );
 					::SetEvent( g_hEventAccept );
 					break;
 
 				case	EV_SOUND_MUTE:
 					{
 					if( g_nes )
-						if( g_nes->CommandParam( NES::NESCMD_SOUND_MUTE, Param ) ) {
+						if( g_nes->CommandParam( NES::NESCMD_SOUND_MUTE, (INT)Param ) ) {
 							::wsprintf( szStr, "%s Enable.", g_lpSoundMuteStringTable[Param] );
 						} else {
 							::wsprintf( szStr, "%s Mute.", g_lpSoundMuteStringTable[Param] );

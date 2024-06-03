@@ -1320,7 +1320,7 @@ void	NES::LoadDISK()
 				}
 				data = (BYTE)(pos>>24);
 				pos &= 0x00FFFFFF;
-				if( pos >= 16 && pos < DiskSize ) {
+				if( pos >= 16 && pos < (DWORD)DiskSize ) {
 					lpDisk[pos] = data;
 					lpWrite[pos] = 0xFF;
 				}
@@ -2046,7 +2046,7 @@ BOOL	NES::ReadState( FILE* fp )
 					}
 					data = (BYTE)(pos>>24);
 					pos &= 0x00FFFFFF;
-					if( pos >= 16 && pos < DiskSize ) {
+					if( pos >= 16 && pos < (DWORD)DiskSize ) {
 						lpDisk[pos] = data;
 						lpWrite[pos] = 0xFF;
 					}
@@ -3292,7 +3292,7 @@ INT	NES::GetCheatCodeNum()
 
 BOOL	NES::GetCheatCode( INT no, CHEATCODE& code )
 {
-	if( m_CheatCode.size()-1 < no )
+	if( (int)m_CheatCode.size()-1 < no )
 		return	FALSE;
 
 	code = m_CheatCode[no];
@@ -3301,7 +3301,7 @@ BOOL	NES::GetCheatCode( INT no, CHEATCODE& code )
 
 void	NES::SetCheatCodeFlag( INT no, BOOL bEnable )
 {
-	if( m_CheatCode.size()-1 < no )
+	if((int)m_CheatCode.size()-1 < no )
 		return;
 
 	if( bEnable ) {
@@ -3313,7 +3313,7 @@ void	NES::SetCheatCodeFlag( INT no, BOOL bEnable )
 
 void	NES::SetCheatCodeAllFlag( BOOL bEnable, BOOL bKey )
 {
-	for( INT i = 0; i < m_CheatCode.size(); i++ ) {
+	for( size_t i = 0; i < m_CheatCode.size(); i++ ) {
 		if( !bKey ) {
 			if( bEnable ) {
 				m_CheatCode[i].enable |= CHEAT_ENABLE;
@@ -3332,7 +3332,7 @@ void	NES::SetCheatCodeAllFlag( BOOL bEnable, BOOL bKey )
 
 void	NES::ReplaceCheatCode( INT no, CHEATCODE code )
 {
-	if( m_CheatCode.size()-1 < no )
+	if((int)m_CheatCode.size()-1 < no )
 		return;
 
 	m_CheatCode[no] = code;
@@ -3346,7 +3346,7 @@ void	NES::AddCheatCode( CHEATCODE code )
 
 void	NES::DelCheatCode( INT no )
 {
-	if( m_CheatCode.size()-1 < no )
+	if((int)m_CheatCode.size()-1 < no )
 		return;
 
 	//m_CheatCode.erase( &m_CheatCode[no] );
@@ -3502,7 +3502,7 @@ void	NES::GenieCodeProcess()
 {
 	WORD	addr;
 
-	for( INT i = 0; i < m_GenieCode.size(); i++ ) {
+	for( size_t i = 0; i < m_GenieCode.size(); i++ ) {
 		addr = m_GenieCode[i].address;
 		if( addr & 0x8000 ) {
 		// 8character codes

@@ -49,7 +49,7 @@ public:
 	virtual	void	Destroy() {};
 
 	// Override for ModalDialog
-	virtual	INT	DoModal( HWND hWndParent ) { return 0; }
+	virtual	INT_PTR	DoModal( HWND hWndParent ) { return 0; }
 
 	// For message filtering
 	virtual	BOOL	PreTranslateMessage( MSG* pMsg ) { return FALSE; }

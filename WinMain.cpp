@@ -127,7 +127,7 @@ INT WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 					COPYDATASTRUCT	cds;
 					cds.dwData = 0;
 					cds.lpData = (void*)szCmdLine;
-					cds.cbData = ::strlen(szCmdLine)+1; //  終端のNULLも送る
+					cds.cbData = (DWORD)::strlen(szCmdLine) + 1; //  終端のNULLも送る
 					//  文字列送信
 					::SendMessage( hWnd, WM_COPYDATA, (WPARAM)NULL, (LPARAM)&cds );
 				}

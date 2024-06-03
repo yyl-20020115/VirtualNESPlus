@@ -138,9 +138,9 @@ public:
 	BOOL	bIllegalOp;
 	BOOL	bAutoFrameSkip;
 	BOOL	bThrottle;
-	INT	nThrottleFPS;
+	INT		nThrottleFPS;
 	BOOL	bBackground;
-	INT	nPriority;
+	INT		nPriority;
 	BOOL	bFourPlayer;
 	BOOL	bCrcCheck;
 	BOOL	bDiskThrottle;

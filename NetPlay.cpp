@@ -723,7 +723,7 @@ DEBUGOUT( "FD_READ failed. Client [%s]\n", SocketErrorDump( ::WSAGetLastError() 
 					COPYDATASTRUCT	cds;
 					cds.dwData = 0;
 					cds.lpData = (void*)szBuf;
-					cds.cbData = ::strlen(szBuf)+1; //  終端のNULLも送る
+					cds.cbData = (DWORD)::strlen(szBuf) + 1; //  終端のNULLも送る
 					//  文字列送信
 					::SendMessage( m_hWndChat, WM_COPYDATA, (WPARAM)NULL, (LPARAM)&cds );
 				}

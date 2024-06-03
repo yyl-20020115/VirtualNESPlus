@@ -37,7 +37,7 @@ DLG_ON_COMMAND_NOTIFY( IDC_GRA_NOSQUARELIST, BN_CLICKED, OnNoSquareListClick )
 DLG_COMMAND_END()
 DLG_MESSAGE_END()
 
-INT	CGraphicsDlg::DoModal( HWND hWndParent )
+INT_PTR	CGraphicsDlg::DoModal( HWND hWndParent )
 {
 	return	::DialogBoxParam( CApp::GetPlugin(), MAKEINTRESOURCE(IDD_CFG_GRAPHICS),
 				hWndParent, g_DlgProc, (LPARAM)this );
@@ -126,7 +126,7 @@ DLGMSG	CGraphicsDlg::OnHScroll( DLGMSGPARAM )
 
 	INT	pos;
 	CHAR	str[16];
-	::wsprintf( str, "%d%%", pos = ::SendDlgItemMessage( m_hWnd, IDC_GRA_SCANLINE_SLIDER, TBM_GETPOS, 0, 0 ) );
+	::wsprintf( str, "%d%%", pos = (INT)::SendDlgItemMessage(m_hWnd, IDC_GRA_SCANLINE_SLIDER, TBM_GETPOS, 0, 0));
 	::SetDlgItemText( m_hWnd, IDC_GRA_SCANLINE_COLOR, str );
 
 	// スキャンラインカラーの変更
@@ -161,12 +161,12 @@ DLGCMD	CGraphicsDlg::OnOK( DLGCMDPARAM )
 	Config.graphics.bNoSquareList   = IsBTNCHECK( IDC_GRA_NOSQUARELIST );
 	Config.graphics.bSyncNoSleep    = !IsBTNCHECK( IDC_GRA_SYNCNOSLEEP );
 
-	Config.graphics.nScanlineColor = ::SendDlgItemMessage( m_hWnd, IDC_GRA_SCANLINE_SLIDER, TBM_GETPOS, 0, 0 );
+	Config.graphics.nScanlineColor = (INT)::SendDlgItemMessage( m_hWnd, IDC_GRA_SCANLINE_SLIDER, TBM_GETPOS, 0, 0 );
 
 	LRESULT sel = ::SendDlgItemMessage( m_hWnd, IDC_GRA_RESOLUTION_COMBO, CB_GETCURSEL, 0, 0 );
 	LRESULT no  = ::SendDlgItemMessage( m_hWnd, IDC_GRA_RESOLUTION_COMBO, CB_GETITEMDATA, (WPARAM)sel, 0 );
 
-	DirectDraw.GetDisplayMode( no, Config.graphics.dwDisplayWidth,
+	DirectDraw.GetDisplayMode((INT)no, Config.graphics.dwDisplayWidth,
 				       Config.graphics.dwDisplayHeight,
 				       Config.graphics.dwDisplayDepth,
 				       Config.graphics.dwDisplayRate );

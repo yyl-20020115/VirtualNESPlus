@@ -1530,7 +1530,7 @@ DLG_NOTIFY_BEGIN()
 DLG_NOTIFY_END()
 DLG_MESSAGE_END()
 
-INT	CLchDispEditDlg::DoModal( HWND hWndParent )
+INT_PTR	CLchDispEditDlg::DoModal( HWND hWndParent )
 {
 	return	::DialogBoxParam( CApp::GetPlugin(), MAKEINTRESOURCE(IDD_LCH_DISPEDIT),
 				hWndParent, g_DlgProc, (LPARAM)this );
@@ -1583,7 +1583,7 @@ DLGCMD	CLchDispEditDlg::OnAdd( DLGCMDPARAM )
 
 		::SendDlgItemMessage( m_hWnd, IDC_DED_HIDELIST, LB_DELETESTRING, (WPARAM)nSel, 0 );
 
-		for( INT i = nSel; i < m_nHideNum-1; i++ ) {
+		for(LONG_PTR i = nSel; i < m_nHideNum-1; i++ ) {
 			m_nHideOrder[i] = m_nHideOrder[i+1];
 		}
 		m_nHideNum--;
@@ -1615,7 +1615,7 @@ DLGCMD	CLchDispEditDlg::OnDel( DLGCMDPARAM )
 
 		::SendDlgItemMessage( m_hWnd, IDC_DED_VIEWLIST, LB_DELETESTRING, (WPARAM)nSel, 0 );
 
-		for( INT i = nSel; i < m_nViewNum-1; i++ ) {
+		for(LONG_PTR i = nSel; i < m_nViewNum-1; i++ ) {
 			m_nViewOrder[i] = m_nViewOrder[i+1];
 		}
 		m_nViewNum--;
@@ -1713,7 +1713,7 @@ DLG_NOTIFY_BEGIN()
 DLG_NOTIFY_END()
 DLG_MESSAGE_END()
 
-INT	CLchFolderConfigDlg::DoModal( HWND hWndParent )
+INT_PTR	CLchFolderConfigDlg::DoModal( HWND hWndParent )
 {
 	return	::DialogBoxParam( CApp::GetPlugin(), MAKEINTRESOURCE(IDD_LCH_FOLDER),
 				hWndParent, g_DlgProc, (LPARAM)this );
@@ -1833,7 +1833,7 @@ DLG_NOTIFY_BEGIN()
 DLG_NOTIFY_END()
 DLG_MESSAGE_END()
 
-INT	CLchHeaderEditDlg::DoModal( HWND hWndParent )
+INT_PTR	CLchHeaderEditDlg::DoModal( HWND hWndParent )
 {
 	return	::DialogBoxParam( CApp::GetPlugin(), MAKEINTRESOURCE(IDD_LCH_HEADEREDIT),
 				hWndParent, g_DlgProc, (LPARAM)this );

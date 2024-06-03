@@ -41,7 +41,7 @@ void __cdecl CDebugOut::Out( LPSTR fmt, ... )
 			COPYDATASTRUCT	cds;
 			cds.dwData = 0;
 			cds.lpData = (void*)buf;
-			cds.cbData = ::strlen(buf)+1; //  終端のNULLも送る
+			cds.cbData = (DWORD)::strlen(buf) + 1; //  終端のNULLも送る
 			//  文字列送信
 			::SendMessage( hWndDebugOutput, WM_COPYDATA, (WPARAM)NULL, (LPARAM)&cds );
 		} else {

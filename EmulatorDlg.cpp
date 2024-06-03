@@ -27,7 +27,7 @@ DLG_ON_COMMAND( IDDEFAULT, OnDefault )
 DLG_COMMAND_END()
 DLG_MESSAGE_END()
 
-INT	CEmulatorDlg::DoModal( HWND hWndParent )
+INT_PTR	CEmulatorDlg::DoModal( HWND hWndParent )
 {
 	return	::DialogBoxParam( CApp::GetPlugin(), MAKEINTRESOURCE(IDD_CFG_EMULATOR),
 				hWndParent, g_DlgProc, (LPARAM)this );
@@ -120,8 +120,8 @@ DLGCMD	CEmulatorDlg::OnOK( DLGCMDPARAM )
 	Config.general.bNoJoystickID    = !IsBTNCHECK( IDC_EMU_NOJOYSTICKID );
 	Config.launcher.bActivePause    = IsBTNCHECK( IDC_EMU_PAUSELAUNCHER );
 
-	Config.emulator.nThrottleFPS = 10 * ::SendDlgItemMessage( m_hWnd, IDC_EMU_THROTTLE_SLIDER, TBM_GETPOS, 0, 0 );
-	Config.emulator.nPriority = ::SendDlgItemMessage( m_hWnd, IDC_EMU_PRIORITY_COMBO, CB_GETCURSEL, 0, 0 );
+	Config.emulator.nThrottleFPS = (INT)(10 * ::SendDlgItemMessage( m_hWnd, IDC_EMU_THROTTLE_SLIDER, TBM_GETPOS, 0, 0 ));
+	Config.emulator.nPriority = (INT)(::SendDlgItemMessage( m_hWnd, IDC_EMU_PRIORITY_COMBO, CB_GETCURSEL, 0, 0 ));
 
 	::EndDialog( m_hWnd, IDOK );
 }

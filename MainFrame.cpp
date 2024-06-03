@@ -1703,7 +1703,7 @@ WNDCMD	CMainFrame::OnEmulatorCfg( WNDCMDPARAM )
 //	DEBUGOUT( "CMainFrame::OnEmulatorCfg\n" );
 	CEmulatorDlg dlg;
 	if( dlg.DoModal( m_hWnd ) == IDOK ) {
-		Emu.SetPriority( Config.emulator.nPriority );
+		Emu.SetPriority( (INT)Config.emulator.nPriority );
 	}
 }
 

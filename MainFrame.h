@@ -150,7 +150,7 @@ protected:
 
 	// Cursor
 	BOOL	m_bCursor;
-	UINT	m_uTimerID;
+	UINT_PTR	m_uTimerID;
 	DWORD	m_LastMovedTime;
 
 	// Menu flags

@@ -41,10 +41,10 @@ DLG_MESSAGE_END()
 	DLGNOTIFY	OnListDblClick( DLGNOTIFYPARAM );
 	DLGNOTIFY	OnListItemChanged( DLGNOTIFYPARAM );
 
-INT	CShortcutDlg::DoModal( HWND hWndParent )
+	INT_PTR	CShortcutDlg::DoModal( HWND hWndParent )
 {
 	m_bCancelMode = FALSE;
-	return	::DialogBoxParam( CApp::GetPlugin(), MAKEINTRESOURCE(IDD_CFG_SHORTCUT),
+	return	(INT)::DialogBoxParam(CApp::GetPlugin(), MAKEINTRESOURCE(IDD_CFG_SHORTCUT),
 				hWndParent, g_DlgProc, (LPARAM)this );
 }
 
@@ -293,7 +293,7 @@ DLGNOTIFY CShortcutDlg::OnListDblClick( DLGNOTIFYPARAM )
 		m_SelectID    = m_SelectPos;
 		m_SelectSubID = pNMListView->iSubItem;
 		m_TimerCount  = 0;
-		m_TimerID     = ::SetTimer( m_hWnd, 1, 50, NULL );
+		m_TimerID     = (INT)::SetTimer(m_hWnd, 1, 50, NULL);
 DEBUGOUT( "ID=%d/SUBID=%d\n", pNMListView->iItem, pNMListView->iSubItem );
 	}
 }

@@ -55,8 +55,8 @@ void nx_SuperEagleLine_32bpp_mmx(euI8* pSrc, euI8* pDlt, euI32 srcPitch, euI32 w
 // 16bit Render
 void	CDirectDraw::Render16bpp( LPBYTE lpSrc, LPBYTE lpDst )
 {
-	LPBYTE	pPal;
-	DWORD	width;
+	LPBYTE	pPal = 0;
+	DWORD	width = 0;
 	DWORD	pitch = SCREEN_WIDTH*sizeof(WORD);
 
 	for( INT i = 0; i < SCREEN_HEIGHT; i++ ) {
@@ -122,8 +122,8 @@ _r16b_loop:
 // 16bit Pre-Render
 void	CDirectDraw::Render16bppPrefilter( LPBYTE lpSrc, LPBYTE lpDst )
 {
-	LPBYTE	pPal;
-	DWORD	width;
+	LPBYTE	pPal = 0;
+	DWORD	width = 0;
 	DWORD	pitch = SCREEN_WIDTH*sizeof(WORD);
 
 	for( INT i = 0; i < SCREEN_HEIGHT; i++ ) {
@@ -190,8 +190,8 @@ _r16b_pf_loop:
 // 32bit Render
 void	CDirectDraw::Render32bpp( LPBYTE lpSrc, LPBYTE lpDst )
 {
-	LPBYTE	pPal;
-	DWORD	width;
+	LPBYTE	pPal = 0;
+	DWORD	width = 0;
 	DWORD	pitch = SCREEN_WIDTH*sizeof(DWORD);
 
 	for( INT i = 0; i < SCREEN_HEIGHT; i++ ) {

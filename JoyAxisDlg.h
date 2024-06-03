@@ -16,7 +16,7 @@ class	CJoyAxisDlg : public CWnd
 {
 public:
 	// Override from CWnd
-	INT	DoModal( HWND hWndParent );
+	INT_PTR	DoModal( HWND hWndParent );
 
 protected:
 	void	OnJoySettingSetup( INT nID );
@@ -34,8 +34,8 @@ protected:
 	DLGCMD		OnDefault( DLGCMDPARAM );
 	//
 
-	INT	m_JoySel;
-	INT	m_TimerID;
+	LONG_PTR	m_JoySel;
+	UINT_PTR	m_TimerID;
 	WORD	m_JoyAxisSetting[16];
 private:
 };

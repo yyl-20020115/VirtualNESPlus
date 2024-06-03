@@ -17,7 +17,7 @@ class	CNetPlayDlg : public CWnd
 {
 public:
 	// Override from CWnd
-	INT	DoModal( HWND hWndParent );
+	INT_PTR	DoModal( HWND hWndParent );
 
 protected:
 	void	SetStatusMessage( UINT uID );
@@ -46,7 +46,7 @@ protected:
 	HWND	m_hWndParent;
 
 	UINT	m_uPort;
-	INT	m_nNetLatency;
+	LONG_PTR	m_nNetLatency;
 private:
 };
 

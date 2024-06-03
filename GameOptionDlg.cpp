@@ -29,7 +29,7 @@ DLG_ON_COMMAND( IDC_OPT_NOTSAVE, OnNotSave )
 DLG_COMMAND_END()
 DLG_MESSAGE_END()
 
-INT	CGameOptionDlg::DoModal( HWND hWndParent )
+INT_PTR	CGameOptionDlg::DoModal( HWND hWndParent )
 {
 	return	::DialogBoxParam( CApp::GetPlugin(), MAKEINTRESOURCE(IDD_CFG_GAMEOPTION),
 				hWndParent, g_DlgProc, (LPARAM)this );
@@ -75,9 +75,9 @@ DLGCMD	CGameOptionDlg::OnOK( DLGCMDPARAM )
 {
 //	DEBUGOUT( "CGameOptionDlg::OnOK\n" );
 
-	INT	ret;
-	GameOption.nRenderMethod = ::SendDlgItemMessage( m_hWnd, IDC_OPT_RENDER_COMBO, CB_GETCURSEL, 0, 0 );
-	GameOption.nIRQtype      = ::SendDlgItemMessage( m_hWnd, IDC_OPT_IRQTYPE_COMBO, CB_GETCURSEL, 0, 0 );
+	LONG_PTR	ret;
+	GameOption.nRenderMethod = (INT)::SendDlgItemMessage( m_hWnd, IDC_OPT_RENDER_COMBO, CB_GETCURSEL, 0, 0 );
+	GameOption.nIRQtype      = (INT)::SendDlgItemMessage( m_hWnd, IDC_OPT_IRQTYPE_COMBO, CB_GETCURSEL, 0, 0 );
 	ret = ::SendDlgItemMessage( m_hWnd, IDC_OPT_VIDEOMODE_COMBO, CB_GETCURSEL, 0, 0 );
 	GameOption.bVideoMode = (ret == 0)?FALSE:TRUE;
 	GameOption.bFrameIRQ = !IsBTNCHECK( IDC_OPT_FRAMEIRQ );
@@ -123,9 +123,9 @@ DLGCMD	CGameOptionDlg::OnNotSave( DLGCMDPARAM )
 //	DEBUGOUT( "CGameOptionDlg::OnNotSave\n" );
 
 	INT	ret;
-	GameOption.nRenderMethod = ::SendDlgItemMessage( m_hWnd, IDC_OPT_RENDER_COMBO, CB_GETCURSEL, 0, 0 );
-	GameOption.nIRQtype      = ::SendDlgItemMessage( m_hWnd, IDC_OPT_IRQTYPE_COMBO, CB_GETCURSEL, 0, 0 );
-	ret = ::SendDlgItemMessage( m_hWnd, IDC_OPT_VIDEOMODE_COMBO, CB_GETCURSEL, 0, 0 );
+	GameOption.nRenderMethod = (INT)::SendDlgItemMessage( m_hWnd, IDC_OPT_RENDER_COMBO, CB_GETCURSEL, 0, 0 );
+	GameOption.nIRQtype      = (INT)::SendDlgItemMessage( m_hWnd, IDC_OPT_IRQTYPE_COMBO, CB_GETCURSEL, 0, 0 );
+	ret = (INT)::SendDlgItemMessage( m_hWnd, IDC_OPT_VIDEOMODE_COMBO, CB_GETCURSEL, 0, 0 );
 	GameOption.bVideoMode = (ret == 0)?FALSE:TRUE;
 	GameOption.bFrameIRQ = !IsBTNCHECK( IDC_OPT_FRAMEIRQ );
 

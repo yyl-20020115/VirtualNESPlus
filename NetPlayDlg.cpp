@@ -36,7 +36,7 @@ DLG_ON_COMMAND(IDCANCEL, OnCancel)
 DLG_COMMAND_END()
 DLG_MESSAGE_END()
 
-INT	CNetPlayDlg::DoModal(HWND hWndParent)
+INT_PTR	CNetPlayDlg::DoModal(HWND hWndParent)
 {
 	m_hWndParent = hWndParent;
 
@@ -276,7 +276,7 @@ DLGMSG	CNetPlayDlg::OnNetworkAccept(DLGMSGPARAM)
 	}
 
 	// ÉåÉCÉeÉìÉVê›íË
-	nServerLatency = m_nNetLatency;
+	nServerLatency = (BYTE)m_nNetLatency;
 	if (nServerLatency < 0) {
 		nServerLatency = 0;
 	}

@@ -19,7 +19,7 @@ public:
 	~CFolderDlg();
 
 	// Override from CWnd
-	INT	DoModal( HWND hWndParent );
+	INT_PTR	DoModal( HWND hWndParent );
 protected:
 	void	OnInitialMember();
 	void	PathCheck( LPSTR szPath );

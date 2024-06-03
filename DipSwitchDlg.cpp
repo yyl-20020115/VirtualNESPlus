@@ -40,7 +40,7 @@ DLG_NOTIFY_BEGIN()
 DLG_NOTIFY_END()
 DLG_MESSAGE_END()
 
-INT	CDipSwitchDlg::DoModal( HWND hWndParent )
+INT_PTR	CDipSwitchDlg::DoModal( HWND hWndParent )
 {
 	return	::DialogBoxParam( CApp::GetPlugin(), MAKEINTRESOURCE(IDD_EXT_VSUNISYSTEM),
 				hWndParent, g_DlgProc, (LPARAM)this );

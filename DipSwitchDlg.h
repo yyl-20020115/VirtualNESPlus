@@ -16,7 +16,7 @@ class	CDipSwitchDlg : public CWnd
 {
 public:
 	// Override from CWnd
-	INT	DoModal( HWND hWndParent );
+	INT_PTR	DoModal( HWND hWndParent );
 
 protected:
 	// Message map

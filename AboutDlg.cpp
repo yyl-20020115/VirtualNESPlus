@@ -26,7 +26,7 @@ DLG_ON_COMMAND( IDC_VER_WEBSITE, OnWebsite )
 DLG_COMMAND_END()
 DLG_MESSAGE_END()
 
-INT	CAboutDlg::DoModal( HWND hWndParent )
+INT_PTR	CAboutDlg::DoModal( HWND hWndParent )
 {
 	return	::DialogBoxParam( CApp::GetPlugin(), MAKEINTRESOURCE(IDD_VERSION),
 				hWndParent, g_DlgProc, (LPARAM)this );

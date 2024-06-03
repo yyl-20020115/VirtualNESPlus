@@ -42,9 +42,9 @@ DLG_ON_COMMAND( IDDEFAULT, OnDefault )
 DLG_COMMAND_END()
 DLG_MESSAGE_END()
 
-INT	CSoundDlg::DoModal( HWND hWndParent )
+INT_PTR	CSoundDlg::DoModal( HWND hWndParent )
 {
-	return	::DialogBoxParam( CApp::GetPlugin(), MAKEINTRESOURCE(IDD_CFG_SOUND),
+	return	::DialogBoxParam(CApp::GetPlugin(), MAKEINTRESOURCE(IDD_CFG_SOUND),
 				hWndParent, g_DlgProc, (LPARAM)this );
 }
 

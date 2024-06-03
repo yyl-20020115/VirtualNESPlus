@@ -32,7 +32,7 @@ DLG_ON_COMMAND_NOTIFY_RANGE( IDC_AST_XAXIS, IDC_AST_RZAXIS, BN_CLICKED, OnCheckC
 DLG_COMMAND_END()
 DLG_MESSAGE_END()
 
-INT	CJoyAxisDlg::DoModal( HWND hWndParent )
+INT_PTR	CJoyAxisDlg::DoModal( HWND hWndParent )
 {
 	return	::DialogBoxParam( CApp::GetPlugin(), MAKEINTRESOURCE(IDD_CFG_AXISSETTING),
 				hWndParent, g_DlgProc, (LPARAM)this );
@@ -55,7 +55,7 @@ DLGMSG	CJoyAxisDlg::OnInitDialog( DLGMSGPARAM )
 	m_JoySel = 0;
 	::memcpy( m_JoyAxisSetting, Config.general.JoyAxisSetting, 16*sizeof(WORD) );
 
-	OnJoySettingSetup( m_JoySel );
+	OnJoySettingSetup((INT) m_JoySel );
 
 	for( INT i = IDC_AST_XAXIS_PROGRESS; i <= IDC_AST_RZAXIS_PROGRESS; i++ ) {
 		::SendDlgItemMessage( m_hWnd, i, PBM_SETRANGE32, (WPARAM)-10000, (LPARAM)10000 );
@@ -109,7 +109,7 @@ DLGCMD	CJoyAxisDlg::OnCheckChange( DLGCMDPARAM )
 DLGNOTIFY CJoyAxisDlg::OnSelectChange( DLGCMDPARAM )
 {
 	m_JoySel = ::SendDlgItemMessage( m_hWnd, IDC_AST_ID_COMBO, CB_GETCURSEL, 0, 0 );
-	OnJoySettingSetup( m_JoySel );
+	OnJoySettingSetup( (INT)m_JoySel );
 }
 
 DLGCMD	CJoyAxisDlg::OnOK( DLGCMDPARAM )
@@ -136,6 +136,6 @@ DLGCMD	CJoyAxisDlg::OnDefault( DLGCMDPARAM )
 //	DEBUGOUT( "CJoyAxisDlg::OnDefault\n" );
 
 	::memset( m_JoyAxisSetting, 0, 16*sizeof(WORD) );
-	OnJoySettingSetup( m_JoySel );
+	OnJoySettingSetup( (INT)m_JoySel );
 }
 

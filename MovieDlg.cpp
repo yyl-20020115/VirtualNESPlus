@@ -23,9 +23,9 @@ DLG_ON_COMMAND( IDCANCEL, OnCancel )
 DLG_COMMAND_END()
 DLG_MESSAGE_END()
 
-INT	CMovieDlg::DoModal( HWND hWndParent )
+INT_PTR	CMovieDlg::DoModal( HWND hWndParent )
 {
-	return	::DialogBoxParam( CApp::GetPlugin(), MAKEINTRESOURCE(IDD_CFG_MOVIE),
+	return	::DialogBoxParam(CApp::GetPlugin(), MAKEINTRESOURCE(IDD_CFG_MOVIE),
 				hWndParent, g_DlgProc, (LPARAM)this );
 }
 

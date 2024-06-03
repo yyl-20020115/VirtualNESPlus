@@ -42,7 +42,7 @@ CFolderDlg::~CFolderDlg()
 {
 }
 
-INT	CFolderDlg::DoModal( HWND hWndParent )
+INT_PTR	CFolderDlg::DoModal( HWND hWndParent )
 {
 	return	::DialogBoxParam( CApp::GetPlugin(), MAKEINTRESOURCE(IDD_CFG_FOLDER),
 				hWndParent, g_DlgProc, (LPARAM)this );

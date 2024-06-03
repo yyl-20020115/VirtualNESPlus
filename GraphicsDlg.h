@@ -16,7 +16,7 @@ class	CGraphicsDlg : public CWnd
 {
 public:
 	// Override from CWnd
-	INT	DoModal( HWND hWndParent );
+	INT_PTR	DoModal( HWND hWndParent );
 protected:
 	void	OnInitialMember();
 	void	OnUpdateComboBox();

@@ -89,7 +89,7 @@ class	CCheatCodeEditDlg : public CWnd
 {
 public:
 	// Override from CWnd
-	INT	DoModal( HWND hWndParent );
+	INT_PTR	DoModal( HWND hWndParent );
 
 	// 
 	CHEATCODE	m_Code;
@@ -110,7 +110,7 @@ class	CCheatCodeInputDlg : public CWnd
 {
 public:
 	// Override from CWnd
-	INT	DoModal( HWND hWndParent );
+	INT_PTR	DoModal( HWND hWndParent );
 
 	string	m_Codes;
 	string	m_Comment;
@@ -130,7 +130,7 @@ class	CCheatCodeDlg : public CWnd
 {
 public:
 	// Override from CWnd
-	INT	DoModal( HWND hWndParent );
+	INT_PTR	DoModal( HWND hWndParent );
 
 protected:
 	void	OnListUpdate();
@@ -163,7 +163,7 @@ protected:
 	HIMAGELIST	m_hImageList;
 
 	// Timer
-	UINT	m_uTimerID;
+	LONG_PTR	m_uTimerID;
 
 	// Temp buffer
 	vector<CHEATCODE>	m_CheatCode;

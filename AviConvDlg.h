@@ -21,7 +21,7 @@ public:
 	virtual	~CAviConvDlg();
 
 	// Override from CWnd
-	INT	DoModal( HWND hWndParent );
+	INT_PTR	DoModal( HWND hWndParent );
 
 protected:
 	// Message map
@@ -44,7 +44,7 @@ protected:
 	CAVIWriter	m_AviWriter;
 	NES*		m_pNes;
 
-	INT	m_FrameDivider;
+	LONG_PTR	m_FrameDivider;
 
 	INT	m_FrameNo;
 	DWORD	m_StartTime;

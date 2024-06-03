@@ -780,7 +780,7 @@ DLG_ON_COMMAND( IDCANCEL, OnCancel )
 DLG_COMMAND_END()
 DLG_MESSAGE_END()
 
-INT	CCheatCodeEditDlg::DoModal( HWND hWndParent )
+INT_PTR	CCheatCodeEditDlg::DoModal( HWND hWndParent )
 {
 	return	::DialogBoxParam( CApp::GetPlugin(), MAKEINTRESOURCE(IDD_CODEEDIT),
 				hWndParent, g_DlgProc, (LPARAM)this );
@@ -899,7 +899,7 @@ DLG_ON_COMMAND( IDCANCEL, OnCancel )
 DLG_COMMAND_END()
 DLG_MESSAGE_END()
 
-INT	CCheatCodeInputDlg::DoModal( HWND hWndParent )
+INT_PTR	CCheatCodeInputDlg::DoModal( HWND hWndParent )
 {
 	return	::DialogBoxParam( CApp::GetPlugin(), MAKEINTRESOURCE(IDD_CODEINPUT),
 				hWndParent, g_DlgProc, (LPARAM)this );
@@ -968,7 +968,7 @@ DLG_NOTIFY_END()
 
 DLG_MESSAGE_END()
 
-INT	CCheatCodeDlg::DoModal( HWND hWndParent )
+INT_PTR	CCheatCodeDlg::DoModal( HWND hWndParent )
 {
 	m_hImageList = NULL;
 

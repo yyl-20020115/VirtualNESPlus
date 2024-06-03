@@ -15,7 +15,7 @@ class	CMovieInfoDlg : public CWnd
 {
 public:
 	// Override from CWnd
-	INT	DoModal( HWND hWndParent );
+	INT_PTR	DoModal( HWND hWndParent );
 
 	WORD	m_wRecVersion;
 	WORD	m_wVersion;

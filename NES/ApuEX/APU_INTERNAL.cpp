@@ -372,7 +372,7 @@ void	APU_INTERNAL::Write( WORD addr, BYTE data )
 		case	0x4017:
 			break;
 
-		// VirtuaNES固有ポート
+		// VirtualNES固有ポート
 		case	0x4018:
 			UpdateRectangle( ch0, (INT)data );
 			UpdateRectangle( ch1, (INT)data );
@@ -471,7 +471,7 @@ void	APU_INTERNAL::SyncWrite( WORD addr, BYTE data )
 			SyncWrite4017( data );
 			break;
 
-		// VirtuaNES固有ポート
+		// VirtualNES固有ポート
 		case	0x4018:
 			SyncUpdateRectangle( ch0, (INT)data );
 			SyncUpdateRectangle( ch1, (INT)data );

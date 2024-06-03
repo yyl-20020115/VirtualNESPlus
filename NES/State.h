@@ -9,7 +9,7 @@ typedef	struct	tagFILEHDR {	//  0123456789AB
 	WORD	BlockVersion;
 } FILEHDR, *LPFILEHDR;
 
-// VirtuaNES version0.30以降用
+// VirtualNES version0.30以降用
 typedef	struct	tagFILEHDR2 {	//  0123456789AB
 	BYTE	ID[12];		// "VirtuaNES ST"
 	WORD	Reserved;
@@ -202,7 +202,7 @@ typedef	struct	tagDISKIMGHDR {
 	BYTE	DiskTouch[16];
 } DISKIMGHDR, *LPDISKIMGHDR;
 
-// VirtuaNES version0.30以降用
+// VirtualNES version0.30以降用
 typedef	struct	tagDISKFILEHDR {	//  0123456789AB
 	BYTE	ID[12];		// "VirtuaNES DI"
 	WORD	BlockVersion;	// 0x0200:0.30	0x0210:0.31
@@ -221,7 +221,7 @@ typedef	struct	tagEXCTRSTAT {
 //
 // ムービーファイル
 //
-// VirtuaNES version0.60以降用
+// VirtualNES version0.60以降用
 typedef	struct	tagMOVIEFILEHDR {
 	BYTE	ID[12];			// "VirtuaNES MV"
 	WORD	BlockVersion;		// Movie version 0x0300

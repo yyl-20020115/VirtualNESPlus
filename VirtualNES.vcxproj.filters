@@ -1,56 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Com.cpp" />
-    <ClCompile Include="Config.cpp" />
-    <ClCompile Include="Crclib.cpp" />
-    <ClCompile Include="DebugOut.cpp" />
-    <ClCompile Include="DirectDraw.cpp" />
-    <ClCompile Include="DirectInput.cpp" />
-    <ClCompile Include="DirectSound.cpp" />
-    <ClCompile Include="EmulatorDlg.cpp" />
-    <ClCompile Include="EmuThread.cpp" />
-    <ClCompile Include="FolderDlg.cpp" />
-    <ClCompile Include="GameOptionDlg.cpp" />
-    <ClCompile Include="GraphicsDlg.cpp" />
-    <ClCompile Include="JoyAxisDlg.cpp" />
-    <ClCompile Include="LanguageDlg.cpp" />
-    <ClCompile Include="LauncherDlg.cpp" />
-    <ClCompile Include="MainFrame.cpp" />
-    <ClCompile Include="MemoryView.cpp" />
-    <ClCompile Include="MMTimer.cpp" />
-    <ClCompile Include="MovieDlg.cpp" />
-    <ClCompile Include="MovieInfoDlg.cpp" />
-    <ClCompile Include="NameTableView.cpp" />
-    <ClCompile Include="NES\ApuEX\emu2413\emu2413.c" />
-    <ClCompile Include="NES\Cpu.cpp" />
-    <ClCompile Include="NES\IPS.cpp" />
-    <ClCompile Include="NES\MMU.cpp" />
-    <ClCompile Include="NES\Nes.cpp" />
-    <ClCompile Include="NES\PAD.cpp" />
-    <ClCompile Include="NES\PPU.cpp" />
-    <ClCompile Include="NES\ROM.cpp" />
-    <ClCompile Include="NES\ROMDB.cpp" />
-    <ClCompile Include="NES\ROM_Patch.cpp" />
-    <ClCompile Include="NES\VsUnisystem.cpp" />
-    <ClCompile Include="NetPlay.cpp" />
-    <ClCompile Include="NetPlayDlg.cpp" />
-    <ClCompile Include="PaletteEdit.cpp" />
-    <ClCompile Include="PaletteView.cpp" />
-    <ClCompile Include="Pathlib.cpp" />
-    <ClCompile Include="PatternView.cpp" />
-    <ClCompile Include="Plugin.cpp" />
-    <ClCompile Include="Recent.cpp" />
-    <ClCompile Include="Registry.cpp" />
-    <ClCompile Include="RomInfoDlg.cpp" />
-    <ClCompile Include="ShortcutDlg.cpp" />
-    <ClCompile Include="SimpleVirusChecker.c" />
-    <ClCompile Include="SoundDlg.cpp" />
-    <ClCompile Include="WaveRec.cpp" />
-    <ClCompile Include="WinMain.cpp" />
-    <ClCompile Include="Wnd.cpp" />
-    <ClCompile Include="WndHook.cpp" />
-    <ClCompile Include="zlib\unzip.c" />
     <ClCompile Include="NES\Mapper\Mapper000.cpp">
       <Filter>Mappers\Sources</Filter>
     </ClCompile>
@@ -537,16 +487,6 @@
     <ClCompile Include="NES\PadEX\EXPAD_Zapper.cpp">
       <Filter>EXPAD\Sources</Filter>
     </ClCompile>
-    <ClCompile Include="Render.cpp" />
-    <ClCompile Include="Render8bpp.cpp" />
-    <ClCompile Include="Render16bpp.cpp" />
-    <ClCompile Include="Render24bpp.cpp" />
-    <ClCompile Include="Render32bpp.cpp" />
-    <ClCompile Include="nx_2xSaI.cpp" />
-    <ClCompile Include="nx_hq2x.cpp" />
-    <ClCompile Include="nx_Scale2x.cpp" />
-    <ClCompile Include="nx_Super2xSaI.cpp" />
-    <ClCompile Include="nx_SuperEagle.cpp" />
     <ClCompile Include="NES\APU.cpp">
       <Filter>APU\Sources</Filter>
     </ClCompile>
@@ -613,74 +553,194 @@
     <ClCompile Include="NES\Mapper\MapperNSF.cpp">
       <Filter>Mappers\Sources</Filter>
     </ClCompile>
+    <ClCompile Include="zlib\unzip.c">
+      <Filter>Utils\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Render.cpp">
+      <Filter>Simulator\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Render8bpp.cpp">
+      <Filter>Simulator\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Render16bpp.cpp">
+      <Filter>Simulator\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Render24bpp.cpp">
+      <Filter>Simulator\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Render32bpp.cpp">
+      <Filter>Simulator\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="NES\Cpu.cpp">
+      <Filter>Simulator\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectDraw.cpp">
+      <Filter>Simulator\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectInput.cpp">
+      <Filter>Simulator\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectSound.cpp">
+      <Filter>Simulator\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugOut.cpp">
+      <Filter>Simulator\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="EmulatorDlg.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="FolderDlg.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOptionDlg.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsDlg.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="JoyAxisDlg.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="LanguageDlg.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="LauncherDlg.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrame.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="MemoryView.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="MMTimer.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="MovieDlg.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="MovieInfoDlg.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="NameTableView.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="NetPlayDlg.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="PaletteEdit.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="PaletteView.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="PatternView.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Plugin.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="RomInfoDlg.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="ShortcutDlg.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleVirusChecker.c">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundDlg.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="WinMain.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Wnd.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="WndHook.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Crclib.cpp">
+      <Filter>Utils\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="nx_2xSaI.cpp">
+      <Filter>Simulator\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="nx_hq2x.cpp">
+      <Filter>Simulator\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="nx_Scale2x.cpp">
+      <Filter>Simulator\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="nx_Super2xSaI.cpp">
+      <Filter>Simulator\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="nx_SuperEagle.cpp">
+      <Filter>Simulator\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="NES\PPU.cpp">
+      <Filter>Simulator\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="NES\ROM.cpp">
+      <Filter>Simulator\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="NES\ROM_Patch.cpp">
+      <Filter>Simulator\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="NES\ROMDB.cpp">
+      <Filter>Simulator\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Registry.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Pathlib.cpp">
+      <Filter>Utils\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="NES\MMU.cpp">
+      <Filter>Simulator\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="NES\Nes.cpp">
+      <Filter>Simulator\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="NetPlay.cpp">
+      <Filter>Simulator\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Com.cpp">
+      <Filter>Simulator\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Config.cpp">
+      <Filter>Simulator\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="EmuThread.cpp">
+      <Filter>Simulator\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="NES\ApuEX\emu2413\emu2413.c">
+      <Filter>Simulator\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="NES\PAD.cpp">
+      <Filter>Simulator\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="NES\IPS.cpp">
+      <Filter>Simulator\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Recent.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="WaveRec.cpp">
+      <Filter>Utils\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="NES\VsUnisystem.cpp">
+      <Filter>Utils\Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Com.h" />
-    <ClInclude Include="Config.h" />
-    <ClInclude Include="Crclib.h" />
-    <ClInclude Include="DebugOut.h" />
-    <ClInclude Include="DirectDraw.h" />
-    <ClInclude Include="DirectInput.h" />
-    <ClInclude Include="DirectSound.h" />
-    <ClInclude Include="EmulatorDlg.h" />
-    <ClInclude Include="EmuThread.h" />
-    <ClInclude Include="FolderDlg.h" />
-    <ClInclude Include="GameOptionDlg.h" />
-    <ClInclude Include="GraphicsDlg.h" />
-    <ClInclude Include="hq2x.h" />
-    <ClInclude Include="interp.h" />
-    <ClInclude Include="JoyAxisDlg.h" />
-    <ClInclude Include="LanguageDlg.h" />
-    <ClInclude Include="LauncherDlg.h" />
-    <ClInclude Include="lq2x.h" />
-    <ClInclude Include="lzAscii.h" />
-    <ClInclude Include="lzSight.h" />
-    <ClInclude Include="lzTVlayer.h" />
     <ClInclude Include="Macro.h" />
-    <ClInclude Include="MainFrame.h" />
-    <ClInclude Include="MemoryView.h" />
-    <ClInclude Include="MMTimer.h" />
-    <ClInclude Include="MovieDlg.h" />
-    <ClInclude Include="MovieInfoDlg.h" />
-    <ClInclude Include="NameTableView.h" />
-    <ClInclude Include="NES\ApuEX\emu2413\emu2413.h" />
-    <ClInclude Include="NES\Cheat.h" />
-    <ClInclude Include="NES\CPU.h" />
-    <ClInclude Include="NES\IPS.h" />
-    <ClInclude Include="NES\Mapper\EEPROM.h" />
-    <ClInclude Include="NES\MMU.h" />
-    <ClInclude Include="NES\Nes.h" />
-    <ClInclude Include="NES\PAD.h" />
-    <ClInclude Include="NES\PadEX\EXPAD.h" />
-    <ClInclude Include="NES\PPU.h" />
-    <ClInclude Include="NES\ROM.h" />
-    <ClInclude Include="NES\ROMDB.h" />
     <ClInclude Include="NES\State.h" />
-    <ClInclude Include="NES\VsUnisystem.h" />
     <ClInclude Include="NES\VS_Setting.h" />
-    <ClInclude Include="NetPlay.h" />
-    <ClInclude Include="NetPlayDlg.h" />
-    <ClInclude Include="PaletteEdit.h" />
-    <ClInclude Include="PaletteView.h" />
-    <ClInclude Include="Pathlib.h" />
-    <ClInclude Include="PatternView.h" />
-    <ClInclude Include="Plugin.h" />
-    <ClInclude Include="Pngwrite.h" />
-    <ClInclude Include="Recent.h" />
-    <ClInclude Include="Registry.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="RomInfoDlg.h" />
-    <ClInclude Include="ShortcutDlg.h" />
-    <ClInclude Include="SimpleVirusChecker.h" />
-    <ClInclude Include="SoundDlg.h" />
     <ClInclude Include="Typedef.h" />
     <ClInclude Include="VirtualNESres.h" />
-    <ClInclude Include="WaveRec.h" />
-    <ClInclude Include="Wnd.h" />
-    <ClInclude Include="WndHook.h" />
-    <ClInclude Include="zlib\unzip.h" />
-    <ClInclude Include="zlib\zconf.h" />
-    <ClInclude Include="zlib\zlib.h" />
     <ClInclude Include="NES\Mapper\Mapper000.h">
       <Filter>Mappers\Headers</Filter>
     </ClInclude>
@@ -1167,7 +1227,6 @@
     <ClInclude Include="NES\PadEX\EXPAD_Zapper.h">
       <Filter>EXPAD\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Render.h" />
     <ClInclude Include="NES\APU.h">
       <Filter>APU\Headers</Filter>
     </ClInclude>
@@ -1237,16 +1296,209 @@
     <ClInclude Include="NES\Mapper\MapperNSF.h">
       <Filter>Mappers\Headers</Filter>
     </ClInclude>
+    <ClInclude Include="zlib\unzip.h">
+      <Filter>Utils\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\zconf.h">
+      <Filter>Utils\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\zlib.h">
+      <Filter>Utils\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Render.h">
+      <Filter>Simulator\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="NES\CPU.h">
+      <Filter>Simulator\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectDraw.h">
+      <Filter>Simulator\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectInput.h">
+      <Filter>Simulator\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectSound.h">
+      <Filter>Simulator\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugOut.h">
+      <Filter>Simulator\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EmulatorDlg.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FolderDlg.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOptionDlg.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsDlg.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="JoyAxisDlg.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="LanguageDlg.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="LauncherDlg.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrame.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MemoryView.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MMTimer.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MovieDlg.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MovieInfoDlg.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="NameTableView.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="NetPlayDlg.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="PaletteEdit.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="PaletteView.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="PatternView.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Plugin.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="RomInfoDlg.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ShortcutDlg.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleVirusChecker.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundDlg.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Wnd.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="WndHook.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Crclib.h">
+      <Filter>Utils\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="lq2x.h">
+      <Filter>Simulator\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="hq2x.h">
+      <Filter>Simulator\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="interp.h">
+      <Filter>Simulator\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="NES\ROMDB.h">
+      <Filter>Simulator\Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="NES\ROM.h">
+      <Filter>Simulator\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="NES\PPU.h">
+      <Filter>Simulator\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Registry.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Pngwrite.h">
+      <Filter>Utils\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Pathlib.h">
+      <Filter>Utils\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="NetPlay.h">
+      <Filter>Simulator\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="NES\Nes.h">
+      <Filter>Simulator\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="NES\MMU.h">
+      <Filter>Simulator\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EmuThread.h">
+      <Filter>Simulator\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="NES\ApuEX\emu2413\emu2413.h">
+      <Filter>Simulator\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="NES\Mapper\EEPROM.h">
+      <Filter>Simulator\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Simulator\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Com.h">
+      <Filter>Simulator\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="NES\Cheat.h">
+      <Filter>Simulator\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="NES\PAD.h">
+      <Filter>Simulator\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="NES\IPS.h">
+      <Filter>Simulator\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Recent.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="WaveRec.h">
+      <Filter>Utils\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="NES\PadEX\EXPAD.h">
+      <Filter>Utils\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="lzAscii.h">
+      <Filter>Utils\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="lzSight.h">
+      <Filter>Utils\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="lzTVlayer.h">
+      <Filter>Utils\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="NES\VsUnisystem.h">
+      <Filter>Utils\Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="VirtualNES.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="CheatImageList.bmp" />
-    <Image Include="LauncherImageList.bmp" />
-    <Image Include="res\header_down.ico" />
-    <Image Include="res\header_up.ico" />
-    <Image Include="res\VirtualNES.ico" />
+    <Image Include="CheatImageList.bmp">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="res\VirtualNES.ico">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="LauncherImageList.bmp">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="res\header_down.ico">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="res\header_up.ico">
+      <Filter>Images</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Mappers">
@@ -1295,6 +1547,18 @@
     </Filter>
     <Filter Include="Simulator\Sources">
       <UniqueIdentifier>{c52dc825-7c8f-4f50-b99f-075c46b80194}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Images">
+      <UniqueIdentifier>{7d4a211e-263e-4a2f-bdc3-c3a61bec888d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{3f4e15af-a318-471e-861a-741126f30d96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\Headers">
+      <UniqueIdentifier>{6e3f1d01-e67b-4b43-b5b8-bfe5764ee84a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\Sources">
+      <UniqueIdentifier>{8e1aeb38-53a2-465b-9dbf-c5bccb322290}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

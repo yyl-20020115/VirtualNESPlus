@@ -41,22 +41,22 @@ DLGMSG	CAboutDlg::OnInitDialog( DLGMSGPARAM )
 
 	TCHAR	str[256];
 
-	::wsprintf( str, "VirtuaNES version %01d.%01d%01d%s",
-		    (VIRTUANES_VERSION&0xF00)>>8,
-		    (VIRTUANES_VERSION&0x0F0)>>4,
-		    (VIRTUANES_VERSION&0x00F),
-		    VIRTUANES_FIXVERSION );
+	::wsprintf( str, "VirtualNES version %01d.%01d%01d%s",
+		    (VIRTUALNES_VERSION&0xF00)>>8,
+		    (VIRTUALNES_VERSION&0x0F0)>>4,
+		    (VIRTUALNES_VERSION&0x00F),
+		    VIRTUALNES_FIXVERSION );
 
 	::SetDlgItemText( m_hWnd, IDC_VER_VERSION, str );
 
-//	::SetDlgItemText( m_hWnd, IDC_VER_WEBSITE, VIRTUANES_WEBSITE );
+//	::SetDlgItemText( m_hWnd, IDC_VER_WEBSITE, VIRTUALNES_WEBSITE );
 
-	m_Website.Attach( ::GetDlgItem( m_hWnd, IDC_VER_WEBSITE ), VIRTUANES_WEBSITE );
+	m_Website.Attach( ::GetDlgItem( m_hWnd, IDC_VER_WEBSITE ), VIRTUALNES_WEBSITE );
 
 	string	email, mailto;
-	email  = VIRTUANES_EMAILNAME;
+	email  = VIRTUALNES_EMAILNAME;
 	email += "@";
-	email += VIRTUANES_EMAILDOMAIN;
+	email += VIRTUALNES_EMAILDOMAIN;
 	mailto = "mailto:" + email;
 
 	m_Email.Attach( ::GetDlgItem( m_hWnd, IDC_VER_EMAIL ), email.c_str(), mailto.c_str() );
@@ -88,7 +88,7 @@ DLGCMD	CAboutDlg::OnWebsite( DLGCMDPARAM )
 {
 //	DEBUGOUT( "CAboutDlg::OnCancel\n" );
 
-	::ShellExecute( HWND_DESKTOP, "open", VIRTUANES_WEBSITE, NULL, NULL, SW_SHOWNORMAL );
-//	::ShellExecute( m_hWnd, "open", VIRTUANES_WEBSITE, NULL, NULL, SW_SHOWNORMAL );
+	::ShellExecute( HWND_DESKTOP, "open", VIRTUALNES_WEBSITE, NULL, NULL, SW_SHOWNORMAL );
+//	::ShellExecute( m_hWnd, "open", VIRTUALNES_WEBSITE, NULL, NULL, SW_SHOWNORMAL );
 }
 

@@ -227,10 +227,10 @@ DLGMSG	CNetPlayDlg::OnNetworkAccept(DLGMSGPARAM)
 
 	// 通信レイテンシの計測
 	CHAR	str[256];
-	::wsprintf(str, "VirtuaNES version %01d.%01d%01d",
-		(VIRTUANES_VERSION & 0xF00) >> 8,
-		(VIRTUANES_VERSION & 0x0F0) >> 4,
-		(VIRTUANES_VERSION & 0x00F));
+	::wsprintf(str, "VirtualNES version %01d.%01d%01d",
+		(VIRTUALNES_VERSION & 0xF00) >> 8,
+		(VIRTUALNES_VERSION & 0x0F0) >> 4,
+		(VIRTUALNES_VERSION & 0x00F));
 
 	dwStartTime = ::timeGetTime();
 	for (i = 0; i < ::strlen(str); i++) {
@@ -346,10 +346,10 @@ DLGMSG	CNetPlayDlg::OnNetworkConnect(DLGMSGPARAM)
 
 	// 通信レイテンシの計測
 	CHAR	str[256];
-	::wsprintf(str, "VirtuaNES version %01d.%01d%01d",
-		(VIRTUANES_VERSION & 0xF00) >> 8,
-		(VIRTUANES_VERSION & 0x0F0) >> 4,
-		(VIRTUANES_VERSION & 0x00F));
+	::wsprintf(str, "VirtualNES version %01d.%01d%01d",
+		(VIRTUALNES_VERSION & 0xF00) >> 8,
+		(VIRTUALNES_VERSION & 0x0F0) >> 4,
+		(VIRTUALNES_VERSION & 0x00F));
 
 	dwStartTime = ::timeGetTime();
 	for (i = 0; i < ::strlen(str); i++) {

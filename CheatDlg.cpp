@@ -1419,14 +1419,14 @@ DLGCMD	CCheatCodeDlg::OnLoad( DLGCMDPARAM )
 				}
 
 				if( ::strlen( pToken ) == 4 ) {
-				// VirtuaNES code
+				// VirtualNES code
 					code.address = (WORD)::strtoul( pToken, NULL, 16 );
 					// Type & Length
 					if( !(pToken = (CHAR*)_mbstok( NULL, seps )) )
 						continue;
 
 					if( ::strlen( pToken ) == 2 ) {
-					// VirtuaNES code
+					// VirtualNES code
 						code.type   = pToken[0]-'0';
 						code.length = pToken[1]-'1';
 					} else {

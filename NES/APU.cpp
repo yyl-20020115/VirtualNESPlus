@@ -172,7 +172,7 @@ BYTE	APU::Read( WORD addr )
 
 void	APU::Write( WORD addr, BYTE data )
 {
-	// $4018はVirtuaNES固有ポート
+	// $4018はVirtualNES固有ポート
 	if( addr >= 0x4000 && addr <= 0x401F ) {
 		internal.SyncWrite( addr, data );
 		SetQueue( nes->cpu->GetTotalCycles(), addr, data );
@@ -237,7 +237,7 @@ void	APU::SyncDPCM( INT cycles )
 
 void	APU::WriteProcess( WORD addr, BYTE data )
 {
-	// $4018はVirtuaNES固有ポート
+	// $4018はVirtualNES固有ポート
 	if( addr >= 0x4000 && addr <= 0x401F ) {
 		internal.Write( addr, data );
 	}

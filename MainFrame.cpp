@@ -231,8 +231,8 @@ BOOL	CMainFrame::Create(HWND hWndParent)
 
 	HWND hWnd = CreateWindowEx(
 		WS_EX_CLIENTEDGE,
-		VIRTUANES_WNDCLASS,
-		VIRTUANES_CAPTION,
+		VIRTUALNES_WNDCLASS,
+		VIRTUALNES_CAPTION,
 		WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT,
 		CW_USEDEFAULT,
@@ -941,7 +941,7 @@ WNDMSG	CMainFrame::OnErrorMessage(WNDMSGPARAM)
 	DELETEPTR(Nes);
 
 	// キャプションを変える
-	::SetWindowText(m_hWnd, VIRTUANES_CAPTION);
+	::SetWindowText(m_hWnd, VIRTUALNES_CAPTION);
 
 	if (Config.general.bScreenMode) {
 		OnFullScreenGDI(TRUE);
@@ -1065,7 +1065,7 @@ WNDCMD	CMainFrame::OnFileClose(WNDCMDPARAM)
 		DELETEPTR(Nes);
 
 		// キャプションを変える
-		::SetWindowText(m_hWnd, VIRTUANES_CAPTION);
+		::SetWindowText(m_hWnd, VIRTUALNES_CAPTION);
 
 		// 再描画
 		::InvalidateRect(m_hWnd, NULL, TRUE);
@@ -1234,7 +1234,7 @@ WNDMSG	CMainFrame::OnDropFiles(WNDMSGPARAM)
 	if ((ret = ROM::IsRomFile(szFile)) >= 0) {
 		DEBUGOUT("ROMファイル CHK=%d\n", ret);
 		if (ret == IDS_ERROR_ILLEGALHEADER) {
-			if (::MessageBox(m_hWnd, CApp::GetErrorString(ret), "VirtuaNES", MB_ICONWARNING | MB_YESNO) != IDYES)
+			if (::MessageBox(m_hWnd, CApp::GetErrorString(ret), "VirtualNES", MB_ICONWARNING | MB_YESNO) != IDYES)
 				return	TRUE;
 
 			OnEmulationStart(szFile, TRUE);
@@ -1251,7 +1251,7 @@ WNDMSG	CMainFrame::OnDropFiles(WNDMSGPARAM)
 			DEBUGOUT("ステートファイル CHK=%d\n", ret);
 			if (ret == IDS_ERROR_ILLEGALSTATECRC) {
 				if (Config.emulator.bCrcCheck) {
-					if (::MessageBox(m_hWnd, CApp::GetErrorString(ret), "VirtuaNES", MB_ICONWARNING | MB_YESNO) != IDYES)
+					if (::MessageBox(m_hWnd, CApp::GetErrorString(ret), "VirtualNES", MB_ICONWARNING | MB_YESNO) != IDYES)
 						return	TRUE;
 				}
 			}
@@ -1261,20 +1261,20 @@ WNDMSG	CMainFrame::OnDropFiles(WNDMSGPARAM)
 			if ((ret = NES::IsMovieFile(szFile, Nes->rom)) >= 0) {
 				DEBUGOUT("ムービーファイル CHK=%d\n", ret);
 				if (ret == IDS_ERROR_ILLEGALMOVIEOLD) {
-					::MessageBox(m_hWnd, CApp::GetErrorString(ret), "VirtuaNES", MB_ICONHAND | MB_OK);
+					::MessageBox(m_hWnd, CApp::GetErrorString(ret), "VirtualNES", MB_ICONHAND | MB_OK);
 					return	TRUE;
 				}
 				else
 					if (ret == IDS_ERROR_ILLEGALMOVIEVER) {
 						if (Config.emulator.bCrcCheck) {
-							if (::MessageBox(m_hWnd, CApp::GetErrorString(ret), "VirtuaNES", MB_ICONWARNING | MB_YESNO) != IDYES)
+							if (::MessageBox(m_hWnd, CApp::GetErrorString(ret), "VirtualNES", MB_ICONWARNING | MB_YESNO) != IDYES)
 								return	TRUE;
 						}
 					}
 					else
 						if (ret == IDS_ERROR_ILLEGALMOVIECRC) {
 							if (Config.emulator.bCrcCheck) {
-								if (::MessageBox(m_hWnd, CApp::GetErrorString(ret), "VirtuaNES", MB_ICONWARNING | MB_YESNO) != IDYES)
+								if (::MessageBox(m_hWnd, CApp::GetErrorString(ret), "VirtualNES", MB_ICONWARNING | MB_YESNO) != IDYES)
 									return	TRUE;
 							}
 						}
@@ -1322,7 +1322,7 @@ void	CMainFrame::OnEmulationStart(LPCSTR szFile, BOOL bChecked)
 
 				// YES/NOチェック
 				if (ret == IDS_ERROR_ILLEGALHEADER) {
-					if (::MessageBox(m_hWnd, CApp::GetErrorString(ret), "VirtuaNES", MB_ICONWARNING | MB_YESNO) != IDYES)
+					if (::MessageBox(m_hWnd, CApp::GetErrorString(ret), "VirtualNES", MB_ICONWARNING | MB_YESNO) != IDYES)
 						return;
 				}
 				//			} else {
@@ -1349,7 +1349,7 @@ void	CMainFrame::OnEmulationStart(LPCSTR szFile, BOOL bChecked)
 
 			// キャプションを変える
 			{
-				string	str = VIRTUANES_CAPTION;
+				string	str = VIRTUALNES_CAPTION;
 				str = str + " - " + Nes->rom->GetRomName();
 				::SetWindowText(m_hWnd, str.c_str());
 			}
@@ -1955,7 +1955,7 @@ WNDCMD	CMainFrame::OnLanguageCfg(WNDCMDPARAM)
 		// 新しいプラグインのロード
 		HINSTANCE hPlugin;
 		if (!(hPlugin = ::LoadLibrary(CPlugin::GetPluginPath()))) {
-			::MessageBox(m_hWnd, "Language plug-in load failed.", "VirtuaNES", MB_ICONERROR | MB_OK);
+			::MessageBox(m_hWnd, "Language plug-in load failed.", "VirtualNES", MB_ICONERROR | MB_OK);
 			::PostMessage(m_hWnd, WM_CLOSE, 0, 0);
 			return;
 		}
@@ -2391,7 +2391,7 @@ WNDCMD	CMainFrame::OnStateCommand(WNDCMDPARAM)
 		if ((ret = NES::IsStateFile(tempstr.c_str(), Nes->rom)) >= 0) {
 			if (ret == IDS_ERROR_ILLEGALSTATECRC) {
 				if (Config.emulator.bCrcCheck) {
-					if (::MessageBox(m_hWnd, CApp::GetErrorString(ret), "VirtuaNES", MB_ICONWARNING | MB_YESNO) != IDYES)
+					if (::MessageBox(m_hWnd, CApp::GetErrorString(ret), "VirtualNES", MB_ICONWARNING | MB_YESNO) != IDYES)
 						return;
 				}
 			}
@@ -2439,7 +2439,7 @@ WNDCMD	CMainFrame::OnStateCommand2(WNDCMDPARAM)
 		if ((ret = NES::IsStateFile(tempstr.c_str(), Nes->rom)) >= 0) {
 			if (ret == IDS_ERROR_ILLEGALSTATECRC) {
 				if (Config.emulator.bCrcCheck) {
-					if (::MessageBox(m_hWnd, CApp::GetErrorString(ret), "VirtuaNES", MB_ICONWARNING | MB_YESNO) != IDYES)
+					if (::MessageBox(m_hWnd, CApp::GetErrorString(ret), "VirtualNES", MB_ICONWARNING | MB_YESNO) != IDYES)
 						return;
 				}
 			}
@@ -2503,20 +2503,20 @@ WNDCMD	CMainFrame::OnMovieCommand(WNDCMDPARAM)
 			INT	ret;
 			if ((ret = NES::IsMovieFile(szFile, Nes->rom)) >= 0) {
 				if (ret == IDS_ERROR_ILLEGALMOVIEOLD) {
-					::MessageBox(m_hWnd, CApp::GetErrorString(ret), "VirtuaNES", MB_ICONHAND | MB_OK);
+					::MessageBox(m_hWnd, CApp::GetErrorString(ret), "VirtualNES", MB_ICONHAND | MB_OK);
 					goto	_Movie_Play_Failed;
 				}
 				else
 					if (ret == IDS_ERROR_ILLEGALMOVIEVER) {
 						if (Config.emulator.bCrcCheck) {
-							if (::MessageBox(m_hWnd, CApp::GetErrorString(ret), "VirtuaNES", MB_ICONWARNING | MB_YESNO) != IDYES)
+							if (::MessageBox(m_hWnd, CApp::GetErrorString(ret), "VirtualNES", MB_ICONWARNING | MB_YESNO) != IDYES)
 								goto	_Movie_Play_Failed;
 						}
 					}
 					else
 						if (ret == IDS_ERROR_ILLEGALMOVIECRC) {
 							if (Config.emulator.bCrcCheck) {
-								if (::MessageBox(m_hWnd, CApp::GetErrorString(ret), "VirtuaNES", MB_ICONWARNING | MB_YESNO) != IDYES)
+								if (::MessageBox(m_hWnd, CApp::GetErrorString(ret), "VirtualNES", MB_ICONWARNING | MB_YESNO) != IDYES)
 									goto	_Movie_Play_Failed;
 							}
 						}
@@ -2541,20 +2541,20 @@ WNDCMD	CMainFrame::OnMovieCommand(WNDCMDPARAM)
 			INT	ret;
 			if ((ret = NES::IsMovieFile(szFile, Nes->rom)) >= 0) {
 				if (ret == IDS_ERROR_ILLEGALMOVIEOLD) {
-					::MessageBox(m_hWnd, CApp::GetErrorString(IDS_ERROR_ILLEGALMOVIEOLD_A), "VirtuaNES", MB_ICONHAND | MB_OK);
+					::MessageBox(m_hWnd, CApp::GetErrorString(IDS_ERROR_ILLEGALMOVIEOLD_A), "VirtualNES", MB_ICONHAND | MB_OK);
 					goto	_Movie_Append_Failed;
 				}
 				else
 					if (ret == IDS_ERROR_ILLEGALMOVIEVER) {
 						if (Config.emulator.bCrcCheck) {
-							if (::MessageBox(m_hWnd, CApp::GetErrorString(IDS_ERROR_ILLEGALMOVIEVER_A), "VirtuaNES", MB_ICONWARNING | MB_YESNO) != IDYES)
+							if (::MessageBox(m_hWnd, CApp::GetErrorString(IDS_ERROR_ILLEGALMOVIEVER_A), "VirtualNES", MB_ICONWARNING | MB_YESNO) != IDYES)
 								goto	_Movie_Append_Failed;
 						}
 					}
 					else
 						if (ret == IDS_ERROR_ILLEGALMOVIECRC) {
 							if (Config.emulator.bCrcCheck) {
-								if (::MessageBox(m_hWnd, CApp::GetErrorString(IDS_ERROR_ILLEGALMOVIECRC_A), "VirtuaNES", MB_ICONWARNING | MB_YESNO) != IDYES)
+								if (::MessageBox(m_hWnd, CApp::GetErrorString(IDS_ERROR_ILLEGALMOVIECRC_A), "VirtualNES", MB_ICONWARNING | MB_YESNO) != IDYES)
 									goto	_Movie_Append_Failed;
 							}
 						}

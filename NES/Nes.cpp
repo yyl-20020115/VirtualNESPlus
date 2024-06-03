@@ -38,6 +38,11 @@
 
 #include "pngwrite.h"
 
+#define VIRTUALNES_MV_SIGN "VirtuaNES MV"
+#define VIRTUALNES_ST_SIGN "VirtuaNES ST"
+#define VIRTUALNES_DI_SIGN "VirtuaNES DI"
+
+
 NESCONFIG NESCONFIG_NTSC = {
 	21477270.0f,		// Base clock
 	1789772.5f,		// Cpu clock
@@ -133,7 +138,7 @@ static	UINT	cache_hiRem = 0;
 //
 NES::NES( const char* fname )
 {
-	DEBUGOUT( "VirtuaNES - NES Emulator for Win32 by Norix (C)2001\n" );
+	DEBUGOUT( "VirtualNES - NES Emulator for Win32 by Norix (C)2001\n" );
 
 	m_bDiskThrottle = FALSE;
 	m_CommandRequest = 0;
@@ -1013,7 +1018,7 @@ void	NES::WriteReg( WORD addr, BYTE data )
 			pad->Write( addr, data );
 			apu->Write( addr, data );
 			break;
-		// VirtuaNES固有ポート
+		// VirtualNES固有ポート
 		case	0x18:
 			apu->Write( addr, data );
 			break;
@@ -1219,7 +1224,7 @@ void	NES::LoadDISK()
 			throw	CApp::GetErrorString( IDS_ERROR_READ );
 		}
 
-		if( ::memcmp( ifh.ID, "VirtuaNES DI", sizeof(ifh.ID) ) == 0 ) {
+		if( ::memcmp( ifh.ID, VIRTUALNES_DI_SIGN, sizeof(ifh.ID) ) == 0 ) {
 			if( ifh.BlockVersion < 0x0100 && ifh.BlockVersion > 0x200 ) {
 				// 未対応形式です
 				throw	CApp::GetErrorString( IDS_ERROR_UNSUPPORTFORMAT );
@@ -1358,8 +1363,7 @@ void	NES::SaveDISK()
 	try
 	{
 		::ZeroMemory( &ifh, sizeof(ifh) );
-
-		::memcpy( ifh.ID, "VirtuaNES DI", sizeof(ifh.ID) );
+		::memcpy( ifh.ID, VIRTUALNES_DI_SIGN, sizeof(ifh.ID) );
 		ifh.BlockVersion = 0x0210;
 		ifh.ProgID  = rom->GetGameID();
 		ifh.MakerID = (WORD)rom->GetMakerID();
@@ -1549,7 +1553,7 @@ FILEHDR2 header;
 	}
 	FCLOSE( fp );
 
-	if( ::memcmp( header.ID, "VirtuaNES ST", sizeof(header.ID) ) == 0 ) {
+	if( ::memcmp( header.ID, VIRTUALNES_ST_SIGN, sizeof(header.ID) ) == 0 ) {
 		if( header.BlockVersion < 0x0100 )
 			return	0;
 
@@ -1661,7 +1665,7 @@ BOOL	NES::ReadState( FILE* fp )
 		// File Header check
 		if( !bHeader ) {
 			LPFILEHDR	fh = (LPFILEHDR)&hdr;
-			if( ::memcmp( fh->ID, "VirtuaNES ST", sizeof(fh->ID) ) == 0 ) {
+			if( ::memcmp( fh->ID, VIRTUALNES_ST_SIGN, sizeof(fh->ID) ) == 0 ) {
 				Version = fh->BlockVersion;
 				if( Version == 0x0100 ) {
 				// Ver0.24まで
@@ -2082,7 +2086,8 @@ void	NES::WriteState( FILE* fp )
 	FILEHDR2 hdr;
 
 	ZEROMEMORY( &hdr, sizeof(FILEHDR2) );
-	::memcpy( hdr.ID, "VirtuaNES ST", sizeof(hdr.ID) );
+
+	::memcpy( hdr.ID, VIRTUALNES_ST_SIGN, sizeof(hdr.ID) );
 	hdr.BlockVersion = 0x0200;
 
 	if( rom->GetMapperNo() != 20 ) {
@@ -2217,7 +2222,7 @@ void	NES::WriteState( FILE* fp )
 	size = 0;
 	// SAVE CPU MEMORY BANK DATA
 	// BANK0,1,2はバンクセーブに関係なし
-	// VirtuaNES0.30から
+	// VirtualNES0.30から
 	// バンク３はSRAM使用に関わらずセーブ
 	for( i = 3; i < 8; i++ ) {
 		mmu.CPU_MEM_TYPE[i] = CPU_MEM_TYPE[i];
@@ -2667,7 +2672,7 @@ MOVIEFILEHDR	header;
 	}
 	FCLOSE( fp );
 
-	if( ::memcmp( header.ID, "VirtuaNES MV", sizeof(header.ID) ) == 0 ) {
+	if( ::memcmp( header.ID, VIRTUALNES_MV_SIGN, sizeof(header.ID) ) == 0 ) {
 		if( header.BlockVersion < 0x0300 ) {
 			return	IDS_ERROR_ILLEGALMOVIEOLD;
 		} else 
@@ -2685,7 +2690,7 @@ MOVIEFILEHDR	header;
 					return	IDS_ERROR_ILLEGALMOVIECRC;	// 違うじゃん
 			}
 
-			if( header.RecordVersion != VIRTUANES_VERSION ) {
+			if( header.RecordVersion != VIRTUALNES_VERSION ) {
 				return	IDS_ERROR_ILLEGALMOVIEVER;
 			}
 
@@ -2720,7 +2725,7 @@ DEBUGOUT( "NES::MoviePlay\n" );
 			throw	CApp::GetErrorString( IDS_ERROR_READ );
 		}
 
-		if( ::memcmp( m_hedMovie.ID, "VirtuaNES MV", sizeof(m_hedMovie.ID) ) == 0 ) {
+		if( ::memcmp( m_hedMovie.ID, VIRTUALNES_MV_SIGN, sizeof(m_hedMovie.ID) ) == 0 ) {
 			m_MovieVersion = m_hedMovie.BlockVersion;
 
 //			if( m_hedMovie.BlockVersion == 0x0300 ) {
@@ -2811,12 +2816,11 @@ DEBUGOUT( "NES::MovieRec\n" );
 			sprintf( szErrorString, szErrStr, fname );
 			throw	szErrorString;
 		}
-
 		::ZeroMemory( &m_hedMovie, sizeof(m_hedMovie) );
-		::memcpy( m_hedMovie.ID, "VirtuaNES MV", sizeof(m_hedMovie.ID) );
+		::memcpy( m_hedMovie.ID, VIRTUALNES_MV_SIGN, sizeof(m_hedMovie.ID) );
 //		m_hedMovie.BlockVersion = 0x0300;
 		m_hedMovie.BlockVersion = 0x0400;
-		m_hedMovie.RecordVersion = VIRTUANES_VERSION;
+		m_hedMovie.RecordVersion = VIRTUALNES_VERSION;
 
 		m_hedMovie.StateStOffset = sizeof(m_hedMovie);
 
@@ -2906,10 +2910,10 @@ DEBUGOUT( "NES::MovieAppendRec\n" );
 			}
 
 			::ZeroMemory( &m_hedMovie, sizeof(m_hedMovie) );
-			::memcpy( m_hedMovie.ID, "VirtuaNES MV", sizeof(m_hedMovie.ID) );
+			::memcpy( m_hedMovie.ID, VIRTUALNES_MV_SIGN, sizeof(m_hedMovie.ID) );
 //			m_hedMovie.BlockVersion = 0x0300;
 			m_hedMovie.BlockVersion = 0x0400;
-			m_hedMovie.RecordVersion = VIRTUANES_VERSION;
+			m_hedMovie.RecordVersion = VIRTUALNES_VERSION;
 			m_hedMovie.StateStOffset = sizeof(m_hedMovie);
 
 			m_hedMovie.Control |= Config.movie.bUsePlayer[0]?0x01:0x00;
@@ -2962,7 +2966,7 @@ DEBUGOUT( "NES::MovieAppendRec\n" );
 				throw	CApp::GetErrorString( IDS_ERROR_READ );
 			}
 
-			if( ::memcmp( m_hedMovie.ID, "VirtuaNES MV", sizeof(m_hedMovie.ID) ) != 0 ) {
+			if( ::memcmp( m_hedMovie.ID, VIRTUALNES_MV_SIGN, sizeof(m_hedMovie.ID) ) != 0 ) {
 				FCLOSE( m_fpMovie );
 				return	FALSE;
 			}

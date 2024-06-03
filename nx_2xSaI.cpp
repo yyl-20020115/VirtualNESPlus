@@ -16,7 +16,7 @@
  * you can e-mail me. My e-mail: DerekL666@yahoo.com                   *
  *---------------------------------------------------------------------*/
  //
- // This code was converted into VirtuaNES by Norix.
+ // This code was converted into VirtualNES by Norix.
  //
 void nx_2xSaILine_16bpp_mmx(euI8* pSrc, euI8* pDlt, euI32 srcPitch, euI32 width, euI8* pDst, euI32 dstPitch, euI32 bForceWrite)
 {

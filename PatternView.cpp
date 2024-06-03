@@ -55,7 +55,7 @@ BOOL	CPatternView::Create( HWND hWndParent )
 {
 	HWND hWnd = CreateWindowEx(
 			WS_EX_TOOLWINDOW,
-			VIRTUANES_WNDCLASS,
+			VIRTUALNES_WNDCLASS,
 			"PatternView BG0",
 			WS_OVERLAPPEDWINDOW,	// WindowägëÂèkè¨â¬î\
 			CW_USEDEFAULT,

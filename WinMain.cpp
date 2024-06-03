@@ -47,12 +47,12 @@ INT WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 		if(lcid == 0x0411 ) {
 			if( ::MessageBox( NULL, "このPCはウィルスプログラムに感染している可能性があります。\n"
 						"危険ですのでなるべく早急にウィルスチェックを行って下さい。\n\n"
-						"それでも実行しますか？", "VirtuaNES 簡易ウィルスチェッカー", MB_ICONWARNING|MB_YESNO|MB_DEFBUTTON2 ) == IDNO )
+						"それでも実行しますか？", "VirtualNES 簡易ウィルスチェッカー", MB_ICONWARNING|MB_YESNO|MB_DEFBUTTON2 ) == IDNO )
 				return	-1L;
 		} else {
 			if( ::MessageBox( NULL, "This PC may be infected with a virus program!!!\n"
 						"Should become danger, and please do a check to it immediately!!!\n\n"
-						"Do execute even it?", "VirtuaNES simple virus checker", MB_ICONWARNING|MB_YESNO|MB_DEFBUTTON2 ) == IDNO )
+						"Do execute even it?", "VirtualNES simple virus checker", MB_ICONWARNING|MB_YESNO|MB_DEFBUTTON2 ) == IDNO )
 				return	-1L;
 		}
 	}
@@ -77,11 +77,11 @@ INT WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 
 //DEBUGOUT( "ThreadID:%08X\n", ::GetCurrentThreadId() );
 
-//	CRegistry::SetRegistryKey( "Emulators\\VirtuaNES" );
+//	CRegistry::SetRegistryKey( "Emulators\\VirtualNES" );
 	CRegistry::SetRegistryKey( "VirtualNESPlus.ini" );
 
 	if( !CPlugin::FindPlugin( CApp::GetModulePath() ) ) {
-		::MessageBox( NULL, "Language plug-in is not found.", "VirtuaNES", MB_ICONERROR|MB_OK );
+		::MessageBox( NULL, "Language plug-in is not found.", "VirtualNES", MB_ICONERROR|MB_OK );
 		goto	_Error_Exit;
 	}
 	DEBUGOUT( "Plugin Path:\"%s\"\n", CPlugin::GetPluginPath() );
@@ -90,7 +90,7 @@ INT WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 
 	HINSTANCE hPlugin;
 	if( !(hPlugin = CPlugin::LoadPlugin()) ) {
-		::MessageBox( NULL, "Language plug-in load failed.", "VirtuaNES", MB_ICONERROR|MB_OK );
+		::MessageBox( NULL, "Language plug-in load failed.", "VirtualNES", MB_ICONERROR|MB_OK );
 		goto	_Error_Exit;
 	}
 	CApp::SetPlugin( hPlugin );
@@ -101,22 +101,22 @@ INT WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 	CRecent::Load();
 
 	// 二重起動の防止
-	hMutex = ::CreateMutex( NULL, FALSE, VIRTUANES_MUTEX );
+	hMutex = ::CreateMutex( NULL, FALSE, VIRTUALNES_MUTEX );
 	if( ::GetLastError() == ERROR_ALREADY_EXISTS ) {
 		::CloseHandle( hMutex );
 		if( Config.general.bDoubleExecute ) {
-			HWND	hWnd = ::FindWindow( VIRTUANES_WNDCLASS, NULL );
-//			HWND	hWnd = ::FindWindow( VIRTUANES_WNDCLASS, VIRTUANES_CAPTION );
+			HWND	hWnd = ::FindWindow( VIRTUALNES_WNDCLASS, NULL );
+//			HWND	hWnd = ::FindWindow( VIRTUALNES_WNDCLASS, VIRTUALNES_CAPTION );
 
 			CHAR	szTitle[256] = { 0 };
 			::GetWindowText( hWnd, szTitle, sizeof(szTitle)-1 );
 
 			// タイトルバーが同じかどうかチェック
-			if( ::strncmp( szTitle, VIRTUANES_CAPTION, ::strlen(VIRTUANES_CAPTION) ) == 0 ) {
+			if( ::strncmp( szTitle, VIRTUALNES_CAPTION, ::strlen(VIRTUALNES_CAPTION) ) == 0 ) {
 				// 起動していた方をフォアグラウンドにする
 				::SetForegroundWindow( hWnd );
 
-				// コマンドライン引数があるなら動作中のVirtuaNESのウインドウにファイル名
+				// コマンドライン引数があるなら動作中のVirtualNESのウインドウにファイル名
 				// メッセージを送りつけてそちらで動作させる
 				// (当然の様に対応バージョンでないとダメ)
 				if( ::strlen( lpCmdLine ) > 0 ) {
@@ -192,7 +192,7 @@ INT WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 	CWndHook::Release();
 
 	// 設定の保存
-	CRegistry::SetRegistryKey( "VirtuaNES.ini" );
+	CRegistry::SetRegistryKey( "VirtualNES.ini" );
 	Config.Save();
 	CRecent::Save();
 

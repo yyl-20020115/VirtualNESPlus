@@ -1,31 +1,31 @@
-#ifndef	__VIRTUANES_RESOURCE_INCLUDED__
-#define	__VIRTUANES_RESOURCE_INCLUDED__
+#ifndef	__VIRTUALNES_RESOURCE_INCLUDED__
+#define	__VIRTUALNES_RESOURCE_INCLUDED__
 
-// VirtuaNES version
-#define	VIRTUANES_VERSION		0x0097
-#define	VIRTUANES_FIXVERSION		""
-#define	VIRTUANES_PLUGIN_VERSION	0x0095
+// VirtualNES version
+#define	VIRTUALNES_VERSION		0x0097
+#define	VIRTUALNES_FIXVERSION		""
+#define	VIRTUALNES_PLUGIN_VERSION	0x0095
 
-// VirtuaNES window class
-#define	VIRTUANES_WNDCLASS		"VirtualNESwndclass"
-#define	VIRTUANES_CAPTION		"VirtualNES"
-#define	VIRTUANES_MUTEX			"VirtualNESmutex"
+// VirtualNES window class
+#define	VIRTUALNES_WNDCLASS		"VirtualNESwndclass"
+#define	VIRTUALNES_CAPTION		"VirtualNES"
+#define	VIRTUALNES_MUTEX			"VirtualNESmutex"
 
-// VirtuaNES Website
-#define	VIRTUANES_WEBSITE		"http://virtuanes.s1.xrea.com:8080/"
+// VirtualNES Website
+#define	VIRTUALNES_WEBSITE		"http://virtuanes.s1.xrea.com:8080/"
 
-// VirtuaNES Author E-mail
-#define	VIRTUANES_EMAILNAME		"norix_v"
-#define	VIRTUANES_EMAILDOMAIN		"yahoo.co.jp"
+// VirtualNES Author E-mail
+#define	VIRTUALNES_EMAILNAME		"norix_v"
+#define	VIRTUALNES_EMAILDOMAIN		"yahoo.co.jp"
 
-// VirtuaNES private windows message
+// VirtualNES private windows message
 #define	WM_VNS_ERRORMSG			(WM_APP+0)
 #define	WM_VNS_COMMANDLINE		(WM_APP+1)
 #define	WM_VNS_LAUNCHERCMD		(WM_APP+2)
 #define	WM_VNS_SHORTCUTENABLE		(WM_APP+3)
 #define	WM_VNS_CHATPOPUP		(WM_APP+4)	// Netplay
 
-// VirtuaNES Resource define
+// VirtualNES Resource define
 // Error string
 #define	IDS_ERROR			0x0001
 #define	IDS_ERROR_STARTUP		0x0002
@@ -952,4 +952,4 @@
 #define	ID_LCH_LIST8			0xA018
 #define	ID_LCH_LIST9			0xA019
 
-#endif	// !__VIRTUANES_RESOURCE_INCLUDED__
+#endif	// !__VIRTUALNES_RESOURCE_INCLUDED__

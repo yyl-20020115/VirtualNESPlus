@@ -57,7 +57,7 @@ BOOL	CPlugin::FindPlugin( LPCSTR lpModulePath )
 			if( !(!GetVlpVersion || !GetVlpLanguage || !GetVlpLocaleID) ) {
 				INT	ver = GetVlpVersion();
 
-				if( ver >= VIRTUANES_PLUGIN_VERSION ) {
+				if( ver >= VIRTUALNES_PLUGIN_VERSION ) {
 					m_Plugin[m_PluginNum].LocaleID = GetVlpLocaleID();
 					string	Path = CPathlib::MakePath( lpModulePath, find.cFileName );
 					::strcpy( m_Plugin[m_PluginNum].Path, Path.c_str() );

@@ -77,7 +77,7 @@ BOOL	CMemoryView::Create( HWND hWndParent )
 
 	HWND hWnd = ::CreateWindowEx(
 			WS_EX_TOOLWINDOW,
-			VIRTUANES_WNDCLASS,
+			VIRTUALNES_WNDCLASS,
 			"MemoryView",
 			WS_OVERLAPPEDWINDOW|WS_VSCROLL,	// WindowägëÂèkè¨â¬î\
 			CW_USEDEFAULT,

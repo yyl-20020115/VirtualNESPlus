@@ -303,7 +303,7 @@ DLGMSG	CAviConvDlg::OnConvertDone(DLGMSGPARAM)
 
 	::wsprintf(szTemp, "Convert Finished. Time:%02d:%02d:%02d", h, m, s);
 
-	::MessageBox(m_hWnd, szTemp, "VirtuaNES", MB_OK);
+	::MessageBox(m_hWnd, szTemp, "VirtualNES", MB_OK);
 
 	return	TRUE;
 }
@@ -323,7 +323,7 @@ DLGMSG	CAviConvDlg::OnConvertError(DLGMSGPARAM)
 	DELETEPTR(m_pNes);
 	ControlEnable(TRUE);
 
-	::MessageBox(m_hWnd, (LPSTR)lParam, "VirtuaNES", MB_OK);
+	::MessageBox(m_hWnd, (LPSTR)lParam, "VirtualNES", MB_OK);
 
 	return	TRUE;
 }
@@ -413,7 +413,7 @@ DLGCMD	CAviConvDlg::OnConvertStart(DLGCMDPARAM)
 		m_AviWriter.Close();
 		DELETEPTR(m_pNes);
 
-		::MessageBox(m_hWnd, str, "VirtuaNES", MB_OK);
+		::MessageBox(m_hWnd, str, "VirtualNES", MB_OK);
 #ifndef	_DEBUG
 	}
 	catch (...) {
@@ -427,7 +427,7 @@ DLGCMD	CAviConvDlg::OnConvertStart(DLGCMDPARAM)
 		m_AviWriter.Close();
 		DELETEPTR(m_pNes);
 
-		::MessageBox(m_hWnd, CApp::GetErrorString(IDS_ERROR_UNKNOWN), "VirtuaNES", MB_OK);
+		::MessageBox(m_hWnd, CApp::GetErrorString(IDS_ERROR_UNKNOWN), "VirtualNES", MB_OK);
 #endif
 	}
 }

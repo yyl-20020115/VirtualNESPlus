@@ -1499,6 +1499,8 @@
     <Image Include="res\header_up.ico">
       <Filter>Images</Filter>
     </Image>
+    <Image Include="res\CheatImageList.bmp" />
+    <Image Include="res\LauncherImageList.bmp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Mappers">

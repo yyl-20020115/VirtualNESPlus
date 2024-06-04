@@ -409,4 +409,7 @@ FodyWeavers.xsd
 /LDK/LDK.dll
 /LDK/LDK.lib
 /LDK/LDK.exp
-/Chinese/ChineseLanguage.cpp.bak
+*.bak
+*.h.bak
+*.cpp.bak
+

@@ -406,3 +406,4 @@ FodyWeavers.xsd
 /zlib1.dll
 *.exp
 *.lib
+/LDK/LDK.dll

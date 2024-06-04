@@ -420,7 +420,7 @@ void	CDirectDraw::Render24bpp_Scanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC
 			do {
 				edx = *(DWORD*)eax;
 				if (edx == *(DWORD*)ebx)
-					goto _r32bn_skip1;
+					goto _r32bn_skip1_;
 				else
 					*(DWORD*)ebx = edx;
 
@@ -435,10 +435,10 @@ void	CDirectDraw::Render24bpp_Scanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC
 				edx >>= 16;
 				*(BYTE*)(edi + 11) = (BYTE)(edx & 0xff);
 
-			_r32bn_skip1:
+			_r32bn_skip1_:
 				edx = *(DWORD*)(eax + 4);
 				if (edx == *(DWORD*)(ebx + 4))
-					goto _r32bn_skip2;
+					goto _r32bn_skip2_;
 				else
 					*(DWORD*)(ebx + 4) = edx;
 
@@ -453,7 +453,7 @@ void	CDirectDraw::Render24bpp_Scanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC
 				edx >>= 16;
 				*(BYTE*)(edi + 23) = (BYTE)(edx & 0xff);
 
-			_r32bn_skip2:
+			_r32bn_skip2_:
 				eax += 8;
 				ebx += 8;
 				edi += 24;
@@ -897,7 +897,7 @@ void	CDirectDraw::Render24bpp_Double(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 			do {
 				edx = *(DWORD*)eax;
 				if (edx == *(DWORD*)ebx)
-					goto _r32bn_skip1;
+					goto _r32bn_skip1__;
 				else
 					*(DWORD*)ebx = edx;
 
@@ -916,10 +916,10 @@ void	CDirectDraw::Render24bpp_Double(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 				edx = *(DWORD*)(esi + 4 * (edx & 0xff));
 				*(BYTE*)(edi + 23) = (BYTE)(edx & 0xff);
 
-			_r32bn_skip1:
+			_r32bn_skip1__:
 				edx = *(DWORD*)(eax + 4);
 				if (edx == *(DWORD*)(ebx + 4))
-					goto _r32bn_skip2;
+					goto _r32bn_skip2__;
 				else
 					*(DWORD*)(ebx + 4) = edx;
 
@@ -938,7 +938,7 @@ void	CDirectDraw::Render24bpp_Double(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 				edx = *(DWORD*)(esi + 4 * (edx & 0xff));
 				*(BYTE*)(edi + 47) = (BYTE)(edx & 0xff);
 
-			_r32bn_skip2:
+			_r32bn_skip2__:
 				eax += 8;
 				ebx += 8;
 				edi += 48;
@@ -1417,7 +1417,7 @@ void	CDirectDraw::Render24bpp_DoubleScanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFA
 			do {
 				edx = *(DWORD*)eax;
 				if (edx == *(DWORD*)ebx)
-					goto _r32bn_skip1;
+					goto _r32bn_skip1_;
 				else
 					*(DWORD*)ebx = edx;
 
@@ -1436,10 +1436,10 @@ void	CDirectDraw::Render24bpp_DoubleScanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFA
 				edx = *(DWORD*)(esi + 4 * (edx & 0xff));
 				*(BYTE*)(edi + 23) = (BYTE)(edx & 0xff);
 
-			_r32bn_skip1:
+			_r32bn_skip1_:
 				edx = *(DWORD*)(eax + 4);
 				if (edx == *(DWORD*)(ebx + 4))
-					goto _r32bn_skip2;
+					goto _r32bn_skip2_;
 				else
 					*(DWORD*)(ebx + 4) = edx;
 
@@ -1458,7 +1458,7 @@ void	CDirectDraw::Render24bpp_DoubleScanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFA
 				edx = *(DWORD*)(esi + 4 * (edx & 0xff));
 				*(BYTE*)(edi + 47) = (BYTE)(edx & 0xff);
 
-			_r32bn_skip2:
+			_r32bn_skip2_:
 				eax += 8;
 				ebx += 8;
 				edi += 48;

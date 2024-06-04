@@ -1,7 +1,7 @@
 #include "DebugOut.h"
 #include "DirectDraw.h"
 #include "COM.h"
-#include <mmintrin.h>
+#include <immintrin.h>
 //
 // 32bit Normal
 // Scan: Pal PalScan Pal PalScan
@@ -37,31 +37,37 @@ void	CDirectDraw::Render32bpp_Normal(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 			LPBYTE eax = pScn;
 			LPBYTE ebx = pDlt;
 			LPBYTE esi = pPal;
-			LPBYTE edi = pDst;
+			LPDWORD edi = (LPDWORD)pDst;
 			DWORD  edx = 0;
-			DWORD  ecx = 0;
 			do {
 				*(DWORD*)(ebx + 0) = edx = *(DWORD*)(eax + 0);
-				*(DWORD*)(edi + 0) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 4) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 8) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 12) = *(DWORD*)(esi + 4 * (edx & 0xff));
+				__m128i edxs = _mm_cvtsi32_si128(edx);
+				__m256i esis = _mm256_set1_epi64x((LONG_PTR)esi);
+				__m256i cvt = _mm256_cvtepu8_epi64(edxs);
+				__m256i dst = _mm256_slli_epi64(cvt, 2);
+				__m256i addr = _mm256_add_epi64(esis, dst);
+
+				*(edi + 0) = *(DWORD*)_mm256_extract_epi64(addr, 0);
+				*(edi + 1) = *(DWORD*)_mm256_extract_epi64(addr, 1);
+				*(edi + 2) = *(DWORD*)_mm256_extract_epi64(addr, 2);
+				*(edi + 3) = *(DWORD*)_mm256_extract_epi64(addr, 3);
 
 				*(DWORD*)(ebx + 4) = edx = *(DWORD*)(eax + 4);
-				*(DWORD*)(edi + 16) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 20) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 24) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 28) = *(DWORD*)(esi + 4 * (edx & 0xff));
+
+				edxs = _mm_cvtsi32_si128(edx);
+				esis = _mm256_set1_epi64x((LONG_PTR)esi);
+				cvt = _mm256_cvtepu8_epi64(edxs);
+				dst = _mm256_slli_epi64(cvt, 2);
+				addr = _mm256_add_epi64(esis, dst);
+
+				*(edi + 4) = *(DWORD*)_mm256_extract_epi64(addr, 0);
+				*(edi + 5) = *(DWORD*)_mm256_extract_epi64(addr, 1);
+				*(edi + 6) = *(DWORD*)_mm256_extract_epi64(addr, 2);
+				*(edi + 7) = *(DWORD*)_mm256_extract_epi64(addr, 3);
 
 				eax += 8;
 				ebx += 8;
-				edi += 32;
+				edi += 8;
 				width -= 8;
 			} while (width > 0);
 
@@ -73,9 +79,8 @@ void	CDirectDraw::Render32bpp_Normal(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 			LPBYTE	eax = pScn;
 			LPBYTE	ebx = pDlt;
 			LPBYTE	esi = pPal;
-			LPBYTE	edi = pDst;
-			DWORD	ecx = 0;
-			DWORD	edx = 0;
+			LPDWORD	edi = (LPDWORD)pDst;
+			DWORD   edx = 0;
 			do {
 				edx = *(DWORD*)eax;
 				if (edx == *(DWORD*)ebx)
@@ -83,13 +88,16 @@ void	CDirectDraw::Render32bpp_Normal(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 				else
 					*(DWORD*)ebx = edx;
 
-				*(DWORD*)(edi + 0) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 4) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 8) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 12) = *(DWORD*)(esi + 4 * (edx & 0xff));
+				__m128i edxs = _mm_cvtsi32_si128(edx);
+				__m256i esis = _mm256_set1_epi64x((LONG_PTR)esi);
+				__m256i cvt = _mm256_cvtepu8_epi64(edxs);
+				__m256i dst = _mm256_slli_epi64(cvt, 2);
+				__m256i addr = _mm256_add_epi64(esis, dst);
+
+				*(edi + 0) = *(DWORD*)_mm256_extract_epi64(addr, 0);
+				*(edi + 1) = *(DWORD*)_mm256_extract_epi64(addr, 1);
+				*(edi + 2) = *(DWORD*)_mm256_extract_epi64(addr, 2);
+				*(edi + 3) = *(DWORD*)_mm256_extract_epi64(addr, 3);
 			_r32bn_skip1:
 				edx = *(DWORD*)(eax + 4);
 				if (edx == *(DWORD*)(ebx + 4))
@@ -97,17 +105,20 @@ void	CDirectDraw::Render32bpp_Normal(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 				else
 					*(DWORD*)(ebx + 4) = edx;
 
-				*(DWORD*)(edi + 16) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 20) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 24) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 28) = *(DWORD*)(esi + 4 * (edx & 0xff));
+				edxs = _mm_cvtsi32_si128(edx);
+				esis = _mm256_set1_epi64x((LONG_PTR)esi);
+				cvt = _mm256_cvtepu8_epi64(edxs);
+				dst = _mm256_slli_epi64(cvt, 2);
+				addr = _mm256_add_epi64(esis, dst);
+
+				*(edi + 4) = *(DWORD*)_mm256_extract_epi64(addr, 0);
+				*(edi + 5) = *(DWORD*)_mm256_extract_epi64(addr, 1);
+				*(edi + 6) = *(DWORD*)_mm256_extract_epi64(addr, 2);
+				*(edi + 7) = *(DWORD*)_mm256_extract_epi64(addr, 3);
 			_r32bn_skip2:
 				eax += 8;
 				ebx += 8;
-				edi += 32;
+				edi += 8;
 				width -= 8;
 			} while (width > 0);
 
@@ -268,31 +279,37 @@ void	CDirectDraw::Render32bpp_Scanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC
 			LPBYTE eax = pScn;
 			LPBYTE ebx = pDlt;
 			LPBYTE esi = pPal;
-			LPBYTE edi = pDst;
+			LPDWORD edi = (LPDWORD)pDst;
 			DWORD  edx = 0;
-			DWORD  ecx = 0;
 			do {
 				*(DWORD*)(ebx + 0) = edx = *(DWORD*)(eax + 0);
-				*(DWORD*)(edi + 0) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 4) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 8) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 12) = *(DWORD*)(esi + 4 * (edx & 0xff));
+				__m128i edxs = _mm_cvtsi32_si128(edx);
+				__m256i esis = _mm256_set1_epi64x((LONG_PTR)esi);
+				__m256i cvt = _mm256_cvtepu8_epi64(edxs);
+				__m256i dst = _mm256_slli_epi64(cvt, 2);
+				__m256i addr = _mm256_add_epi64(esis, dst);
+
+				*(edi + 0) = *(DWORD*)_mm256_extract_epi64(addr, 0);
+				*(edi + 1) = *(DWORD*)_mm256_extract_epi64(addr, 1);
+				*(edi + 2) = *(DWORD*)_mm256_extract_epi64(addr, 2);
+				*(edi + 3) = *(DWORD*)_mm256_extract_epi64(addr, 3);
 
 				*(DWORD*)(ebx + 4) = edx = *(DWORD*)(eax + 4);
-				*(DWORD*)(edi + 16) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 20) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 24) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 28) = *(DWORD*)(esi + 4 * (edx & 0xff));
+
+				edxs = _mm_cvtsi32_si128(edx);
+				esis = _mm256_set1_epi64x((LONG_PTR)esi);
+				cvt = _mm256_cvtepu8_epi64(edxs);
+				dst = _mm256_slli_epi64(cvt, 2);
+				addr = _mm256_add_epi64(esis, dst);
+
+				*(edi + 4) = *(DWORD*)_mm256_extract_epi64(addr, 0);
+				*(edi + 5) = *(DWORD*)_mm256_extract_epi64(addr, 1);
+				*(edi + 6) = *(DWORD*)_mm256_extract_epi64(addr, 2);
+				*(edi + 7) = *(DWORD*)_mm256_extract_epi64(addr, 3);
 
 				eax += 8;
 				ebx += 8;
-				edi += 32;
+				edi += 8;
 				width -= 8;
 			} while (width > 0);
 
@@ -302,31 +319,37 @@ void	CDirectDraw::Render32bpp_Scanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC
 			eax = pScn;
 			ebx = pDlt;
 			esi = pPalScan;
-			edi = pDst;
+			edi = (LPDWORD)pDst;
 			edx = 0;
-			ecx = 0;
 			do {
 				*(DWORD*)(ebx + 0) = edx = *(DWORD*)(eax + 0);
-				*(DWORD*)(edi + 0) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 4) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 8) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 12) = *(DWORD*)(esi + 4 * (edx & 0xff));
+				__m128i edxs = _mm_cvtsi32_si128(edx);
+				__m256i esis = _mm256_set1_epi64x((LONG_PTR)esi);
+				__m256i cvt = _mm256_cvtepu8_epi64(edxs);
+				__m256i dst = _mm256_slli_epi64(cvt, 2);
+				__m256i addr = _mm256_add_epi64(esis, dst);
+
+				*(edi + 0) = *(DWORD*)_mm256_extract_epi64(addr, 0);
+				*(edi + 1) = *(DWORD*)_mm256_extract_epi64(addr, 1);
+				*(edi + 2) = *(DWORD*)_mm256_extract_epi64(addr, 2);
+				*(edi + 3) = *(DWORD*)_mm256_extract_epi64(addr, 3);
 
 				*(DWORD*)(ebx + 4) = edx = *(DWORD*)(eax + 4);
-				*(DWORD*)(edi + 16) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 20) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 24) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 28) = *(DWORD*)(esi + 4 * (edx & 0xff));
+
+				edxs = _mm_cvtsi32_si128(edx);
+				esis = _mm256_set1_epi64x((LONG_PTR)esi);
+				cvt = _mm256_cvtepu8_epi64(edxs);
+				dst = _mm256_slli_epi64(cvt, 2);
+				addr = _mm256_add_epi64(esis, dst);
+
+				*(edi + 4) = *(DWORD*)_mm256_extract_epi64(addr, 0);
+				*(edi + 5) = *(DWORD*)_mm256_extract_epi64(addr, 1);
+				*(edi + 6) = *(DWORD*)_mm256_extract_epi64(addr, 2);
+				*(edi + 7) = *(DWORD*)_mm256_extract_epi64(addr, 3);
 
 				eax += 8;
 				ebx += 8;
-				edi += 32;
+				edi += 8;
 				width -= 8;
 			} while (width > 0);
 
@@ -340,9 +363,8 @@ void	CDirectDraw::Render32bpp_Scanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC
 			LPBYTE	eax = pScn;
 			LPBYTE	ebx = pDlt;
 			LPBYTE	esi = pPal;
-			LPBYTE	edi = pDst;
-			DWORD	ecx = 0;
-			DWORD	edx = 0;
+			LPDWORD	edi = (LPDWORD)pDst;
+			DWORD   edx = 0;
 			do {
 				edx = *(DWORD*)eax;
 				if (edx == *(DWORD*)ebx)
@@ -350,13 +372,16 @@ void	CDirectDraw::Render32bpp_Scanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC
 				else
 					*(DWORD*)ebx = edx;
 
-				*(DWORD*)(edi + 0) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 4) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 8) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 12) = *(DWORD*)(esi + 4 * (edx & 0xff));
+				__m128i edxs = _mm_cvtsi32_si128(edx);
+				__m256i esis = _mm256_set1_epi64x((LONG_PTR)esi);
+				__m256i cvt = _mm256_cvtepu8_epi64(edxs);
+				__m256i dst = _mm256_slli_epi64(cvt, 2);
+				__m256i addr = _mm256_add_epi64(esis, dst);
+
+				*(edi + 0) = *(DWORD*)_mm256_extract_epi64(addr, 0);
+				*(edi + 1) = *(DWORD*)_mm256_extract_epi64(addr, 1);
+				*(edi + 2) = *(DWORD*)_mm256_extract_epi64(addr, 2);
+				*(edi + 3) = *(DWORD*)_mm256_extract_epi64(addr, 3);
 			_r32bn_skip1:
 				edx = *(DWORD*)(eax + 4);
 				if (edx == *(DWORD*)(ebx + 4))
@@ -364,17 +389,20 @@ void	CDirectDraw::Render32bpp_Scanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC
 				else
 					*(DWORD*)(ebx + 4) = edx;
 
-				*(DWORD*)(edi + 16) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 20) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 24) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 28) = *(DWORD*)(esi + 4 * (edx & 0xff));
+				edxs = _mm_cvtsi32_si128(edx);
+				esis = _mm256_set1_epi64x((LONG_PTR)esi);
+				cvt = _mm256_cvtepu8_epi64(edxs);
+				dst = _mm256_slli_epi64(cvt, 2);
+				addr = _mm256_add_epi64(esis, dst);
+
+				*(edi + 4) = *(DWORD*)_mm256_extract_epi64(addr, 0);
+				*(edi + 5) = *(DWORD*)_mm256_extract_epi64(addr, 1);
+				*(edi + 6) = *(DWORD*)_mm256_extract_epi64(addr, 2);
+				*(edi + 7) = *(DWORD*)_mm256_extract_epi64(addr, 3);
 			_r32bn_skip2:
 				eax += 8;
 				ebx += 8;
-				edi += 32;
+				edi += 8;
 				width -= 8;
 			} while (width > 0);
 
@@ -384,10 +412,8 @@ void	CDirectDraw::Render32bpp_Scanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC
 			eax = pScn;
 			ebx = pDlt;
 			esi = pPalScan;
-			edi = pDst;
+			edi = (LPDWORD)pDst;
 			edx = 0;
-			ecx = 0;
-
 			do {
 				edx = *(DWORD*)eax;
 				if (edx == *(DWORD*)ebx)
@@ -395,13 +421,16 @@ void	CDirectDraw::Render32bpp_Scanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC
 				else
 					*(DWORD*)ebx = edx;
 
-				*(DWORD*)(edi + 0) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 4) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 8) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 12) = *(DWORD*)(esi + 4 * (edx & 0xff));
+				__m128i edxs = _mm_cvtsi32_si128(edx);
+				__m256i esis = _mm256_set1_epi64x((LONG_PTR)esi);
+				__m256i cvt = _mm256_cvtepu8_epi64(edxs);
+				__m256i dst = _mm256_slli_epi64(cvt, 2);
+				__m256i addr = _mm256_add_epi64(esis, dst);
+
+				*(edi + 0) = *(DWORD*)_mm256_extract_epi64(addr, 0);
+				*(edi + 1) = *(DWORD*)_mm256_extract_epi64(addr, 1);
+				*(edi + 2) = *(DWORD*)_mm256_extract_epi64(addr, 2);
+				*(edi + 3) = *(DWORD*)_mm256_extract_epi64(addr, 3);
 			_r32bn_skip1_:
 				edx = *(DWORD*)(eax + 4);
 				if (edx == *(DWORD*)(ebx + 4))
@@ -409,25 +438,26 @@ void	CDirectDraw::Render32bpp_Scanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC
 				else
 					*(DWORD*)(ebx + 4) = edx;
 
-				*(DWORD*)(edi + 16) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 20) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 24) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 28) = *(DWORD*)(esi + 4 * (edx & 0xff));
+				edxs = _mm_cvtsi32_si128(edx);
+				esis = _mm256_set1_epi64x((LONG_PTR)esi);
+				cvt = _mm256_cvtepu8_epi64(edxs);
+				dst = _mm256_slli_epi64(cvt, 2);
+				addr = _mm256_add_epi64(esis, dst);
+
+				*(edi + 4) = *(DWORD*)_mm256_extract_epi64(addr, 0);
+				*(edi + 5) = *(DWORD*)_mm256_extract_epi64(addr, 1);
+				*(edi + 6) = *(DWORD*)_mm256_extract_epi64(addr, 2);
+				*(edi + 7) = *(DWORD*)_mm256_extract_epi64(addr, 3);
 			_r32bn_skip2_:
 				eax += 8;
 				ebx += 8;
-				edi += 32;
+				edi += 8;
 				width -= 8;
 			} while (width > 0);
-
 
 			pScn += RENDER_WIDTH;
 			pDlt += SCREEN_WIDTH;
 			pDst += pitch;
-
 
 		}
 #else
@@ -680,89 +710,76 @@ void	CDirectDraw::Render32bpp_Double(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 			LPBYTE eax = pScn;
 			LPBYTE ebx = pDlt;
 			LPBYTE esi = pPal;
-			LPBYTE edi = pDst;
+			LPDWORD edi = (LPDWORD)pDst;
 			DWORD  edx = 0;
-			DWORD  ecx = 0;
 			do {
 				*(DWORD*)(ebx + 0) = edx = *(DWORD*)(eax + 0);
+				__m128i edxs = _mm_cvtsi32_si128(edx);
+				__m256i esis = _mm256_set1_epi64x((LONG_PTR)esi);
+				__m256i cvt = _mm256_cvtepu8_epi64(edxs);
+				__m256i dst = _mm256_slli_epi64(cvt, 2);
+				__m256i addr = _mm256_add_epi64(esis, dst);
 
-				*(DWORD*)(edi + 0) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 4) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 8) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 12) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
+				*(edi + 0) = *(edi + 1) = *(DWORD*)_mm256_extract_epi64(addr, 0);
+				*(edi + 2) = *(edi + 3) = *(DWORD*)_mm256_extract_epi64(addr, 1);
+				*(edi + 4) = *(edi + 5) = *(DWORD*)_mm256_extract_epi64(addr, 2);
+				*(edi + 6) = *(edi + 7) = *(DWORD*)_mm256_extract_epi64(addr, 3);
 
-				*(DWORD*)(ebx + 16) = edx = *(DWORD*)(eax + 4);
-				*(DWORD*)(edi + 20) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 24) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 28) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
+				*(DWORD*)(ebx + 4) = edx = *(DWORD*)(eax + 4);
 
-				*(DWORD*)(ebx + 0) = edx = *(DWORD*)(eax + 4);
+				edxs = _mm_cvtsi32_si128(edx);
+				esis = _mm256_set1_epi64x((LONG_PTR)esi);
+				cvt = _mm256_cvtepu8_epi64(edxs);
+				dst = _mm256_slli_epi64(cvt, 2);
+				addr = _mm256_add_epi64(esis, dst);
 
-				*(DWORD*)(edi + 32) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 36) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-
-				*(DWORD*)(edi + 40) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 44) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 48) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 52) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 56) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 60) = *(DWORD*)(esi + 4 * (edx & 0xff));
+				*(edi + 8) = *(edi + 9) = *(DWORD*)_mm256_extract_epi64(addr, 0);
+				*(edi + 10) = *(edi + 11) = *(DWORD*)_mm256_extract_epi64(addr, 1);
+				*(edi + 12) = *(edi + 13) = *(DWORD*)_mm256_extract_epi64(addr, 2);
+				*(edi + 14) = *(edi + 15) = *(DWORD*)_mm256_extract_epi64(addr, 3);
 
 				eax += 8;
 				ebx += 8;
-				edi += 64;
+				edi += 16;
 				width -= 8;
 			} while (width > 0);
+
 			width = SCREEN_WIDTH;
 			pDst += pitch;
 			eax = pScn;
 			ebx = pDlt;
 			esi = pPal;
-			edi = pDst;
-			ecx = 0;
+			edi = (LPDWORD)pDst;
 			edx = 0;
 			do {
 				*(DWORD*)(ebx + 0) = edx = *(DWORD*)(eax + 0);
+				__m128i edxs = _mm_cvtsi32_si128(edx);
+				__m256i esis = _mm256_set1_epi64x((LONG_PTR)esi);
+				__m256i cvt = _mm256_cvtepu8_epi64(edxs);
+				__m256i dst = _mm256_slli_epi64(cvt, 2);
+				__m256i addr = _mm256_add_epi64(esis, dst);
 
-				*(DWORD*)(edi + 0) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 4) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 8) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 12) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
+				*(edi + 0) = *(edi + 1) = *(DWORD*)_mm256_extract_epi64(addr, 0);
+				*(edi + 2) = *(edi + 3) = *(DWORD*)_mm256_extract_epi64(addr, 1);
+				*(edi + 4) = *(edi + 5) = *(DWORD*)_mm256_extract_epi64(addr, 2);
+				*(edi + 6) = *(edi + 7) = *(DWORD*)_mm256_extract_epi64(addr, 3);
 
-				*(DWORD*)(ebx + 16) = edx = *(DWORD*)(eax + 4);
-				*(DWORD*)(edi + 20) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 24) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 28) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
+				*(DWORD*)(ebx + 4) = edx = *(DWORD*)(eax + 4);
 
-				*(DWORD*)(ebx + 0) = edx = *(DWORD*)(eax + 4);
+				edxs = _mm_cvtsi32_si128(edx);
+				esis = _mm256_set1_epi64x((LONG_PTR)esi);
+				cvt = _mm256_cvtepu8_epi64(edxs);
+				dst = _mm256_slli_epi64(cvt, 2);
+				addr = _mm256_add_epi64(esis, dst);
 
-				*(DWORD*)(edi + 32) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 36) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-
-				*(DWORD*)(edi + 40) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 44) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 48) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 52) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 56) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 60) = *(DWORD*)(esi + 4 * (edx & 0xff));
+				*(edi + 8) = *(edi + 9) = *(DWORD*)_mm256_extract_epi64(addr, 0);
+				*(edi + 10) = *(edi + 11) = *(DWORD*)_mm256_extract_epi64(addr, 1);
+				*(edi + 12) = *(edi + 13) = *(DWORD*)_mm256_extract_epi64(addr, 2);
+				*(edi + 14) = *(edi + 15) = *(DWORD*)_mm256_extract_epi64(addr, 3);
 
 				eax += 8;
 				ebx += 8;
-				edi += 64;
+				edi += 16;
 				width -= 8;
 			} while (width > 0);
 
@@ -774,8 +791,7 @@ void	CDirectDraw::Render32bpp_Double(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 			LPBYTE	eax = pScn;
 			LPBYTE	ebx = pDlt;
 			LPBYTE	esi = pPal;
-			LPBYTE	edi = pDst;
-			DWORD	ecx = 0;
+			LPDWORD	edi = (LPDWORD)pDst;
 			DWORD	edx = 0;
 			do {
 				edx = *(DWORD*)eax;
@@ -784,18 +800,16 @@ void	CDirectDraw::Render32bpp_Double(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 				else
 					*(DWORD*)ebx = edx;
 
-				*(DWORD*)(edi + 0) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 4) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 8) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 12) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 16) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 20) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 24) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 28) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
+				__m128i edxs = _mm_cvtsi32_si128(edx);
+				__m256i esis = _mm256_set1_epi64x((LONG_PTR)esi);
+				__m256i cvt = _mm256_cvtepu8_epi64(edxs);
+				__m256i dst = _mm256_slli_epi64(cvt, 2);
+				__m256i addr = _mm256_add_epi64(esis, dst);
+
+				*(edi + 0) = *(edi + 1) = *(DWORD*)_mm256_extract_epi64(addr, 0);
+				*(edi + 2) = *(edi + 3) = *(DWORD*)_mm256_extract_epi64(addr, 1);
+				*(edi + 4) = *(edi + 5) = *(DWORD*)_mm256_extract_epi64(addr, 2);
+				*(edi + 6) = *(edi + 7) = *(DWORD*)_mm256_extract_epi64(addr, 3);
 
 			_r32bn_skip1:
 				edx = *(DWORD*)(eax + 4);
@@ -804,21 +818,20 @@ void	CDirectDraw::Render32bpp_Double(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 				else
 					*(DWORD*)(ebx + 4) = edx;
 
-				*(DWORD*)(edi + 32) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 36) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 40) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 44) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 48) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 52) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 56) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 60) = *(DWORD*)(esi + 4 * (edx & 0xff));
+				edxs = _mm_cvtsi32_si128(edx);
+				esis = _mm256_set1_epi64x((LONG_PTR)esi);
+				cvt = _mm256_cvtepu8_epi64(edxs);
+				dst = _mm256_slli_epi64(cvt, 2);
+				addr = _mm256_add_epi64(esis, dst);
+
+				*(edi + 8) = *(edi + 9) = *(DWORD*)_mm256_extract_epi64(addr, 0);
+				*(edi + 10) = *(edi + 11) = *(DWORD*)_mm256_extract_epi64(addr, 1);
+				*(edi + 12) = *(edi + 13) = *(DWORD*)_mm256_extract_epi64(addr, 2);
+				*(edi + 14) = *(edi + 15) = *(DWORD*)_mm256_extract_epi64(addr, 3);
 			_r32bn_skip2:
 				eax += 8;
 				ebx += 8;
-				edi += 64;
+				edi += 16;
 				width -= 8;
 			} while (width > 0);
 			width = SCREEN_WIDTH;
@@ -826,8 +839,7 @@ void	CDirectDraw::Render32bpp_Double(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 			eax = pScn;
 			ebx = pDlt;
 			esi = pPal;
-			edi = pDst;
-			ecx = 0;
+			edi = (LPDWORD)pDst;
 			edx = 0;
 			do {
 				edx = *(DWORD*)eax;
@@ -836,18 +848,16 @@ void	CDirectDraw::Render32bpp_Double(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 				else
 					*(DWORD*)ebx = edx;
 
-				*(DWORD*)(edi + 0) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 4) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 8) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 12) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 16) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 20) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 24) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 28) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
+				__m128i edxs = _mm_cvtsi32_si128(edx);
+				__m256i esis = _mm256_set1_epi64x((LONG_PTR)esi);
+				__m256i cvt = _mm256_cvtepu8_epi64(edxs);
+				__m256i dst = _mm256_slli_epi64(cvt, 2);
+				__m256i addr = _mm256_add_epi64(esis, dst);
+
+				*(edi + 0) = *(edi + 1) = *(DWORD*)_mm256_extract_epi64(addr, 0);
+				*(edi + 2) = *(edi + 3) = *(DWORD*)_mm256_extract_epi64(addr, 1);
+				*(edi + 4) = *(edi + 5) = *(DWORD*)_mm256_extract_epi64(addr, 2);
+				*(edi + 6) = *(edi + 7) = *(DWORD*)_mm256_extract_epi64(addr, 3);
 
 			_r32bn_skip1__:
 				edx = *(DWORD*)(eax + 4);
@@ -856,21 +866,20 @@ void	CDirectDraw::Render32bpp_Double(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2&
 				else
 					*(DWORD*)(ebx + 4) = edx;
 
-				*(DWORD*)(edi + 32) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 36) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 40) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 44) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 48) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 52) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 56) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 60) = *(DWORD*)(esi + 4 * (edx & 0xff));
+				edxs = _mm_cvtsi32_si128(edx);
+				esis = _mm256_set1_epi64x((LONG_PTR)esi);
+				cvt = _mm256_cvtepu8_epi64(edxs);
+				dst = _mm256_slli_epi64(cvt, 2);
+				addr = _mm256_add_epi64(esis, dst);
+
+				*(edi + 8) = *(edi + 9) = *(DWORD*)_mm256_extract_epi64(addr, 0);
+				*(edi + 10) = *(edi + 11) = *(DWORD*)_mm256_extract_epi64(addr, 1);
+				*(edi + 12) = *(edi + 13) = *(DWORD*)_mm256_extract_epi64(addr, 2);
+				*(edi + 14) = *(edi + 15) = *(DWORD*)_mm256_extract_epi64(addr, 3);
 			_r32bn_skip2__:
 				eax += 8;
 				ebx += 8;
-				edi += 64;
+				edi += 16;
 				width -= 8;
 			} while (width > 0);
 
@@ -1163,87 +1172,76 @@ void	CDirectDraw::Render32bpp_DoubleScanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFA
 			LPBYTE eax = pScn;
 			LPBYTE ebx = pDlt;
 			LPBYTE esi = pPal;
-			LPBYTE edi = pDst;
+			LPDWORD edi = (LPDWORD)pDst;
 			DWORD  edx = 0;
-			DWORD  ecx = 0;
 			do {
 				*(DWORD*)(ebx + 0) = edx = *(DWORD*)(eax + 0);
+				__m128i edxs = _mm_cvtsi32_si128(edx);
+				__m256i esis = _mm256_set1_epi64x((LONG_PTR)esi);
+				__m256i cvt = _mm256_cvtepu8_epi64(edxs);
+				__m256i dst = _mm256_slli_epi64(cvt, 2);
+				__m256i addr = _mm256_add_epi64(esis, dst);
 
-				*(DWORD*)(edi + 0) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 4) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 8) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 12) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
+				*(edi + 0) = *(edi + 1) = *(DWORD*)_mm256_extract_epi64(addr, 0);
+				*(edi + 2) = *(edi + 3) = *(DWORD*)_mm256_extract_epi64(addr, 1);
+				*(edi + 4) = *(edi + 5) = *(DWORD*)_mm256_extract_epi64(addr, 2);
+				*(edi + 6) = *(edi + 7) = *(DWORD*)_mm256_extract_epi64(addr, 3);
 
-				*(DWORD*)(ebx + 16) = edx = *(DWORD*)(eax + 4);
-				*(DWORD*)(edi + 20) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 24) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 28) = *(DWORD*)(esi + 4 * (edx & 0xff));
+				*(DWORD*)(ebx + 4) = edx = *(DWORD*)(eax + 4);
 
-				*(DWORD*)(ebx + 0) = edx = *(DWORD*)(eax + 4);
-				*(DWORD*)(edi + 32) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 36) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
+				edxs = _mm_cvtsi32_si128(edx);
+				esis = _mm256_set1_epi64x((LONG_PTR)esi);
+				cvt = _mm256_cvtepu8_epi64(edxs);
+				dst = _mm256_slli_epi64(cvt, 2);
+				addr = _mm256_add_epi64(esis, dst);
 
-				*(DWORD*)(edi + 40) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 44) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 48) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 52) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 56) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 60) = *(DWORD*)(esi + 4 * (edx & 0xff));
+				*(edi + 8) = *(edi + 9) = *(DWORD*)_mm256_extract_epi64(addr, 0);
+				*(edi + 10) = *(edi + 11) = *(DWORD*)_mm256_extract_epi64(addr, 1);
+				*(edi + 12) = *(edi + 13) = *(DWORD*)_mm256_extract_epi64(addr, 2);
+				*(edi + 14) = *(edi + 15) = *(DWORD*)_mm256_extract_epi64(addr, 3);
 
 				eax += 8;
 				ebx += 8;
-				edi += 64;
+				edi += 16;
 				width -= 8;
 			} while (width > 0);
+
 			width = SCREEN_WIDTH;
 			pDst += pitch;
 			eax = pScn;
 			ebx = pDlt;
 			esi = pPalScan;
-			edi = pDst;
+			edi = (LPDWORD)pDst;
 			edx = 0;
-			ecx = 0;
 			do {
 				*(DWORD*)(ebx + 0) = edx = *(DWORD*)(eax + 0);
+				__m128i edxs = _mm_cvtsi32_si128(edx);
+				__m256i esis = _mm256_set1_epi64x((LONG_PTR)esi);
+				__m256i cvt = _mm256_cvtepu8_epi64(edxs);
+				__m256i dst = _mm256_slli_epi64(cvt, 2);
+				__m256i addr = _mm256_add_epi64(esis, dst);
 
-				*(DWORD*)(edi + 0) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 4) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 8) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 12) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
+				*(edi + 0) = *(edi + 1) = *(DWORD*)_mm256_extract_epi64(addr, 0);
+				*(edi + 2) = *(edi + 3) = *(DWORD*)_mm256_extract_epi64(addr, 1);
+				*(edi + 4) = *(edi + 5) = *(DWORD*)_mm256_extract_epi64(addr, 2);
+				*(edi + 6) = *(edi + 7) = *(DWORD*)_mm256_extract_epi64(addr, 3);
 
-				*(DWORD*)(ebx + 16) = edx = *(DWORD*)(eax + 4);
-				*(DWORD*)(edi + 20) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 24) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 28) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
+				*(DWORD*)(ebx + 4) = edx = *(DWORD*)(eax + 4);
 
-				*(DWORD*)(ebx + 0) = edx = *(DWORD*)(eax + 4);
+				edxs = _mm_cvtsi32_si128(edx);
+				esis = _mm256_set1_epi64x((LONG_PTR)esi);
+				cvt = _mm256_cvtepu8_epi64(edxs);
+				dst = _mm256_slli_epi64(cvt, 2);
+				addr = _mm256_add_epi64(esis, dst);
 
-				*(DWORD*)(edi + 32) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 36) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-
-				*(DWORD*)(edi + 40) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 44) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 48) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 52) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 56) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 60) = *(DWORD*)(esi + 4 * (edx & 0xff));
+				*(edi + 8) = *(edi + 9) = *(DWORD*)_mm256_extract_epi64(addr, 0);
+				*(edi + 10) = *(edi + 11) = *(DWORD*)_mm256_extract_epi64(addr, 1);
+				*(edi + 12) = *(edi + 13) = *(DWORD*)_mm256_extract_epi64(addr, 2);
+				*(edi + 14) = *(edi + 15) = *(DWORD*)_mm256_extract_epi64(addr, 3);
 
 				eax += 8;
 				ebx += 8;
-				edi += 64;
+				edi += 16;
 				width -= 8;
 			} while (width > 0);
 
@@ -1255,8 +1253,7 @@ void	CDirectDraw::Render32bpp_DoubleScanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFA
 			LPBYTE	eax = pScn;
 			LPBYTE	ebx = pDlt;
 			LPBYTE	esi = pPal;
-			LPBYTE	edi = pDst;
-			DWORD	ecx = 0;
+			LPDWORD	edi = (LPDWORD)pDst;
 			DWORD	edx = 0;
 			do {
 				edx = *(DWORD*)eax;
@@ -1265,18 +1262,16 @@ void	CDirectDraw::Render32bpp_DoubleScanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFA
 				else
 					*(DWORD*)ebx = edx;
 
-				*(DWORD*)(edi + 0) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 4) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 8) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 12) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 16) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 20) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 24) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 28) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
+				__m128i edxs = _mm_cvtsi32_si128(edx);
+				__m256i esis = _mm256_set1_epi64x((LONG_PTR)esi);
+				__m256i cvt = _mm256_cvtepu8_epi64(edxs);
+				__m256i dst = _mm256_slli_epi64(cvt, 2);
+				__m256i addr = _mm256_add_epi64(esis, dst);
+
+				*(edi + 0) = *(edi + 1) = *(DWORD*)_mm256_extract_epi64(addr, 0);
+				*(edi + 2) = *(edi + 3) = *(DWORD*)_mm256_extract_epi64(addr, 1);
+				*(edi + 4) = *(edi + 5) = *(DWORD*)_mm256_extract_epi64(addr, 2);
+				*(edi + 6) = *(edi + 7) = *(DWORD*)_mm256_extract_epi64(addr, 3);
 
 			_r32bn_skip1:
 				edx = *(DWORD*)(eax + 4);
@@ -1285,21 +1280,20 @@ void	CDirectDraw::Render32bpp_DoubleScanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFA
 				else
 					*(DWORD*)(ebx + 4) = edx;
 
-				*(DWORD*)(edi + 32) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 36) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 40) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 44) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 48) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 52) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 56) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 60) = *(DWORD*)(esi + 4 * (edx & 0xff));
+				edxs = _mm_cvtsi32_si128(edx);
+				esis = _mm256_set1_epi64x((LONG_PTR)esi);
+				cvt = _mm256_cvtepu8_epi64(edxs);
+				dst = _mm256_slli_epi64(cvt, 2);
+				addr = _mm256_add_epi64(esis, dst);
+
+				*(edi + 8) = *(edi + 9) = *(DWORD*)_mm256_extract_epi64(addr, 0);
+				*(edi + 10) = *(edi + 11) = *(DWORD*)_mm256_extract_epi64(addr, 1);
+				*(edi + 12) = *(edi + 13) = *(DWORD*)_mm256_extract_epi64(addr, 2);
+				*(edi + 14) = *(edi + 15) = *(DWORD*)_mm256_extract_epi64(addr, 3);
 			_r32bn_skip2:
 				eax += 8;
 				ebx += 8;
-				edi += 64;
+				edi += 16;
 				width -= 8;
 			} while (width > 0);
 			width = SCREEN_WIDTH;
@@ -1307,51 +1301,47 @@ void	CDirectDraw::Render32bpp_DoubleScanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFA
 			eax = pScn;
 			ebx = pDlt;
 			esi = pPalScan;
-			edi = pDst;
-			ecx = 0;
+			edi = (LPDWORD)pDst;
 			edx = 0;
 			do {
 				edx = *(DWORD*)eax;
 				if (edx == *(DWORD*)ebx)
-					goto _r32bn_skip1_;
+					goto _r32bn_skip1__;
 				else
 					*(DWORD*)ebx = edx;
 
-				*(DWORD*)(edi + 0) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 4) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 8) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 12) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 16) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 20) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 24) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 28) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
+				__m128i edxs = _mm_cvtsi32_si128(edx);
+				__m256i esis = _mm256_set1_epi64x((LONG_PTR)esi);
+				__m256i cvt = _mm256_cvtepu8_epi64(edxs);
+				__m256i dst = _mm256_slli_epi64(cvt, 2);
+				__m256i addr = _mm256_add_epi64(esis, dst);
 
-			_r32bn_skip1_:
+				*(edi + 0) = *(edi + 1) = *(DWORD*)_mm256_extract_epi64(addr, 0);
+				*(edi + 2) = *(edi + 3) = *(DWORD*)_mm256_extract_epi64(addr, 1);
+				*(edi + 4) = *(edi + 5) = *(DWORD*)_mm256_extract_epi64(addr, 2);
+				*(edi + 6) = *(edi + 7) = *(DWORD*)_mm256_extract_epi64(addr, 3);
+
+			_r32bn_skip1__:
 				edx = *(DWORD*)(eax + 4);
 				if (edx == *(DWORD*)(ebx + 4))
-					goto _r32bn_skip2_;
+					goto _r32bn_skip2__;
 				else
 					*(DWORD*)(ebx + 4) = edx;
 
-				*(DWORD*)(edi + 32) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 36) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 40) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 44) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 48) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 52) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				edx >>= 8;
-				*(DWORD*)(edi + 56) = *(DWORD*)(esi + 4 * (edx & 0xff));
-				*(DWORD*)(edi + 60) = *(DWORD*)(esi + 4 * (edx & 0xff));
-			_r32bn_skip2_:
+				edxs = _mm_cvtsi32_si128(edx);
+				esis = _mm256_set1_epi64x((LONG_PTR)esi);
+				cvt = _mm256_cvtepu8_epi64(edxs);
+				dst = _mm256_slli_epi64(cvt, 2);
+				addr = _mm256_add_epi64(esis, dst);
+
+				*(edi + 8) = *(edi + 9) = *(DWORD*)_mm256_extract_epi64(addr, 0);
+				*(edi + 10) = *(edi + 11) = *(DWORD*)_mm256_extract_epi64(addr, 1);
+				*(edi + 12) = *(edi + 13) = *(DWORD*)_mm256_extract_epi64(addr, 2);
+				*(edi + 14) = *(edi + 15) = *(DWORD*)_mm256_extract_epi64(addr, 3);
+			_r32bn_skip2__:
 				eax += 8;
 				ebx += 8;
-				edi += 64;
+				edi += 16;
 				width -= 8;
 			} while (width > 0);
 
@@ -1359,7 +1349,6 @@ void	CDirectDraw::Render32bpp_DoubleScanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFA
 			pDlt += SCREEN_WIDTH;
 			pDst += pitch;
 		}
-
 #else
 		if (bFWrite) {
 			__asm {

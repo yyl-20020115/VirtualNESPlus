@@ -3,6 +3,8 @@
 #include "COM.h"
 //
 // 16bit Normal
+// Double: Pal Pal Pal Pal
+// DoubleScan: Pal PalScan Pal PalScan
 void	CDirectDraw::Render16bpp_Normal(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFACEDESC2& ddsd, BOOL bForceWrite)
 {
 	LPBYTE	pScn = lpRdr;
@@ -1212,7 +1214,7 @@ void	CDirectDraw::Render16bpp_DoubleScanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFA
 			pDst += pitch;
 			eax = pScn;
 			ebx = pDlt;
-			esi = pPal;
+			esi = pPalScan;
 			edi = pDst;
 			edx = 0;
 			ecx = 0;
@@ -1315,7 +1317,7 @@ void	CDirectDraw::Render16bpp_DoubleScanline(LPBYTE lpRdr, LPBYTE lpDlt, DDSURFA
 
 			eax = pScn;
 			ebx = pDlt;
-			esi = pPal;
+			esi = pPalScan;
 			edi = pDst;
 			ecx = 0;
 			edx = 0;

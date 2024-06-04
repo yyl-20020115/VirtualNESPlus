@@ -20,12 +20,12 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="VirtuaNES.rc">
+    <ResourceCompile Include="VirtualNES.rc">
       <Filter>Source Files</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="VirtuaNESres.h">
+    <ClInclude Include="VirtualNESres.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

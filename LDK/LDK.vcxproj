@@ -259,10 +259,10 @@
     <CustomBuild Include="LDK.def" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="VirtuaNES.rc" />
+    <ResourceCompile Include="VirtualNES.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="VirtuaNESres.h" />
+    <ClInclude Include="VirtualNESres.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

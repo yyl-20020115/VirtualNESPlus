@@ -23,6 +23,7 @@
     <SccLocalPath />
     <ProjectGuid>{5BFB6517-4DDC-802C-15DE-F0BCEAAA1E4E}</ProjectGuid>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>VirtualNESLanguageDevKit</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -101,6 +102,7 @@
       <PrecompiledHeaderOutputFile>.\Release\LDK.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\Release\</ObjectFileName>
       <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
+      <MinimalRebuild />
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -125,7 +127,7 @@
       <OutputFile>English.vlp</OutputFile>
       <ImportLibrary>.\English.lib</ImportLibrary>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>.\LDK.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>.\LanguageDevKit.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -142,6 +144,7 @@
       <PrecompiledHeaderOutputFile>.\Release\LDK.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\Release\</ObjectFileName>
       <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
+      <MinimalRebuild />
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -165,7 +168,7 @@
       <OutputFile>English.vlp</OutputFile>
       <ImportLibrary>.\English.lib</ImportLibrary>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>.\LDK.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>.\LanguageDevKit.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -176,7 +179,8 @@
       <Optimization>Disabled</Optimization>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <WarningLevel>Level3</WarningLevel>
-      <MinimalRebuild>true</MinimalRebuild>
+      <MinimalRebuild>
+      </MinimalRebuild>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_WINDOWS;_USRDLL;LDK_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\Debug\</AssemblerListingLocation>
@@ -208,7 +212,7 @@
       <OutputFile>.\LDK.dll</OutputFile>
       <ImportLibrary>.\LDK.lib</ImportLibrary>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>.\LDK.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>.\LanguageDevKit.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -226,6 +230,7 @@
       <ObjectFileName>.\Debug\</ObjectFileName>
       <ProgramDataBaseFileName>.\Debug\</ProgramDataBaseFileName>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <MinimalRebuild />
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -249,14 +254,14 @@
       <OutputFile>.\LDK.dll</OutputFile>
       <ImportLibrary>.\LDK.lib</ImportLibrary>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>.\LDK.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>.\LanguageDevKit.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="LDK.cpp" />
+    <ClCompile Include="LanguageDevKit.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="LDK.def" />
+    <CustomBuild Include="LanguageDevKit.def" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="VirtualNES.rc" />

@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LDK.cpp">
+    <ClCompile Include="LanguageDevKit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -30,7 +30,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="LDK.def">
+    <CustomBuild Include="LanguageDevKit.def">
       <Filter>Source Files</Filter>
     </CustomBuild>
   </ItemGroup>

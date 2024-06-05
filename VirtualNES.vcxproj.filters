@@ -733,7 +733,9 @@
     <ClCompile Include="CHyperLink.cpp">
       <Filter>Application\Sources</Filter>
     </ClCompile>
-    <ClCompile Include="NES\Mapper\EEPROM.cpp" />
+    <ClCompile Include="NES\Mapper\EEPROM.cpp">
+      <Filter>Utils\Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Macro.h" />

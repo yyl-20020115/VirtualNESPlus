@@ -23,7 +23,7 @@
     <SccLocalPath />
     <ProjectGuid>{5BFB6517-4DDC-802C-15DE-F0BCEAAA1E4E}</ProjectGuid>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>VirtualNESLanguageDevKit</ProjectName>
+    <ProjectName>English</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -125,9 +125,9 @@
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <ImportLibrary>.\English.lib</ImportLibrary>
+      <ImportLibrary>$(ProjectName).lib</ImportLibrary>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>.\LanguageDevKit.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>.\English.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -166,9 +166,9 @@
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <ImportLibrary>.\English.lib</ImportLibrary>
+      <ImportLibrary>$(ProjectName).lib</ImportLibrary>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>.\LanguageDevKit.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>.\English.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -210,9 +210,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <ImportLibrary>.\LDK.lib</ImportLibrary>
+      <ImportLibrary>$(ProjectName).lib</ImportLibrary>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>.\LanguageDevKit.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>.\English.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -252,16 +252,16 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <ImportLibrary>.\LDK.lib</ImportLibrary>
+      <ImportLibrary>$(ProjectName).lib</ImportLibrary>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>.\LanguageDevKit.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>.\English.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="LanguageDevKit.cpp" />
+    <ClCompile Include="English.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="LanguageDevKit.def" />
+    <CustomBuild Include="English.def" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="VirtualNES.rc" />

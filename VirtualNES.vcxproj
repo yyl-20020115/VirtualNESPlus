@@ -4033,6 +4033,9 @@
     <ProjectReference Include="Chinese\Chinese.vcxproj">
       <Project>{0226e0bc-d637-45f2-9548-c407d4ecf377}</Project>
     </ProjectReference>
+    <ProjectReference Include="LDK\LDK.vcxproj">
+      <Project>{5bfb6517-4ddc-802c-15de-f0bceaaa1e4e}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

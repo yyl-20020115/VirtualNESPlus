@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LanguageDevKit.cpp">
+    <ClCompile Include="English.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -30,7 +30,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="LanguageDevKit.def">
+    <CustomBuild Include="English.def">
       <Filter>Source Files</Filter>
     </CustomBuild>
   </ItemGroup>

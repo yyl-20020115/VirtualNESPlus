@@ -1500,8 +1500,12 @@
     <Image Include="res\header_up.ico">
       <Filter>Images</Filter>
     </Image>
-    <Image Include="res\CheatImageList.bmp" />
-    <Image Include="res\LauncherImageList.bmp" />
+    <Image Include="res\CheatImageList.bmp">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="res\LauncherImageList.bmp">
+      <Filter>Images</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Mappers">

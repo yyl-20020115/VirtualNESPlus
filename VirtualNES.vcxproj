@@ -2221,16 +2221,6 @@
     <ClCompile Include="NES\PPU.cpp" />
     <ClCompile Include="NES\ROM.cpp" />
     <ClCompile Include="NES\ROMDB.cpp" />
-    <ClCompile Include="NES\ROM_Patch.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Debugout|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Debugout|x64'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="NES\VsUnisystem.cpp" />
     <ClCompile Include="NetPlay.cpp" />
     <ClCompile Include="NetPlayDlg.cpp" />

@@ -685,9 +685,6 @@
     <ClCompile Include="NES\ROM.cpp">
       <Filter>Simulator\Sources</Filter>
     </ClCompile>
-    <ClCompile Include="NES\ROM_Patch.cpp">
-      <Filter>Simulator\Sources</Filter>
-    </ClCompile>
     <ClCompile Include="NES\ROMDB.cpp">
       <Filter>Simulator\Sources</Filter>
     </ClCompile>

@@ -541,6 +541,7 @@
     <ClCompile Include="AviWriter.cpp" />
     <ClCompile Include="ChatDlg.cpp" />
     <ClCompile Include="CheatDlg.cpp" />
+    <ClCompile Include="CHyperLink.cpp" />
     <ClCompile Include="Com.cpp" />
     <ClCompile Include="Config.cpp" />
     <ClCompile Include="ControllerDlg.cpp" />

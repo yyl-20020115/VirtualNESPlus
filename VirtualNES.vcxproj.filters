@@ -733,6 +733,7 @@
     <ClCompile Include="NES\VsUnisystem.cpp">
       <Filter>Utils\Sources</Filter>
     </ClCompile>
+    <ClCompile Include="CHyperLink.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Macro.h" />

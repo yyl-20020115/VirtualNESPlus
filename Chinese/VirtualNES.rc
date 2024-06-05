@@ -46,7 +46,7 @@ BEGIN
             VALUE "FileVersion", "0.95"
             VALUE "InternalName", "VirtualNESPlus 语言插件(简体中文(ZH))"
             VALUE "LegalCopyright", "Copyright (C) 2001-2007 Norix"
-            VALUE "OriginalFilename", "Chinese.vlp"
+            VALUE "OriginalFilename", "Chinese.dll"
             VALUE "ProductName", "VirtualNESPlus 语言插件(简体中文(ZH))"
             VALUE "ProductVersion", "0.95"
         END

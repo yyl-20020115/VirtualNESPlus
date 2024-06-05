@@ -77,7 +77,7 @@ BEGIN
             VALUE "InternalName", "VirtuaNES Language Plugin(English(US))\0"
             VALUE "LegalCopyright", "Copyright (C) 2001-2007 Norix\0"
             VALUE "LegalTrademarks", "\0"
-            VALUE "OriginalFilename", "English.vlp\0"
+            VALUE "OriginalFilename", "English.dll\0"
             VALUE "PrivateBuild", "\0"
             VALUE "ProductName", "VirtuaNES Language Plugin(English(US))\0"
             VALUE "ProductVersion", "0.95\0"

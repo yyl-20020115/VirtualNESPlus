@@ -733,7 +733,10 @@
     <ClCompile Include="NES\VsUnisystem.cpp">
       <Filter>Utils\Sources</Filter>
     </ClCompile>
-    <ClCompile Include="CHyperLink.cpp" />
+    <ClCompile Include="CHyperLink.cpp">
+      <Filter>Application\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="NES\Mapper\EEPROM.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Macro.h" />
@@ -1408,9 +1411,6 @@
     <ClInclude Include="interp.h">
       <Filter>Simulator\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="NES\ROMDB.h">
-      <Filter>Simulator\Sources</Filter>
-    </ClInclude>
     <ClInclude Include="NES\ROM.h">
       <Filter>Simulator\Headers</Filter>
     </ClInclude>
@@ -1465,9 +1465,6 @@
     <ClInclude Include="WaveRec.h">
       <Filter>Utils\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="NES\PadEX\EXPAD.h">
-      <Filter>Utils\Headers</Filter>
-    </ClInclude>
     <ClInclude Include="lzAscii.h">
       <Filter>Utils\Headers</Filter>
     </ClInclude>
@@ -1479,6 +1476,12 @@
     </ClInclude>
     <ClInclude Include="NES\VsUnisystem.h">
       <Filter>Utils\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="NES\ROMDB.h">
+      <Filter>Simulator\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="NES\PadEX\EXPAD.h">
+      <Filter>EXPAD\Headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

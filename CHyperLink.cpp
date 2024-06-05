@@ -1,9 +1,9 @@
 #include "CHyperLink.h"
 
 CHyperLink::CHyperLink() 
-	: m_hWnd(NULL), m_lpLabel(NULL),
-	m_hCursor(NULL), m_hFont(NULL),
-	m_lpHyperLink(NULL), m_lpfnOldWndProc(NULL)
+	: m_hWnd(), m_lpLabel(), m_rcLabel(),
+	m_hCursor(), m_hFont(), m_hOldFont(),
+	m_lpHyperLink(), m_lpfnOldWndProc()
 {
 }
 
@@ -46,7 +46,7 @@ BOOL CHyperLink::Attach(HWND hWnd, LPCSTR lpLabel, LPCSTR lpHyperLink)
 
 	// #### Underline font creation
 	HFONT	m_hOldFont = (HFONT)::SendMessage(hWnd, WM_GETFONT, 0, 0);
-	LOGFONT	lFont;
+	LOGFONT	lFont = { 0 };
 	::GetObject(m_hOldFont, sizeof(LOGFONT), &lFont);
 	lFont.lfUnderline = TRUE;
 	m_hFont = ::CreateFontIndirect(&lFont);

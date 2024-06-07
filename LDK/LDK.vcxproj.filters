@@ -20,7 +20,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="VirtualNES.rc">
+    <ResourceCompile Include="VirtualNESPlus.rc">
       <Filter>Source Files</Filter>
     </ResourceCompile>
   </ItemGroup>

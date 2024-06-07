@@ -269,6 +269,7 @@
     <ResourceCompile Include="VirtualNESPlus.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="resource.h" />
     <ClInclude Include="VirtualNESres.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

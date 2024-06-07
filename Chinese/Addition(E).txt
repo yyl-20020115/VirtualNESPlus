@@ -3,7 +3,7 @@
 // Items added with v0.95 gain it //
 ////////////////////////////////////
 
-A change of "VirtuaNESres.h".
+A change of "VirtualNESres.h".
 
 =======
 LDK.cpp

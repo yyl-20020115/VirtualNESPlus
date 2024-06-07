@@ -1570,4 +1570,8 @@
       <UniqueIdentifier>{8e1aeb38-53a2-465b-9dbf-c5bccb322290}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="请先读我.txt" />
+    <Text Include="README.txt" />
+  </ItemGroup>
 </Project>

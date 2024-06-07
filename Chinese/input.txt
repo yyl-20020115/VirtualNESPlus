@@ -8,12 +8,12 @@
 // Generated from the TEXTINCLUDE 2 resource.
 //
 #include "winres.h"
-#include "virtuanesres.h"
+#include "virtualnesres.h"
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// ÖÐÎÄ(¼òÌå) resources
+// ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
 LANGUAGE LANG_CHINESE, SUBLANG_NEUTRAL
@@ -42,12 +42,12 @@ BEGIN
         BLOCK "000404b0"
         BEGIN
             VALUE "CompanyName", " "
-            VALUE "FileDescription", "VirtualNESPlus ÓïÑÔ²å¼þ(¼òÌåÖÐÎÄ(ZH))"
+            VALUE "FileDescription", "VirtualNESPlus ï¿½ï¿½ï¿½Ô²ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ZH))"
             VALUE "FileVersion", "0.95"
-            VALUE "InternalName", "VirtualNESPlus ÓïÑÔ²å¼þ(¼òÌåÖÐÎÄ(ZH))"
+            VALUE "InternalName", "VirtualNESPlus ï¿½ï¿½ï¿½Ô²ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ZH))"
             VALUE "LegalCopyright", "Copyright (C) 2001-2007 Norix"
             VALUE "OriginalFilename", "Chinese.vlp"
-            VALUE "ProductName", "VirtualNESPlus ÓïÑÔ²å¼þ(¼òÌåÖÐÎÄ(ZH))"
+            VALUE "ProductName", "VirtualNESPlus ï¿½ï¿½ï¿½Ô²ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ZH))"
             VALUE "ProductVersion", "0.95"
         END
     END
@@ -1203,7 +1203,7 @@ STRINGTABLE
 BEGIN
     IDS_ERROR_NETWORKDISCONNECT "Network disconnected."
     IDS_ERROR_NETWORKERROR  "Network error."
-    IDS_ERROR_NETWORKERROR_VERSION "Version of VirtuaNES is different."
+    IDS_ERROR_NETWORKERROR_VERSION "Version of VirtualNES is different."
     IDS_ERROR_NETWORKERROR_CRC "Game is different.(PRG CRC is different)"
 END
 
@@ -1480,12 +1480,12 @@ BEGIN
     IDS_CHT_DATA_OLD        "Old"
 END
 
-#endif    // ÖÐÎÄ(¼òÌå) resources
+#endif    // ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Ó¢Óï(ÃÀ¹ú) resources
+// Ó¢ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
@@ -1505,7 +1505,7 @@ END
 2 TEXTINCLUDE 
 BEGIN
     "#include ""winres.h""\r\n"
-    "#include ""virtuanesres.h""\0"
+    "#include ""virtualnesres.h""\0"
 END
 
 3 TEXTINCLUDE 
@@ -1516,7 +1516,7 @@ END
 
 #endif    // APSTUDIO_INVOKED
 
-#endif    // Ó¢Óï(ÃÀ¹ú) resources
+#endif    // Ó¢ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

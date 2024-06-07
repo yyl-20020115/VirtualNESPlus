@@ -38,7 +38,7 @@
     <SccProjectName />
     <SccLocalPath />
     <ProjectGuid>{A68A1E15-EE66-4785-96A3-4DA03D03518A}</ProjectGuid>
-    <WindowsTargetPlatformVersion>7.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>VirtualNESPlus</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -4110,6 +4110,10 @@
     <ProjectReference Include="LDK\LDK.vcxproj">
       <Project>{5bfb6517-4ddc-802c-15de-f0bceaaa1e4e}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="README.txt" />
+    <Text Include="请先读我.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

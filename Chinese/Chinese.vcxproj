@@ -288,7 +288,7 @@
     <CustomBuild Include="Chinese.def" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="VirtualNES.rc" />
+    <ResourceCompile Include="VirtualNES_ZHCN.rc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />

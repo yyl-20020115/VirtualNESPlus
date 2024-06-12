@@ -736,6 +736,9 @@
     <ClCompile Include="NES\Mapper\EEPROM.cpp">
       <Filter>Utils\Sources</Filter>
     </ClCompile>
+    <ClCompile Include="Mapper170.cpp">
+      <Filter>Mappers\Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Macro.h" />
@@ -1481,6 +1484,9 @@
     </ClInclude>
     <ClInclude Include="NES\PadEX\EXPAD.h">
       <Filter>EXPAD\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Mapper170.h">
+      <Filter>Mappers\Headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,16 @@
+#pragma once
+#include "Mapper.h"
+
+//////////////////////////////////////////////////////////////////////////
+// Mapper070                                                            //
+//////////////////////////////////////////////////////////////////////////
+class	Mapper170 : public Mapper
+{
+public:
+	Mapper170(NES* parent);
+
+	void	Reset();
+
+protected:
+private:
+};

@@ -1488,6 +1488,9 @@
     <ClInclude Include="Mapper170.h">
       <Filter>Mappers\Headers</Filter>
     </ClInclude>
+    <ClInclude Include="httplib.h">
+      <Filter>Application\Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="VirtualNES.rc" />

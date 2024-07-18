@@ -3536,6 +3536,7 @@
     <ClInclude Include="GameOptionDlg.h" />
     <ClInclude Include="GraphicsDlg.h" />
     <ClInclude Include="hq2x.h" />
+    <ClInclude Include="httplib.h" />
     <ClInclude Include="interp.h" />
     <ClInclude Include="JoyAxisDlg.h" />
     <ClInclude Include="LanguageDlg.h" />
